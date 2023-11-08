@@ -158,6 +158,25 @@ def generate_skills(skills, specialty_skills):
 	markup += "</li></ul></div></div>"
 	return markup
 
+def generate_projects(projects):
+    if not projects:
+        return None
+    markup = '''<!-- Projects -->
+    <div class="projects section second" id="projects">
+ 	<div class="container">
+  <h1>Projects</h1>'''
+    for project in projects:
+        project_url = (project.get('url',None))
+        markup += (f'''<b><a href="{project_url}" target="_blank">{project['name']}</a></b>''') if project_url else f"<b>{project['name']}</b>" 
+        markup += f" ({s.get_month_and_year(project['startDate'])})"
+        markup += f'''<br><i>{project.get('description', None)}</i>'''
+        markup += '''<ul class="project-list">'''
+        for highlight in project.get('highlights', None):
+            markup += f"<li>{highlight}</li>"
+        markup += '<br></ul>'
+    markup += "</div></div>"
+    return markup
+
 def generate_quote(basics):
 	if not basics.get('quote',None):
 		return None
@@ -220,6 +239,7 @@ if __name__ == "__main__":
 	{generate_work_experience(json_data.get('work_experience'))}
 	{generate_education_and_certs(json_data.get('education', None), json_data.get('certifications', None),json_data.get('awards', None))}
 	{generate_skills(json_data.get('skills', None), json_data.get('specialty_skills', None))}
+ 	{generate_projects(json_data.get('projects', None))}
 	{generate_quote(json_data.get('basics'))}
 	{generate_footer(json_data)}
 	{generate_javascript(json_data)}    
@@ -227,8 +247,6 @@ if __name__ == "__main__":
 </html>
 '''
 #TODO Generate Projects
-#TODO Get Month and Year
-#TODO Migrate to different GH repo
 #TODO Write readme
 
     # Write the content to a markup file

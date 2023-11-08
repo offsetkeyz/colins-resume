@@ -132,6 +132,12 @@ a:hover {
     font-size: 0.9375em;
     color: #8c8c8c; }
 
+.projects .project-list {
+  margin-left: 0px; }
+  .projects .project-list li:first-child {
+    font-size: 0.9375em;
+    color: #8c8c8c; }
+
 .skills .skill-list {
   margin-left: 0px; }
   .skills .skill-list li:first-child {
