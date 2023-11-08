@@ -94,11 +94,19 @@
               },
               "start_date": {
                 "type": "string",
-                "pattern": "^(\\w+ \\d{4}|Present)$"
+                "format": "date"
               },
               "end_date": {
-                "type": "string",
-                "pattern": "^(\\w+ \\d{4}|Present)$"
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "Present"
+                  }
+                ]
               },
               "responsibilities": {
                 "type": "array",
@@ -158,13 +166,13 @@
           },
           "startDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date"
           },
           "endDate": {
             "oneOf": [
               {
                 "type": "string",
-                "format": "date-time"
+                "format": "date"
               },
               {
                 "type": "string",
@@ -215,7 +223,7 @@
               "oneOf": [
                 {
                   "type": "string",
-                  "format": "date-time"
+                  "format": "date"
                 },
                 {
                   "type": "string",
@@ -279,7 +287,8 @@
                 "type": "string"
               },
               "date": {
-                "type": "string"
+                "type": "string",
+                "format": "date"
               },
               "url": {
                 "type": "string",
@@ -446,7 +455,7 @@
                 "oneOf": [
                   {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "date"
                   },
                   {
                     "type": "string",
