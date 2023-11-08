@@ -1,0 +1,236 @@
+{
+  "$schema": "resume-schema.json",
+  "basics": {
+    "name": "Colin McAllister",
+    "label": "Security Developer",
+    "quote" : "Automate / Educate / Secure",
+    "image": "../img/colin.jpg",
+    "email": "clm@dr.com",
+    "phone": "",
+    "url": "https://colinmca.com",
+    "summary": "I'm a motivated security practitioner and developer, specializing in SIEM/SOAR operations, Python, cybersecurity fundamentals, incident handling, and Sigma rules. I'm dedicated to solving complex security challenges and proactively strengthening systems against emerging threats. I thrive on continuous learning and adaptability in the ever-evolving cybersecurity landscape. Let's connect to collaborate and bolster digital defenses for a safer digital world.",
+    "contact_info": [
+      {
+        "title": "Email",
+        "value": "keyz@null.net"
+      },
+      {
+        "title": "Website",
+        "value": "colinmca.com"
+      },
+      {
+        "title": "Telegram",
+        "value": "@offsetkeyz"
+      }
+    ],
+    "profiles": [
+      {
+        "network": "Github",
+        "username": "offsetkeyz",
+        "url": "https://github.com/offsetkeyz",
+        "icon": "fa fa-github-square"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "offsetcolin",
+        "url": "https://www.linkedin.com/in/offsetcolin/",
+        "icon": "fa fa-linkedin-square"
+      }
+    ]
+  },
+  "work_experience": {
+    "Arctic Wolf Networks": [
+      {
+        "job_title": "Security Developer",
+        "location": "Remote",
+        "start_date": "Nov 2022",
+        "end_date": "Present",
+        "responsibilities": [],
+        "skills": ["Python", "Security", "Source Control"]
+      },
+      {
+        "job_title": "Business Analyst",
+        "location": "Remote",
+        "start_date": "Dec 2021",
+        "end_date": "Nov 2022",
+        "responsibilities": [],
+        "skills": []        
+      },
+      {
+        "job_title": "Team Captain",
+        "location": "San Antonio, TX",
+        "start_date": "July 2021",
+        "end_date": "Dec 2021",
+        "responsibilities": []
+      },
+      {
+        "job_title": "Triage Security Engineer",
+        "location": "San Antonio, TX",
+        "start_date": "Dec 2020",
+        "end_date": "Dec 2021",
+        "responsibilities": []
+      }
+    ]
+  },
+  "education": [
+    {
+      "institution": "SANS Technical Institute",
+      "url": "https://www.sans.edu/cyber-security-programs/masters-degree/",
+      "area": "Cyber Security",
+      "studyType": "Master's",
+      "startDate": "2023-07-01",
+      "endDate": "Present",
+      "score": "4.0",
+      "courses": [
+        "ISE 5101 - Security Essentials",
+        "ISE 5201 - Hacker Tools, Techniques, Exploits, and Incident Handling"
+      ]
+    },
+    {
+      "institution": "Auburn University",
+      "area": "Computer Science",
+      "studyType": "Bachelor's",
+      "startDate": "2020-01-01",
+      "endDate": "2021-11-01",
+      "honors": "Summa Cum Laude",
+      "courses": [
+        "Algorithms",
+        "Data Structures",
+        "Software Development"
+      ]
+    },
+    {
+      "institution": "University of Nevada Reno",
+      "area": "Music Education",
+      "studyType": "Bachelor's",
+      "startDate": "2008-01-01",
+      "endDate": "2012-01-01",
+      "score": "3.3",
+      "honors": "Dean's List"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Hackathon Winner",
+      "date": "2023-11-01",
+      "awarder": "Arctic Wolf Networks"
+    },
+    {
+      "title": "Triage Security Engineer 1 of the Quarter",
+      "date": "2021-07-01",
+      "awarder": "Arctic Wolf Networks"
+    },
+    {
+      "title": "Commandant's List",
+      "date": "2015-01-01",
+      "awarder": "Leadership Academy - US Army"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "GIAC Advisory Board",
+      "date": "2023",
+      "url": "https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url"
+    },
+    {
+      "title": "AWS Certified Cloud Practitioner (CCP)",
+      "date": "2023",
+      "url": "https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url"
+    },
+    {
+      "title": "GIAC Network Forensic Analyst (GNFA)",
+      "date": "2022",
+      "url": "https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url"
+    },
+    {
+      "title": "GIAC Security Essentials (GSEC)",
+      "date": "2023",
+      "url": "https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url"
+    }
+  ],
+  "skills": [
+    "Excel",
+    "AI Prompt Generation",
+    "Linux"
+    ],
+  "specialty_skills": [
+    {
+      "name": "Cyber Security",
+      "level": "",
+      "keywords": [
+        "SIEM/SOAR",
+        "Incident Handling",
+        "Threat Hunting"
+      ]
+    },
+    {
+      "name": "Development",
+      "level": "",
+      "keywords": [
+        "Python",
+        "Object Oriented Programming",
+        "Git",
+        "AWS"
+      ]
+    },
+    {
+      "name": "Soft Skills",
+      "level": "",
+      "keywords": [
+        "Communication",
+        "Empathy",
+        "Leadership"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Automation"
+    },
+    {
+      "name": "Security"
+    },
+    {
+      "name": "Education"
+    },
+    {
+      "name": "Photography"
+    },
+    {
+      "name": "Music"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Cloud Resume Challenge",
+      "description": "The first step to becoming a cloud engineer is to build and host your resume in the cloud.",
+      "highlights": [
+        "Resume is created using JSON Schema and automatically converted to HTML, Markdown, and PDF using Python",
+        "The HTML version of the resume is hosted on AWS S3 and served via CloudFront, with domain registered on Route53"
+      ],
+      "keywords": [
+        "AWS",
+        "Cloud Resume Challenge",
+        "Python"
+      ],
+      "startDate": "2023-10-01",
+      "endDate": "Present",
+      "roles": [
+        "Cloud Developer",
+        "Full Stack Developer"
+      ],
+      "type": "application"
+    }
+  ],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/sample.resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2023-11-07"
+  }
+}
