@@ -437,10 +437,10 @@ table {
 
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Google Sans';
     font-style: normal;
     font-weight: 100;
-    src: local('Roboto Thin'), local('Roboto-Thin'), url(http://themes.googleusercontent.com/static/fonts/roboto/v10/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff) format('woff');
+    src: local('Roboto Thin'), local('Roboto-Thin'), url(http://fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Mwp5eKQtGBlc.woff2)format('woff2') format('woff2');
 }
 
 
@@ -508,7 +508,6 @@ h5,
 h6 {
     margin: 20px 0 10px;
     padding: 0;
-    font-weight: bold;
     -webkit-font-smoothing: subpixel-antialiased;
     cursor: text
 }
@@ -516,25 +515,27 @@ h6 {
 h1 {
     font-size: 37px;
     color: #000;
+    font-weight: bold;
     text-align: center
 }
 
 h2 {
     font-size: 24px;
+    font-weight: bold;
     border-bottom: 1px solid #ccc;
-    color: #f39
+    color: rgb(51, 133, 255)
 }
 
 h3 {
     font-size: 18px;
-    color: #333;
+    color: #0353b5;
     -webkit-margin-before: 0.01em;
     -webkit-margin-after: 0.01em;
 }
 
 h4 {
     font-size: 16px;
-    color: #333;
+    color: #00307e;
     text-align: left;
     -webkit-margin-before: 0.02em;
     -webkit-margin-after: 0.02em;
@@ -542,12 +543,12 @@ h4 {
 
 h5 {
     font-size: 14px;
-    color: #333;
+    color: #003960;
     text-align: center
 }
 
 h6 {
-    color: #777;
+    color: #777777;
     font-size: 14px;
     text-align: center
 }
@@ -661,9 +662,9 @@ dl dd>:last-child {
 }
 
 blockquote {
-    border-left: 4px solid #DDD;
+    border-left: 4px solid #dddddd;
     padding: 0 15px;
-    color: #777
+    color: #777777
 }
 
 blockquote>:first-child {
@@ -806,7 +807,7 @@ sub {
 
     code {
         background-color: #fff;
-        color: #333 !important;
+        color: #aed8ff !important;
         padding: 0 .2em;
         border: 1px solid #dedede
     }
@@ -845,13 +846,13 @@ sub {
     .inverted dt,
     .inverted blockquote {
         color: #eee !important;
-        border-color: #555;
+        border-color: #555555;
         box-shadow: none
     }
 
     .inverted td,
     .inverted th {
-        background: #333
+        background: #333333
     }
 
     .inverted h2 {
@@ -905,7 +906,7 @@ sub {
     td::selection,
     th::selection,
     caption::selection {
-        background-color: rgba(180, 237, 95, 0.5)
+        background-color: rgba(95, 178, 237, 0.5)
     }
 
     .inverted {
@@ -928,7 +929,7 @@ sub {
 }
 
 .highlight .err {
-    color: #a61717;
+    color: #1768a6;
     background-color: #e3d2d2
 }
 
@@ -973,7 +974,7 @@ sub {
 }
 
 .highlight .gr {
-    color: #a00
+    color: rgb(0, 96, 170)
 }
 
 .highlight .gh {
@@ -1003,12 +1004,12 @@ sub {
 }
 
 .highlight .gu {
-    color: #800080;
+    color: #002d80;
     font-weight: bold
 }
 
 .highlight .gt {
-    color: #a00
+    color: rgb(0, 48, 170)
 }
 
 .highlight .kc,
@@ -1029,7 +1030,7 @@ sub {
 }
 
 .highlight .s {
-    color: #d14
+    color: rgb(17, 31, 221)
 }
 
 .highlight .na {
@@ -1050,7 +1051,7 @@ sub {
 }
 
 .highlight .ni {
-    color: #800080
+    color: #002280
 }
 
 .highlight .ne,
