@@ -40,11 +40,14 @@ def generate_header(basics):
 
 def generate_navigation(json_data):
 	def generate_header_list(json_keys):
-		header_list = '''<li class="active"><a href="#about">About</a></li><li><a href="#experiences">Experiences</a></li><li><a href="#education">Education</a></li>'''
+		header_list = '''<li class="active"><a href="#about">About</a></li>
+  <li><a href="#experiences">Experiences</a></li>
+  <li><a href="#education">Education</a></li>'''
 		for key in json_keys:
 			if key in ['publications','projects']:
 				key = key.replace('_', ' ')
 				header_list += f'<li><a href=\"#{key}\">{key.title()}</a></li>'
+		header_list += '''<li><a href="/resume.pdf" target="_blank">Download Resume</a></li>'''
 		return header_list
 
 	f_name = json_data.get('basics').get('name').split(' ')[0]
@@ -246,7 +249,8 @@ if __name__ == "__main__":
 </body>
 </html>
 '''
-#TODO Generate Projects
+#TODO Link to download resume
+#TODO detailed work experience
 #TODO Write readme
 
     # Write the content to a markup file
