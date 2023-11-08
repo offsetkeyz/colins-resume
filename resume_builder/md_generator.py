@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+import shared_functions as s
 
 def read_json_file(file_path):
     try:
@@ -42,7 +43,7 @@ def generate_experience(work_experience):
         for position in positions:
             responsibilities = position.get('responsibilities', None)
             skills = position.get('skills', None)
-            markdown += f"#### {position['job_title']}  \n{position['start_date']} - {position['end_date']}, {position['location']}  \n"
+            markdown += f"#### {position['job_title']}  \n{s.get_month_and_year(position['start_date'])} - {s.get_month_and_year(position['end_date'])}, {position['location']}  \n"
             if responsibilities:                
                 for responsibility in position['responsibilities']:
                     markdown += f"- {responsibility}  \n"
@@ -64,9 +65,9 @@ def generate_certifications(certifications):
     for certification in certifications:
         url = certification.get('url', None)
         if url:
-            markdown += f"- **[{certification['title']}]({url})** | {certification['date']}\n"
+            markdown += f"- **[{certification['title']}]({url})** | {s.get_month_and_year(certification['date'])}\n"
         else: 
-            markdown += f"- **{certification['title']}** | {certification['date']}\n"
+            markdown += f"- **{certification['title']}** | {s.get_month_and_year(certification['date'])}\n"
     return markdown
 
 # Function to generate education section
@@ -78,12 +79,8 @@ def generate_education(education):
         courses = edu.get('courses', None)
         honors = edu.get('honors', None)
         gpa = edu.get('score', None)
-        start_year = datetime.strptime(edu['startDate'], '%Y-%m-%d').year
-        try:
-            end_year = datetime.strptime(str(edu['endDate']), '%Y-%m-%d').year
-        except ValueError:
-            # endDate is not a valid date, use it as a string
-            end_year = edu['endDate']
+        start_year = s.get_year(edu['startDate'])
+        end_year = s.get_year(edu['endDate'])
         
         markdown += f"### {str(edu['studyType'])} in {edu['area']} @ {edu['institution']}\n"
         markdown += f"{start_year} - {end_year}  \n"
@@ -102,13 +99,8 @@ def generate_awards(awards):
         return None
     markdown = "## Awards & Recognition\n\n"
     for award in awards:
-        markdown += f"- **{award['title']}** | {award['awarder']} ({get_month_and_year(award['date'])})  \n"
+        markdown += f"- **{award['title']}** | {award['awarder']} ({s.get_month_and_year(award['date'])})  \n"
     return markdown
-
-def get_month_and_year(date):
-    if date == 'Present':
-        return date
-    return datetime.strptime(date, '%Y-%m-%d').strftime('%b %Y')
 
 # Function to generate projects section
 def generate_projects(projects):
@@ -117,7 +109,7 @@ def generate_projects(projects):
     markdown = "## Projects\n\n"
     for project in projects:
         project_url = (project.get('url',None))
-        markdown += f"**{project['name']}**" + (f"[{project_url}]({project_url})" if project_url else "") + f" ({get_month_and_year(project['startDate'])} - {get_month_and_year(project['endDate'])})  \n"
+        markdown += f"**{project['name']}**" + (f"[{project_url}]({project_url})" if project_url else "") + f" ({s.get_month_and_year(project['startDate'])} - {s.get_month_and_year(project['endDate'])})  \n"
         markdown += f"*{project['description']}*  \n"
         for highlight in project['highlights']:
             markdown += f"- {highlight}  \n"

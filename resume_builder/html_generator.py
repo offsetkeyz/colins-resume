@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+import shared_functions as s
 
 def read_json_file(file_path):
     try:
@@ -98,7 +99,7 @@ def generate_education_and_certs(education=None, certifications=None, awards=Non
 	if not certifications and education:
 		return None
 	if certifications:
-		markup = '''<!-- Certifications --><div class="certifications section second" id="certifications">
+		markup = '''<!-- Certifications --><div class="certifications section second" id="education">
 		<div class="container">
 			<h1>CERTIFICATIONS &amp;<br>Education<br></h1>
 				<ul class="award-list list-flat"><li>Certifications</li>'''
@@ -107,7 +108,7 @@ def generate_education_and_certs(education=None, certifications=None, awards=Non
 				title = f'''<a href="{certification.get('url')}" target="_blank">{certification.get('title')}</a>'''
 			else:
 				title = f"{certification.get('title')}"
-			markup += f"<li>{title} | {certification.get('date')}</li>"
+			markup += f"<li>{title} | {s.get_month_and_year(certification.get('date'))}</li>"
 		markup += '''</ul>'''
 	elif education:
 		markup = '''<!-- Education --><div class="education section second" id="education">
@@ -125,17 +126,17 @@ def generate_education_and_certs(education=None, certifications=None, awards=Non
 		else: 
 			markup += f"<li><b>{school.get('institution')}</b></li>"
 		if honors:
-			markup += f"<li>{honors.title()}</li>"
+			markup += f"<li>{honors}</li>"
 		elif gpa:
 			markup += f"<li>GPA: {gpa}</li>"
-		markup += f"<li><i>{school.get('startDate')} - {school.get('endDate')}</i></li>"
+		markup += f"<li><i>{s.get_month_and_year(school.get('startDate'))} - {s.get_month_and_year(school.get('endDate'))}</i></li>"
 		if school != education[-1]:
 			markup += "<br>"
 	markup += "</ul>"
 	if awards:
 		markup += '''<ul class="award-list list-flat"><li>Awards</li>'''
 		for award in awards:
-			markup += f"<li><b>{award.get('title')}</b> | {award.get('awarder').title()} | <i>{award.get('date')}</i></li>"
+			markup += f"<li><b>{award.get('title')}</b> | {award.get('awarder').title()} | <i>{s.get_month_and_year(award.get('date'))}</i></li>"
 	markup += "</ul></div></div>"
 	return markup
 
