@@ -149,14 +149,19 @@ subject: 'Resume'
 ---
 {generate_contact_info(json_data['basics']['contact_info'])}
 
-#### {json_data['basics']['summary']}
+*{json_data['basics']['summary']}*
 
 {generate_skills(json_data['skills'], json_data.get('specialty_skills', None))}
 {generate_certifications(json_data.get('certifications', None))}
+<div class="no-break">
 {generate_education(json_data.get('education', None))}
+</div><div class="no-break">
 {generate_experience(json_data['work_experience'])}
+</div><div class="no-break">
 {generate_awards(json_data.get('awards', None))}
+</div><div class="no-break">
 {generate_projects(json_data.get('projects', None))}
+</div>
 
 <!-- pandoc colins_resume.md -f markdown -t html -c resume-stylesheet.css -s -o resume.html -->
 <!-- wkhtmltopdf --enable-local-file-access resume.html resume.pdf -->'''
