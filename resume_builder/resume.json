@@ -1,5 +1,5 @@
 {
-  "$schema": "resume-schema.json",
+  "$schema": "https://raw.githubusercontent.com/offsetkeyz/colin-resume/main/resume_builder/resume-schema.json",
   "basics": {
     "name": "Colin McAllister",
     "label": "Security Developer",

@@ -167,5 +167,5 @@ subject: 'Resume'
 <!-- wkhtmltopdf --enable-local-file-access resume.html resume.pdf -->'''
 
     # Write the content to a Markdown file
-    with open("colins_resume.md", "w") as file:
+    with open("resume.md", "w") as file:
         file.write(markdown)
