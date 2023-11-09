@@ -48,7 +48,7 @@ def generate_experience(work_experience):
                 for responsibility in position['responsibilities']:
                     markdown += f"- {responsibility}  \n"
             if skills:
-                markdown += f"*Technologies Used*: "
+                markdown += f"*Skills*: "
                 for skill in skills:
                     markdown += f"```{skill}```"
                     if skill != skills[-1]:
@@ -109,7 +109,11 @@ def generate_projects(projects):
     markdown = "## Projects\n\n"
     for project in projects:
         project_url = (project.get('url',None))
-        markdown += f"**{project['name']}**" + (f"[{project_url}]({project_url})" if project_url else "") + f" ({s.get_month_and_year(project['startDate'])} - {s.get_month_and_year(project['endDate'])})  \n"
+        if project_url:
+            markdown += f"**[{project['name']}]({project_url})**"
+        else:
+            markdown += f"**{project['name']}**"            
+        markdown += f" ({s.get_month_and_year(project['startDate'])} - {s.get_month_and_year(project['endDate'])})  \n"
         markdown += f"*{project['description']}*  \n"
         for highlight in project['highlights']:
             markdown += f"- {highlight}  \n"

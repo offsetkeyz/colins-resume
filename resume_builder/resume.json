@@ -3,12 +3,12 @@
   "basics": {
     "name": "Colin McAllister",
     "label": "Security Developer",
-    "quote" : "Automate / Educate / Secure",
+    "quote": "Automate / Educate / Secure",
     "image": "../img/colin.jpg",
     "email": "clm@dr.com",
     "phone": "",
     "url": "https://colinmca.com",
-    "summary": "I'm a motivated security practitioner and developer, specializing in SIEM/SOAR operations, Python, cybersecurity fundamentals, incident handling, and Sigma rules. I'm dedicated to solving complex security challenges and proactively strengthening systems against emerging threats. I thrive on continuous learning and adaptability in the ever-evolving cybersecurity landscape. Let's connect to collaborate and bolster digital defenses for a safer digital world.",
+    "summary": "I am an experienced Cyber Security Practitioner and Developer, specializing in detections, AWS, automation, and SIEM/SOAR operations. My career is driven by a lifelong passion for learning, which has led me to excel in a myriad of fields such as music, leadership, digital arts, and now Cyber Security. My love for educating others led me to get a degree in education, and even though I did not apply it to the classroom, my passion for helping others learn complex topics in a simpler way remains. Throughout my career, I have always been a top performer, contributing significantly to the success of every team I've been a part of; success that is built on my attention to detail, which ensures that no aspect of a project is overlooked, as well as my humility, thriving on helping others succeed.",
     "contact_info": [
       {
         "title": "Email",
@@ -45,30 +45,96 @@
         "location": "Remote",
         "start_date": "2022-11-01",
         "end_date": "Present",
-        "responsibilities": [],
-        "skills": ["Python", "Security", "Source Control"]
+        "responsibilities": [
+          "Ensuring the secure and protected operation of various applications and systems.",
+          "Debugging Python code to quickly resolve issues and improve performance.",
+          "Writing and troubleshooting detections by tacing them step by step through the pipeline.",
+          "Enhancing and automating development processes to improve efficiency and reduce errors."
+        ],
+        "skills": [
+          "Python",
+          "Git",
+          "AWS",
+          "ELK Stack"
+        ]
       },
       {
         "job_title": "Business Analyst",
         "location": "Remote",
         "start_date": "2021-12-01",
         "end_date": "2022-11-01",
-        "responsibilities": [],
-        "skills": []        
+        "responsibilities": [
+          "Worked closely with senior leaders to develop meaningful metrics and then visualize the data using IRS and PostgreSQL.",
+          "Utilized and implemented multiple new tools to automate 25% of Business Analysts recurring tasks.",
+          "Headed the implementation of a new scheduling software solution for over 250 employees using Python to make HTTP calls to their RESTful API."
+        ],
+        "skills": [
+          "Python",
+          "Excel",
+          "PostgreSQL",
+          "Public Speaking"
+        ]
       },
       {
         "job_title": "Team Captain",
         "location": "San Antonio, TX",
         "start_date": "2021-07-01",
         "end_date": "2021-12-01",
-        "responsibilities": []
+        "responsibilities": [
+          "Lead a team of six Security Analysts and Engineers, ensuring that they were meeting their goals and had the resources they needed to succeed.",
+          "Provide daily mentorship to team members to ensure the highest level of performance in all required tasks.",
+          "Considered subject matter expert on all daily tasks for Level 1 Engineers.",
+          "Cultivating meaningful relationships with and amongst team members and ensuring their success."
+        ],
+        "skills": [
+          "Leadership",
+          "Mentoring",
+          "Scheduling"
+        ]
       },
       {
         "job_title": "Triage Security Engineer",
         "location": "San Antonio, TX",
         "start_date": "2020-12-01",
         "end_date": "2021-12-01",
-        "responsibilities": []
+        "responsibilities": [
+          "Use MITRE ATT&CK framework to investigate and triage incidents within a customer's network.",
+          "Independently investigate non-binary incidents such as ransomware, phishing emails, malware, and DNS attacks.",
+          "Gained valuable understanding of SNORT rules; how they can be triggered in a customer's environment both maliciously and non-maliciously to avoid sending false positive alerts.",
+          "Developed and refined new runbooks for processes and procedures to ensure consistency and transparency among employees at all levels."
+        ],
+        "skills": [
+          "Incident Triage",
+          "Network Monitoring",
+          "Collaboration",
+          "Communication"
+        ]
+      }
+    ],
+    "CarKey": [
+      {
+        "job_title": "Lead Videographer",
+        "location": "Las Vegas, NV",
+        "start_date": "2019-09-01",
+        "end_date": "2020-12-01",
+        "skills": [
+          "Leadership",
+          "Premiere Pro",
+          "Excel",
+          "SQL"
+        ]
+      }
+    ],
+    "US Army": [
+      {
+        "job_title": "Public Affairs Officer",
+        "location": "Schofield Barracks, HI",
+        "start_date": "2015-11-01",
+        "end_date": "2019-09-01",
+        "skills": [
+          "Leadership",
+          "Mentoring"
+        ]
       }
     ]
   },
@@ -105,8 +171,7 @@
       "studyType": "Bachelor's",
       "startDate": "2008-01-01",
       "endDate": "2012-01-01",
-      "score": "3.3",
-      "honors": "Dean's List"
+      "score": "3.3"
     }
   ],
   "awards": [
@@ -150,9 +215,12 @@
   ],
   "skills": [
     "Excel",
-    "AI Prompt Generation",
-    "Linux"
-    ],
+    "Linux",
+    "Slack",
+    "MS Power Apps",
+    "Photography",
+    "Graphic Design"
+  ],
   "specialty_skills": [
     {
       "name": "Cyber Security",
@@ -170,7 +238,8 @@
         "Python",
         "Object Oriented Programming",
         "Git",
-        "AWS"
+        "AWS",
+        "PostgreSQL"
       ]
     },
     {
@@ -179,7 +248,8 @@
       "keywords": [
         "Communication",
         "Empathy",
-        "Leadership"
+        "Leadership",
+        "Attention to Detail"
       ]
     }
   ],
@@ -221,6 +291,30 @@
       ],
       "startDate": "2023-10-01",
       "endDate": "Present",
+      "url": "https://github.com/offsetkeyz/colin-resume",
+      "roles": [
+        "Cloud Developer",
+        "Full Stack Developer"
+      ],
+      "type": "application"
+    },
+    {
+      "name": "Discord Alerter for Security Onion",
+      "description": "Interact with Security Onion alerts and cases via Discord",
+      "highlights": [
+        "Use Security Onion as a home Intrusion Detection System (IDS) with a forward node on ESXI and a manager node on Proxmox.",
+        "Configure Elastalert to send raw data to n8n automation platform via webhook where threat intel is injected.",
+        "Write a Discord Bot using Python to receive injected raw data from n8n and parse it into a readable format.",
+        "Discord bot sends button interactions to n8n automation server where it interprets the interaction and makes API calls back to Security Onion with the action.",
+        "Current actions are to suppress by source or destination, open the Security Onion Hunt interface with pre-loaded data, or escalate to a case."
+      ],
+      "keywords": [
+        "ELK Stack",
+        "N8N Automation",
+        "Python"
+      ],
+      "startDate": "2023-01-01",
+      "endDate": "Present",
       "roles": [
         "Cloud Developer",
         "Full Stack Developer"
@@ -229,8 +323,8 @@
     }
   ],
   "meta": {
-    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/sample.resume.json",
-    "version": "v1.0.0",
-    "lastModified": "2023-11-07"
+    "canonical": "https://raw.githubusercontent.com/offsetkeyz/colin-resume/main/resume_builder/resume-schema.json",
+    "version": "v1.0.1",
+    "lastModified": "2023-11-08"
   }
 }
