@@ -250,7 +250,7 @@ if __name__ == "__main__":
 </html>
 '''
 #TODO detailed work experience
-#TODO Write readme
+#TODO remove links a href=#
 
     # Write the content to a markup file
     with open("../index.html", "w") as file:
