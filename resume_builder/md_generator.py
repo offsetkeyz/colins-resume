@@ -157,7 +157,7 @@ subject: 'Resume'
 ---
 {generate_contact_info(json_data['basics']['contact_info'])}
 
-*{json_data['basics']['summary']}*
+{json_data['basics']['summary']}
 
 {generate_skills(json_data['skills'], json_data.get('specialty_skills', None))}
 {generate_certifications(json_data.get('certifications', None))}

@@ -19,7 +19,7 @@ subject: 'Resume'
 ---
 ###### Email: **keyz@null.net** | Website: **colinmca.com** | Telegram: **@offsetkeyz**
 
-*I am an experienced Cyber Security Practitioner and Developer, specializing in detections, AWS, automation, and SIEM/SOAR operations. My career is driven by a lifelong passion for learning, which has led me to excel in a myriad of fields such as music, leadership, digital arts, and now Cyber Security. My love for educating others led me to get a degree in education, and even though I did not apply it to the classroom, my passion for helping others learn complex topics in a simpler way remains. Throughout my career, I have always been a top performer, contributing significantly to the success of every team I've been a part of; success that is built on my attention to detail, which ensures that no aspect of a project is overlooked, as well as my humility, thriving on helping others succeed.*
+I am an experienced Cyber Security Practitioner and Developer, specializing in detections, AWS, automation, and SIEM/SOAR operations. My career is driven by a lifelong passion for learning, which has led me to excel in a myriad of fields such as music, leadership, digital arts, and now Cyber Security. My love for educating others led me to get a degree in education, and even though I did not apply it to the classroom, my passion for helping others learn complex topics in a simpler way remains. Throughout my career, I have always been a top performer, contributing significantly to the success of every team I've been a part of; success that is built on my attention to detail, which ensures that no aspect of a project is overlooked, as well as my humility, thriving on helping others succeed.
 
 ## Skills
 
