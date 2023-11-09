@@ -125,7 +125,7 @@ def generate_education_and_certs(education=None, certifications=None, awards=Non
 		gpa = school.get('score', None)
 		markup += f"<li><b>{school.get('studyType')} in {school.get('area')}</b></li>"
 		if url:    
-			markup += f'''<li><a href={url} target="_blank">{school.get('institution').title()}</a></li>'''
+			markup += f'''<li><a href={url} target="_blank">{school.get('institution')}</a></li>'''
 		else: 
 			markup += f"<li><b>{school.get('institution')}</b></li>"
 		if honors:
@@ -139,7 +139,7 @@ def generate_education_and_certs(education=None, certifications=None, awards=Non
 	if awards:
 		markup += '''<ul class="award-list list-flat"><li>Awards</li>'''
 		for award in awards:
-			markup += f"<li><b>{award.get('title')}</b> | {award.get('awarder').title()} | <i>{s.get_month_and_year(award.get('date'))}</i></li>"
+			markup += f"<li><b>{award.get('title')}</b> | {award.get('awarder')} | <i>{s.get_month_and_year(award.get('date'))}</i></li>"
 	markup += "</ul></div></div>"
 	return markup
 
