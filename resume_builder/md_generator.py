@@ -19,6 +19,7 @@ def read_json_file(file_path):
 # Function to generate skills section
 def generate_skills(skills=None, specialty_skills=None):
     markdown = "## Skills\n\n"
+    markdown += '''<div class="no-break"> \n'''
     if not skills and not specialty_skills:
         return None
     if skills:
@@ -33,6 +34,7 @@ def generate_skills(skills=None, specialty_skills=None):
                 if keyword != spskill['keywords'][-1]:
                     markdown += ", "
             markdown += "  \n"
+    markdown += "\n  </div>  \n"
     return markdown
 
 # Function to generate experience section
@@ -41,6 +43,7 @@ def generate_experience(work_experience):
     for company, positions in work_experience.items():
         markdown += f"### {company}  \n"
         for position in positions:
+            markdown += '''<div class="no-break"> \n'''
             responsibilities = position.get('responsibilities', None)
             skills = position.get('skills', None)
             markdown += f"#### {position['job_title']}  \n{s.get_month_and_year(position['start_date'])} - {s.get_month_and_year(position['end_date'])}, {position['location']}  \n"
@@ -53,29 +56,30 @@ def generate_experience(work_experience):
                     markdown += f"```{skill}```"
                     if skill != skills[-1]:
                         markdown += ", "
-                markdown += "  \n"
-            
-            markdown += "\n"
+                markdown += "  \n"            
+            markdown += "\n  </div>  \n"
     return markdown
 
 def generate_certifications(certifications):
     if not certifications:
         return None
-    markdown = "## Certifications\n\n"
+    markdown = '''<div class="no-break"> \n'''
+    markdown += "## Certifications\n\n"
     for certification in certifications:
         url = certification.get('url', None)
         if url:
             markdown += f"- **[{certification['title']}]({url})** | {s.get_month_and_year(certification['date'])}\n"
         else: 
             markdown += f"- **{certification['title']}** | {s.get_month_and_year(certification['date'])}\n"
-    return markdown
+    return markdown + "\n  </div>  \n"
 
 # Function to generate education section
 def generate_education(education):
     if not education:
         return None
-    markdown = "## Education\n\n"
+    markdown = "## Education  \n\n"
     for edu in education:
+        markdown += '''  <div class="no-break">  \n'''
         courses = edu.get('courses', None)
         honors = edu.get('honors', None)
         gpa = edu.get('score', None)
@@ -90,7 +94,7 @@ def generate_education(education):
             markdown += f"- GPA: *{gpa}*  \n"
         if courses:
             markdown += f"- Courses: {', '.join(edu['courses'])}  \n"
-        markdown += "  \n"
+        markdown += "\n  </div>  \n"
     return markdown
 
 # Function to generate awards section
@@ -157,18 +161,11 @@ subject: 'Resume'
 
 {generate_skills(json_data['skills'], json_data.get('specialty_skills', None))}
 {generate_certifications(json_data.get('certifications', None))}
-<div class="no-break">
 {generate_education(json_data.get('education', None))}
-</div><div class="no-break">
 {generate_experience(json_data['work_experience'])}
-</div><div class="no-break">
 {generate_awards(json_data.get('awards', None))}
-</div><div class="no-break">
 {generate_projects(json_data.get('projects', None))}
-</div>
-
-<!-- pandoc colins_resume.md -f markdown -t html -c resume-stylesheet.css -s -o resume.html -->
-<!-- wkhtmltopdf --enable-local-file-access resume.html resume.pdf -->'''
+'''
 
     # Write the content to a Markdown file
     with open("resume.md", "w") as file:

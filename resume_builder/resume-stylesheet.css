@@ -501,7 +501,7 @@
  }
 
  .no-break {
-        
+     break-inside: avoid-page;
  }
  
  h1,

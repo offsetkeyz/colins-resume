@@ -23,6 +23,7 @@ subject: 'Resume'
 
 ## Skills
 
+<div class="no-break"> 
 ```Excel```
 ```Linux```
 ```Slack```
@@ -34,6 +35,9 @@ subject: 'Resume'
 **Development**: Python, Object Oriented Programming, Git, AWS, PostgreSQL  
 **Soft Skills**: Communication, Empathy, Leadership, Attention to Detail  
 
+  </div>  
+
+<div class="no-break"> 
 ## Certifications
 
 - **[GIAC Advisory Board](https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url)** | Oct 2023
@@ -41,28 +45,35 @@ subject: 'Resume'
 - **[GIAC Network Forensic Analyst (GNFA)](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)** | Mar 2022
 - **[GIAC Security Essentials (GSEC)](https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url)** | Oct 2023
 
-<div class="no-break">
-## Education
+  </div>  
 
+## Education  
+
+  <div class="no-break">  
 ### Master's in Cyber Security @ SANS Technical Institute
 2023 - Present  
 - GPA: *4.0*  
 - Courses: ISE 5101 - Security Essentials, ISE 5201 - Hacker Tools, Techniques, Exploits, and Incident Handling  
-  
+
+  </div>  
+  <div class="no-break">  
 ### Bachelor's in Computer Science @ Auburn University
 2020 - 2021  
 - Honors: *Summa Cum Laude*  
 - Courses: Algorithms, Data Structures, Software Development  
-  
+
+  </div>  
+  <div class="no-break">  
 ### Bachelor's in Music Education @ University of Nevada Reno
 2008 - 2012  
 - GPA: *3.3*  
-  
 
-</div><div class="no-break">
+  </div>  
+
 ## Experience
 
 ### Arctic Wolf Networks  
+<div class="no-break"> 
 #### Security Developer  
 Nov 2022 - Present, Remote  
 - Ensuring the secure and protected operation of various applications and systems.  
@@ -71,6 +82,8 @@ Nov 2022 - Present, Remote
 - Enhancing and automating development processes to improve efficiency and reduce errors.  
 *Skills*: ```Python```, ```Git```, ```AWS```, ```ELK Stack```  
 
+  </div>  
+<div class="no-break"> 
 #### Business Analyst  
 Dec 2021 - Nov 2022, Remote  
 - Worked closely with senior leaders to develop meaningful metrics and then visualize the data using IRS and PostgreSQL.  
@@ -78,6 +91,8 @@ Dec 2021 - Nov 2022, Remote
 - Headed the implementation of a new scheduling software solution for over 250 employees using Python to make HTTP calls to their RESTful API.  
 *Skills*: ```Python```, ```Excel```, ```PostgreSQL```, ```Public Speaking```  
 
+  </div>  
+<div class="no-break"> 
 #### Team Captain  
 Jul 2021 - Dec 2021, San Antonio, TX  
 - Lead a team of six Security Analysts and Engineers, ensuring that they were meeting their goals and had the resources they needed to succeed.  
@@ -86,6 +101,8 @@ Jul 2021 - Dec 2021, San Antonio, TX
 - Cultivating meaningful relationships with and amongst team members and ensuring their success.  
 *Skills*: ```Leadership```, ```Mentoring```, ```Scheduling```  
 
+  </div>  
+<div class="no-break"> 
 #### Triage Security Engineer  
 Dec 2020 - Dec 2021, San Antonio, TX  
 - Use MITRE ATT&CK framework to investigate and triage incidents within a customer's network.  
@@ -94,25 +111,28 @@ Dec 2020 - Dec 2021, San Antonio, TX
 - Developed and refined new runbooks for processes and procedures to ensure consistency and transparency among employees at all levels.  
 *Skills*: ```Incident Triage```, ```Network Monitoring```, ```Collaboration```, ```Communication```  
 
+  </div>  
 ### CarKey  
+<div class="no-break"> 
 #### Lead Videographer  
 Sep 2019 - Dec 2020, Las Vegas, NV  
 *Skills*: ```Leadership```, ```Premiere Pro```, ```Excel```, ```SQL```  
 
+  </div>  
 ### US Army  
+<div class="no-break"> 
 #### Public Affairs Officer  
 Nov 2015 - Sep 2019, Schofield Barracks, HI  
 *Skills*: ```Leadership```, ```Mentoring```  
 
+  </div>  
 
-</div><div class="no-break">
 ## Awards & Recognition
 
 - **Hackathon Winner** | Arctic Wolf Networks (Nov 2023)  
 - **Triage Security Engineer 1 of the Quarter** | Arctic Wolf Networks (Jul 2021)  
 - **Commandant's List** | Leadership Academy - US Army (Jan 2015)  
 
-</div><div class="no-break">
 ## Projects
 
 **[Cloud Resume Challenge](https://github.com/offsetkeyz/colin-resume)** (Oct 2023 - Present)  
@@ -129,7 +149,3 @@ Nov 2015 - Sep 2019, Schofield Barracks, HI
 - Current actions are to suppress by source or destination, open the Security Onion Hunt interface with pre-loaded data, or escalate to a case.  
 
 
-</div>
-
-<!-- pandoc colins_resume.md -f markdown -t html -c resume-stylesheet.css -s -o resume.html -->
-<!-- wkhtmltopdf --enable-local-file-access resume.html resume.pdf -->
