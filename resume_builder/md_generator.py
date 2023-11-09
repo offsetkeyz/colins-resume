@@ -48,7 +48,7 @@ def generate_experience(work_experience):
                 for responsibility in position['responsibilities']:
                     markdown += f"- {responsibility}  \n"
             if skills:
-                markdown += f"*Technologies Used*: "
+                markdown += f"*Skills*: "
                 for skill in skills:
                     markdown += f"```{skill}```"
                     if skill != skills[-1]:
@@ -109,7 +109,11 @@ def generate_projects(projects):
     markdown = "## Projects\n\n"
     for project in projects:
         project_url = (project.get('url',None))
-        markdown += f"**{project['name']}**" + (f"[{project_url}]({project_url})" if project_url else "") + f" ({s.get_month_and_year(project['startDate'])} - {s.get_month_and_year(project['endDate'])})  \n"
+        if project_url:
+            markdown += f"**[{project['name']}]({project_url})**"
+        else:
+            markdown += f"**{project['name']}**"            
+        markdown += f" ({s.get_month_and_year(project['startDate'])} - {s.get_month_and_year(project['endDate'])})  \n"
         markdown += f"*{project['description']}*  \n"
         for highlight in project['highlights']:
             markdown += f"- {highlight}  \n"
@@ -149,18 +153,23 @@ subject: 'Resume'
 ---
 {generate_contact_info(json_data['basics']['contact_info'])}
 
-#### {json_data['basics']['summary']}
+*{json_data['basics']['summary']}*
 
 {generate_skills(json_data['skills'], json_data.get('specialty_skills', None))}
 {generate_certifications(json_data.get('certifications', None))}
+<div class="no-break">
 {generate_education(json_data.get('education', None))}
+</div><div class="no-break">
 {generate_experience(json_data['work_experience'])}
+</div><div class="no-break">
 {generate_awards(json_data.get('awards', None))}
+</div><div class="no-break">
 {generate_projects(json_data.get('projects', None))}
+</div>
 
 <!-- pandoc colins_resume.md -f markdown -t html -c resume-stylesheet.css -s -o resume.html -->
 <!-- wkhtmltopdf --enable-local-file-access resume.html resume.pdf -->'''
 
     # Write the content to a Markdown file
-    with open("colins_resume.md", "w") as file:
+    with open("resume.md", "w") as file:
         file.write(markdown)

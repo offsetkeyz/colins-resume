@@ -1,7 +1,7 @@
 ---
 margin-left: 2cm
 margin-right: 2cm
-margin-top: 1cm
+margin-top: 10cm
 margin-bottom: 2cm
 title: Colin McAllister
 description-meta: 'Resume of Colin McAllister - Security Developer'
@@ -16,7 +16,7 @@ subject: 'Resume'
 ---
 ###### Email: **keyz@null.net** | Website: **colinmca.com** | Telegram: **@offsetkeyz**
 
-#### I'm a motivated security practitioner and developer, specializing in SIEM/SOAR operations, Python, cybersecurity fundamentals, incident handling, and Sigma rules. I'm dedicated to solving complex security challenges and proactively strengthening systems against emerging threats. I thrive on continuous learning and adaptability in the ever-evolving cybersecurity landscape. Let's connect to collaborate and bolster digital defenses for a safer digital world.
+*I'm a motivated security practitioner and developer, specializing in SIEM/SOAR operations, Python, cybersecurity fundamentals, incident handling, and Sigma rules. I'm dedicated to solving complex security challenges and proactively strengthening systems against emerging threats. I thrive on continuous learning and adaptability in the ever-evolving cybersecurity landscape. Let's connect to collaborate and bolster digital defenses for a safer digital world.*
 
 ## Skills
 
@@ -35,6 +35,7 @@ subject: 'Resume'
 - **[GIAC Network Forensic Analyst (GNFA)](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)** | Mar 2022
 - **[GIAC Security Essentials (GSEC)](https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url)** | Oct 2023
 
+<div class="no-break">
 ## Education
 
 ### Master's in Cyber Security @ SANS Technical Institute
@@ -53,6 +54,7 @@ subject: 'Resume'
 - GPA: *3.3*  
   
 
+</div><div class="no-break">
 ## Experience
 
 ### Arctic Wolf Networks  
@@ -70,12 +72,14 @@ Jul 2021 - Dec 2021, San Antonio, TX
 Dec 2020 - Dec 2021, San Antonio, TX  
 
 
+</div><div class="no-break">
 ## Awards & Recognition
 
 - **Hackathon Winner** | Arctic Wolf Networks (Nov 2023)  
 - **Triage Security Engineer 1 of the Quarter** | Arctic Wolf Networks (Jul 2021)  
 - **Commandant's List** | Leadership Academy - US Army (Jan 2015)  
 
+</div><div class="no-break">
 ## Projects
 
 **Cloud Resume Challenge** (Oct 2023 - Present)  
@@ -84,6 +88,7 @@ Dec 2020 - Dec 2021, San Antonio, TX
 - The HTML version of the resume is hosted on AWS S3 and served via CloudFront, with domain registered on Route53  
 
 
+</div>
 
 <!-- pandoc colins_resume.md -f markdown -t html -c resume-stylesheet.css -s -o resume.html -->
 <!-- wkhtmltopdf --enable-local-file-access resume.html resume.pdf -->

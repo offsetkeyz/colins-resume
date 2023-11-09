@@ -249,7 +249,6 @@ if __name__ == "__main__":
 </body>
 </html>
 '''
-#TODO Link to download resume
 #TODO detailed work experience
 #TODO Write readme
 
