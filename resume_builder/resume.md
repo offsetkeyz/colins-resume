@@ -31,7 +31,7 @@ I am an experienced Cyber Security Practitioner and Developer, specializing in d
 ```Photography```
 ```Graphic Design```
 
-**Cyber Security**: SIEM/SOAR, Incident Handling, Threat Hunting  
+**Cyber Security**: Risk Management, Incident Handling, Threat Hunting  
 **Development**: Python, Object Oriented Programming, Git, AWS, PostgreSQL  
 **Soft Skills**: Communication, Empathy, Leadership, Attention to Detail  
 
@@ -106,7 +106,7 @@ Jul 2021 - Dec 2021, San Antonio, TX
 #### Triage Security Engineer  
 Dec 2020 - Dec 2021, San Antonio, TX  
 - Use MITRE ATT&CK framework to investigate and triage incidents within a customer's network.  
-- Independently investigate non-binary incidents such as ransomware, phishing emails, malware, and DNS attacks.  
+- Independently investigate and perform threat hunting on non-binary incidents such as ransomware, phishing emails, malware, and DNS attacks.  
 - Gained valuable understanding of SNORT rules; how they can be triggered in a customer's environment both maliciously and non-maliciously to avoid sending false positive alerts.  
 - Developed and refined new runbooks for processes and procedures to ensure consistency and transparency among employees at all levels.  
 *Skills*: ```Incident Triage```, ```Network Monitoring```, ```Collaboration```, ```Communication```  

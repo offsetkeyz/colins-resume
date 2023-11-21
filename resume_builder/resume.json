@@ -99,7 +99,7 @@
         "end_date": "2021-12-01",
         "responsibilities": [
           "Use MITRE ATT&CK framework to investigate and triage incidents within a customer's network.",
-          "Independently investigate non-binary incidents such as ransomware, phishing emails, malware, and DNS attacks.",
+          "Independently investigate and perform threat hunting on non-binary incidents such as ransomware, phishing emails, malware, and DNS attacks.",
           "Gained valuable understanding of SNORT rules; how they can be triggered in a customer's environment both maliciously and non-maliciously to avoid sending false positive alerts.",
           "Developed and refined new runbooks for processes and procedures to ensure consistency and transparency among employees at all levels."
         ],
@@ -226,7 +226,7 @@
       "name": "Cyber Security",
       "level": "",
       "keywords": [
-        "SIEM/SOAR",
+        "Risk Management",
         "Incident Handling",
         "Threat Hunting"
       ]
