@@ -6,12 +6,12 @@ margin-bottom: 2cm
 title: Colin McAllister
 description-meta: 'Resume of Colin McAllister - Security Developer'
 keywords:
+- Research
+- Public Speaking
 - Excel
 - Linux
-- Slack
-- MS Power Apps
-- Photography
-- Graphic Design
+- Windows
+- Version Control (Git)
 
 author:
 - Colin McAllister
@@ -19,20 +19,20 @@ subject: 'Resume'
 ---
 ###### Email: **keyz@null.net** | Website: **colinmca.com** | Phone: **313-306-7169**
 
-I am an experienced Cyber Security Practitioner and Developer, specializing in detections, AWS, automation, and SIEM/SOAR operations. My career is driven by a lifelong passion for learning, which has led me to excel in a myriad of fields such as music, leadership, digital arts, and now Cyber Security. My love for educating others led me to get a degree in education, and even though I did not apply it to the classroom, my passion for helping others learn complex topics in a simpler way remains. Throughout my career, I have always been a top performer, contributing significantly to the success of every team I've been a part of; success that is built on my attention to detail, which ensures that no aspect of a project is overlooked, as well as my humility, thriving on helping others succeed.
+A seasoned Security Developer with a profound committment to cyber security, underpinned by a robust understanding of Python and YAML. Adept at working in a fast-paced environment, with a proven track record of delivering high-quality work on time. A strong team player with a passion for automation, education, and leadership.
 
 ## Skills
 
 <div class="no-break"> 
+```Research```
+```Public Speaking```
 ```Excel```
 ```Linux```
-```Slack```
-```MS Power Apps```
-```Photography```
-```Graphic Design```
+```Windows```
+```Version Control (Git)```
 
-**Cyber Security**: SIEM/SOAR, Incident Handling, Threat Hunting  
-**Development**: Python, Object Oriented Programming, Git, AWS, PostgreSQL  
+**Cyber Security**: SIEM Detections, Incident Handling, Threat Hunting, Advanced Network Forensics  
+**Development**: Python, Debugging, AWS, YAML, Agile  
 **Soft Skills**: Communication, Empathy, Leadership, Attention to Detail  
 
   </div>  
@@ -53,7 +53,7 @@ I am an experienced Cyber Security Practitioner and Developer, specializing in d
 ### Master's in Cyber Security @ SANS Technical Institute
 2023 - Present  
 - GPA: *4.0*  
-- Courses: ISE 5101 - Security Essentials, ISE 5201 - Hacker Tools, Techniques, Exploits, and Incident Handling  
+- Courses: ISE 5101 - Security Essentials, ISE 5201 - Hacker Tools, Techniques, Exploits, and Incident Handling, ISE 6440 - Advanced Network Forensics and Analysis  
 
   </div>  
   <div class="no-break">  
@@ -76,11 +76,12 @@ I am an experienced Cyber Security Practitioner and Developer, specializing in d
 <div class="no-break"> 
 #### Security Developer  
 Nov 2022 - Present, Remote  
-- Ensuring the secure and protected operation of various applications and systems.  
-- Debugging Python code to quickly resolve issues and improve performance.  
-- Writing and troubleshooting detections by tacing them step by step through the pipeline.  
-- Enhancing and automating development processes to improve efficiency and reduce errors.  
-*Skills*: ```Python```, ```Git```, ```AWS```, ```ELK Stack```  
+- Spearheaded the review and refinement of three major rotations by utilizing our internal PostgreSQL reporting service, enhancing team efficiency and demonstrating leadership in process improvement.  
+- Proficiently debugged Python and YAML codebases using tools in VSCode, identifying and resolving critical bugs. Collaborated cross-functionally to address these issues, ensuring code reliability and system integrity.  
+- Acted as a key representative for my team during incident investigations, leveraging my comprehensive understanding of our systems and processes to provide crucial insights and solutions.  
+- Regularly enhanced operational processes by writing automation scripts, contributing to more efficient and streamlined workflows.  
+- Leveraged my extensive experience and tenure at Arctic Wolf to provide unique context and insights to the team, enabling them to perform their roles more effectively and efficiently.  
+*Skills*: ```Python```, ```Git```, ```AWS```, ```YAML```  
 
   </div>  
 <div class="no-break"> 
@@ -89,7 +90,8 @@ Dec 2021 - Nov 2022, Remote
 - Worked closely with senior leaders to develop meaningful metrics and then visualize the data using IRS and PostgreSQL.  
 - Utilized and implemented multiple new tools to automate 25% of Business Analysts recurring tasks.  
 - Headed the implementation of a new scheduling software solution for over 250 employees using Python to make HTTP calls to their RESTful API.  
-*Skills*: ```Python```, ```Excel```, ```PostgreSQL```, ```Public Speaking```  
+- Led dozens of meetings, demonstrating strong communication and coordination skills, essential for team alignment and project success.  
+*Skills*: ```Python```, ```Excel```, ```PostgreSQL```, ```Leadership```  
 
   </div>  
 <div class="no-break"> 
@@ -135,10 +137,26 @@ Nov 2015 - Sep 2019, Schofield Barracks, HI
 
 ## Projects
 
+**Public Speaking Engagement at Local Library** (Nov 2023 - Mar 2024)  
+*Paul Sawyier Public Library asked me to speak about the Dark Web and the importance of personal security online.*  
+- Explained the nature of the dark web and its impact on personal security.  
+- Discussed real-life incidents, including the 2016 incident involving Donald Trump's Twitter account, to illustrate the risks of data breaches.  
+- Provided actionable steps for audience members to secure their online accounts, emphasizing the importance of Multi-Factor Authentication and unique passwords.  
+- Recommended the use of password managers and other tools to enhance online security.  
+- Engaged with the community to raise awareness about cybersecurity and personal data protection.  
+
 **[Cloud Resume Challenge](https://github.com/offsetkeyz/colin-resume)** (Oct 2023 - Present)  
 *The first step to becoming a cloud engineer is to build and host your resume in the cloud.*  
 - Resume is created using JSON Schema and automatically converted to HTML, Markdown, and PDF using Python  
 - The HTML version of the resume is hosted on AWS S3 and served via CloudFront, with domain registered on Route53  
+
+**Home Network Security Monitoring Project** (Jan 2023 - Present)  
+*Implemented a comprehensive network monitoring solution in my home using Security Onion.*  
+- Configured a forward node to capture and forward all network packets for thorough monitoring.  
+- Utilized Proxmox for virtualization of the manager/search node, efficiently managing and analyzing network data.  
+- Custom-tuned Suricata detection rules to align with the specific network environment and usage patterns of my home.  
+- Integrated endpoint log monitoring, including devices across Windows, Linux, and mobile platforms.  
+- Developed new network detections to identify and mitigate common threats, enhancing home network security.  
 
 **Discord Alerter for Security Onion** (Jan 2023 - Present)  
 *Interact with Security Onion alerts and cases via Discord*  
