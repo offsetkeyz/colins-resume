@@ -40,6 +40,7 @@ A seasoned Security Developer with a profound committment to cyber security, und
 <div class="no-break"> 
 ## Certifications
 
+- **[GIAC Certified Incident Handler (GCIH)](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023
 - **[GIAC Advisory Board](https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url)** | Oct 2023
 - **[AWS Certified Cloud Practitioner (CCP)](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)** | Nov 2023
 - **[GIAC Network Forensic Analyst (GNFA)](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)** | Mar 2022
