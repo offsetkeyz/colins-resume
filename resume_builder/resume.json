@@ -20,7 +20,7 @@
       },
       {
         "title": "Phone",
-        "value": "313-306-7169"
+        "value": "702-809-2988"
       }
     ],
     "profiles": [
@@ -101,12 +101,13 @@
         "end_date": "2021-12-01",
         "responsibilities": [
           "Use MITRE ATT&CK framework to investigate and triage incidents within a customer's network.",
-          "Independently investigate non-binary incidents such as ransomware, phishing emails, malware, and DNS attacks.",
-          "Gained valuable understanding of SNORT rules; how they can be triggered in a customer's environment both maliciously and non-maliciously to avoid sending false positive alerts.",
+          "Facilitated customer understanding and issue resolution through adept communication via Zendesk, enhancing user experience and satisfaction.",
+          "Developed and implemented macros and dashboards in Zendesk, significantly improving team efficiency and optimizing support workflows.",
+          "Expertly triaged and responded to security alerts in customer environments, ensuring rapid resolution and minimal impact.",
           "Developed and refined new runbooks for processes and procedures to ensure consistency and transparency among employees at all levels."
         ],
         "skills": [
-          "Incident Triage",
+          "ZenDesk",
           "Network Monitoring",
           "Collaboration",
           "Communication"
@@ -223,12 +224,10 @@
     }
   ],
   "skills": [
-    "Research",
-    "Public Speaking",
-    "Excel",
-    "Linux",
-    "Windows",
-    "Version Control (Git)"
+    "Customer Relations",
+    "Technical Presenting",
+    "Process Documentation",
+    "ZenDesk"
   ],
   "specialty_skills": [
     {
@@ -236,7 +235,7 @@
       "level": "",
       "keywords": [
         "SIEM Detections",
-        "Incident Handling",
+        "Deception Tactics",
         "Threat Hunting",
         "Advanced Network Forensics"
       ]
