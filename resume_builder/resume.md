@@ -6,32 +6,28 @@ margin-bottom: 2cm
 title: Colin McAllister
 description-meta: 'Resume of Colin McAllister - Security Developer'
 keywords:
-- Research
-- Public Speaking
-- Excel
-- Linux
-- Windows
-- Version Control (Git)
+- Customer Relations
+- Technical Presenting
+- Process Documentation
+- ZenDesk
 
 author:
 - Colin McAllister
 subject: 'Resume'
 ---
-###### Email: **keyz@null.net** | Website: **colinmca.com** | Phone: **313-306-7169**
+###### Email: **keyz@null.net** | Website: **colinmca.com** | Phone: **702-809-2988**
 
 A seasoned Security Developer with a profound committment to cyber security, underpinned by a robust understanding of Python and YAML. Adept at working in a fast-paced environment, with a proven track record of delivering high-quality work on time. A strong team player with a passion for automation, education, and leadership.
 
 ## Skills
 
 <div class="no-break"> 
-```Research```
-```Public Speaking```
-```Excel```
-```Linux```
-```Windows```
-```Version Control (Git)```
+```Customer Relations```
+```Technical Presenting```
+```Process Documentation```
+```ZenDesk```
 
-**Cyber Security**: SIEM Detections, Incident Handling, Threat Hunting, Advanced Network Forensics  
+**Cyber Security**: SIEM Detections, Deception Tactics, Threat Hunting, Advanced Network Forensics  
 **Development**: Python, Debugging, AWS, YAML, Agile  
 **Soft Skills**: Communication, Empathy, Leadership, Attention to Detail  
 
@@ -109,10 +105,11 @@ Jul 2021 - Dec 2021, San Antonio, TX
 #### Triage Security Engineer  
 Dec 2020 - Dec 2021, San Antonio, TX  
 - Use MITRE ATT&CK framework to investigate and triage incidents within a customer's network.  
-- Independently investigate non-binary incidents such as ransomware, phishing emails, malware, and DNS attacks.  
-- Gained valuable understanding of SNORT rules; how they can be triggered in a customer's environment both maliciously and non-maliciously to avoid sending false positive alerts.  
+- Facilitated customer understanding and issue resolution through adept communication via Zendesk, enhancing user experience and satisfaction.  
+- Developed and implemented macros and dashboards in Zendesk, significantly improving team efficiency and optimizing support workflows.  
+- Expertly triaged and responded to security alerts in customer environments, ensuring rapid resolution and minimal impact.  
 - Developed and refined new runbooks for processes and procedures to ensure consistency and transparency among employees at all levels.  
-*Skills*: ```Incident Triage```, ```Network Monitoring```, ```Collaboration```, ```Communication```  
+*Skills*: ```ZenDesk```, ```Network Monitoring```, ```Collaboration```, ```Communication```  
 
   </div>  
 ### CarKey  
