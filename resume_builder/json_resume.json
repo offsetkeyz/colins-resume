@@ -1,0 +1,346 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json",
+  "basics": {
+    "name": "Colin McAllister",
+    "label": "Security Developer",
+    "image": "../img/colin.jpg",
+    "email": "keyz@null.net",
+    "phone": "7028092988",
+    "url": "https://colinmca.com",
+    "summary": "A seasoned Security Developer with a profound committment to cyber security, underpinned by a robust understanding of Python and YAML. Adept at working in a fast-paced environment, with a proven track record of delivering high-quality work on time. A strong team player with a passion for automation, education, and leadership.",
+    "profiles": [
+      {
+        "network": "Github",
+        "username": "offsetkeyz",
+        "url": "https://github.com/offsetkeyz"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "offsetcolin",
+        "url": "https://www.linkedin.com/in/offsetcolin/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Arctic Wolf Networks",
+      "position": "Security Developer",
+      "startDate": "2022-11-01",
+      "summary": "Spearheaded the review and refinement of three major rotations, enhancing team efficiency and demonstrating leadership in process improvement.",
+      "highlights": [
+        "Proficiently debugged Python and YAML codebases, ensuring code reliability and system integrity.",
+        "Acted as a key representative for my team during incident investigations.",
+        "Regularly enhanced operational processes by writing automation scripts.",
+        "Leveraged extensive experience to provide unique context and insights to the team."
+      ]
+    },
+    {
+      "name": "Arctic Wolf Networks",
+      "position": "Business Analyst",
+      "startDate": "2021-12-01",
+      "endDate": "2022-11-01",
+      "summary": "Worked closely with senior leaders to develop meaningful metrics and visualize data, automating 25% of recurring tasks.",
+      "highlights": [
+        "Headed the implementation of a new scheduling software solution for over 250 employees.",
+        "Led dozens of meetings, demonstrating strong communication and coordination skills."
+      ]
+    },
+    {
+      "name": "Arctic Wolf Networks",
+      "position": "Team Captain",
+      "startDate": "2021-07-01",
+      "endDate": "2021-12-01",
+      "summary": "Led a team of six Security Analysts and Engineers, focusing on goal achievement and resource allocation.",
+      "highlights": [
+        "Provided daily mentorship to team members.",
+        "Cultivated meaningful relationships to ensure team success."
+      ]
+    },
+    {
+      "name": "Arctic Wolf Networks",
+      "position": "Triage Security Engineer",
+      "startDate": "2020-12-01",
+      "endDate": "2021-12-01",
+      "summary": "Expertly triaged and responded to security alerts, ensuring rapid resolution and minimal impact.",
+      "highlights": [
+        "Used MITRE ATT&CK framework for incident investigation.",
+        "Developed and refined new runbooks for consistency among employees."
+      ]
+    },
+    {
+      "name": "CarKey",
+      "position": "Lead Videographer",
+      "startDate": "2019-09-01",
+      "endDate": "2020-12-01",
+      "summary": "Oversaw video production and editing, bringing innovative ideas to visual storytelling.",
+      "highlights": []
+    },
+    {
+      "name": "US Army",
+      "position": "Public Affairs Officer",
+      "startDate": "2015-11-01",
+      "endDate": "2019-09-01",
+      "summary": "Managed public affairs operations, ensuring effective communication and media relations.",
+      "highlights": []
+    }
+  ],  
+  "education": [
+    {
+      "institution": "SANS Technical Institute",
+      "url": "https://www.sans.edu/cyber-security-programs/masters-degree/",
+      "area": "Cyber Security",
+      "studyType": "Master's",
+      "startDate": "2023-07-01",
+      "score": "4.0",
+      "courses": [
+        "ISE 5101 - Security Essentials",
+        "ISE 5201 - Hacker Tools, Techniques, Exploits, and Incident Handling",
+        "ISE 6440 - Advanced Network Forensics and Analysis"
+      ]
+    },
+    {
+      "institution": "Auburn University",
+      "area": "Computer Science",
+      "studyType": "Master's",
+      "startDate": "2019-12-01",
+      "endDate": "2022-01-01",
+      "score": "3.9",
+      "courses": [
+        "Algorithms",
+        "Data Structures",
+        "Software Development"
+      ]
+    },
+    {
+      "institution": "University of Nevada Reno",
+      "area": "Music Education",
+      "studyType": "Bachelor's",
+      "startDate": "2007-07-01",
+      "endDate": "2012-04-01",
+      "score": "3.3"
+    }
+  ],  
+  "awards": [
+    {
+      "title": "Hackathon Winner",
+      "date": "2023-11-01",
+      "awarder": "Arctic Wolf Networks",
+      "summary": "Awarded the prestigious Moonshot Award by Arctic Wolf Networks in recognition of presenting the most innovative and impactful idea during the 2023 Hackathon. Demonstrated exceptional creativity and strategic thinking in developing a comprehensive plan to implement this idea, showcasing potential significant contributions to the company's future endeavors."
+    },
+    {
+      "title": "Triage Security Engineer 1 of the Quarter",
+      "date": "2021-07-01",
+      "awarder": "Arctic Wolf Networks",
+      "summary": "Selected for the 'Triage Security Engineer 1 of the Quarter' award by Arctic Wolf Networks in July 2021 from a competitive field of nearly 100 professionals in the department. This prestigious recognition highlights my standout contributions and expertise in cybersecurity. Being chosen for this award in such a large and skilled group underscores my exceptional ability in threat analysis, process improvement, and team leadership, marking a significant milestone in my professional journey."
+    },
+    {
+      "title": "Commandant's List",
+      "date": "2015-01-01",
+      "awarder": "Leadership Academy - US Army",
+      "summary" : "Recognized on the U.S. Army Commandant's List at the Warrior Leaders Academy, an accolade reserved for the top 20% of the class. This distinction reflects my high level of proficiency in leadership, tactical skills, and strategic thinking, demonstrating exceptional performance and dedication among a group of highly skilled and competitive peers."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "GIAC Certified Incident Handler (GCIH)",
+      "date": "2023-12-22",
+      "url": "https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url",
+      "issuer": "SANS"
+    },
+    {
+      "name": "GIAC Advisory Board",
+      "date": "2023-10-01",
+      "url": "https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url",
+      "issuer": "SANS"
+    },
+    {
+      "name": "AWS Certified Cloud Practitioner (CCP)",
+      "date": "2023-11-01",
+      "url": "https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url",
+      "issuer": "AWS"
+    },
+    {
+      "name": "GIAC Network Forensic Analyst (GNFA)",
+      "date": "2022-03-01",
+      "url": "https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url",
+      "issuer": "SANS"
+    },
+    {
+      "name": "GIAC Security Essentials (GSEC)",
+      "date": "2023-10-01",
+      "url": "https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url",
+      "issuer": "SANS"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Development",
+      "keywords": [
+        "Python",
+        "Unit Testing",
+        "CI/CD",
+        "Git"
+      ]
+    },
+    {
+      "name": "Cyber Security",
+      "keywords": [
+        "Detection Testing",
+        "Sigma",
+        "Deception",
+        "Forensics",
+        "Threat Hunting"
+      ]
+    },
+    {
+      "name": "Soft Skills",
+      "keywords": [
+        "Effective Communication",
+        "Leadership",
+        "Empathy",
+        "Customer Success"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Automation",
+      "keywords": [
+        "Home Assistant",
+        "Node Red"
+      ]
+    },
+    {
+      "name": "Security",
+      "keywords": [
+        "Password Management",
+        "Intrusion Detection Honeypots",
+        "Network Architecture",
+        "SIEM Automation"
+      ]
+    },
+    {
+      "name": "Photography",
+      "keywords": [
+        "Canon DSLR",
+        "Portraiture",
+        "Photoshop"
+      ]
+    },
+    {
+      "name": "Music",
+      "keywords": [
+        "Tuba Player",
+        "Garage Band",
+        "Headphone Audiophile"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Public Speaking Engagement at Local Library",
+      "description": "Paul Sawyier Public Library asked me to speak about the Dark Web and the importance of personal security online.",
+      "highlights": [
+        "Explained the nature of the dark web and its impact on personal security.",
+        "Discussed real-life incidents, including the 2016 incident involving Donald Trump's Twitter account, to illustrate the risks of data breaches.",
+        "Provided actionable steps for audience members to secure their online accounts, emphasizing the importance of Multi-Factor Authentication and unique passwords.",
+        "Recommended the use of password managers and other tools to enhance online security.",
+        "Engaged with the community to raise awareness about cybersecurity and personal data protection."
+      ],
+      "keywords": [
+        "Public Speaking",
+        "Leadership",
+        "Community Engagement"
+      ],
+      "startDate": "2023-11-01",
+      "endDate": "2024-03-07",
+      "roles": [
+        "Security Engineer",
+        "Leader",
+        "Public Speaker"
+      ],
+      "type": "Community Engagement"
+    },
+    {
+      "name": "Cloud Resume Challenge",
+      "description": "The first step to becoming a cloud engineer is to build and host your resume in the cloud.",
+      "highlights": [
+        "Resume is created using JSON Schema and automatically converted to HTML, Markdown, and PDF using Python",
+        "The HTML version of the resume is hosted on AWS S3 and served via CloudFront, with domain registered on Route53"
+      ],
+      "keywords": [
+        "AWS",
+        "Cloud Resume Challenge",
+        "Python"
+      ],
+      "startDate": "2023-10-01",
+      "endDate": "2023-12-01",
+      "url": "https://github.com/offsetkeyz/colin-resume",
+      "roles": [
+        "Cloud Developer",
+        "Full Stack Developer"
+      ],
+      "type": "application"
+    },
+    {
+      "name": "Home Network Security Monitoring Project",
+      "description": "Implemented a comprehensive network monitoring solution in my home using Security Onion.",
+      "highlights": [
+        "Configured a forward node to capture and forward all network packets for thorough monitoring.",
+        "Utilized Proxmox for virtualization of the manager/search node, efficiently managing and analyzing network data.",
+        "Custom-tuned Suricata detection rules to align with the specific network environment and usage patterns of my home.",
+        "Integrated endpoint log monitoring, including devices across Windows, Linux, and mobile platforms.",
+        "Developed new network detections to identify and mitigate common threats, enhancing home network security."
+      ],
+      "keywords": [
+        "Network Security",
+        "Security Onion",
+        "Suricata",
+        "Proxmox Virtualization",
+        "Endpoint Monitoring",
+        "Detection Development"
+      ],
+      "startDate": "2023-01-01",
+      "roles": [
+        "Network Security Administrator",
+        "Security Automations Engineer",
+        "Detection Developer"
+      ],
+      "type": "Personal Project"
+    },    
+    {
+      "name": "Discord Alerter for Security Onion",
+      "description": "Interact with Security Onion alerts and cases via Discord",
+      "highlights": [
+        "Use Security Onion as a home Intrusion Detection System (IDS) with a forward node on ESXI and a manager node on Proxmox.",
+        "Configure Elastalert to send raw data to n8n automation platform via webhook where threat intel is injected.",
+        "Write a Discord Bot using Python to receive injected raw data from n8n and parse it into a readable format.",
+        "Discord bot sends button interactions to n8n automation server where it interprets the interaction and makes API calls back to Security Onion with the action.",
+        "Current actions are to suppress by source or destination, open the Security Onion Hunt interface with pre-loaded data, or escalate to a case."
+      ],
+      "keywords": [
+        "ELK Stack",
+        "N8N Automation",
+        "Python"
+      ],
+      "startDate": "2023-01-01",
+      "roles": [
+        "Cloud Developer",
+        "Security Automations Engineer",
+        "Full Stack Developer"
+      ],
+      "type": "application"
+    }
+  ],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/offsetkeyz/colin-resume/main/resume_builder/resume-schema.json",
+    "version": "v1.0.2",
+    "lastModified": "2023-11-30"
+  }
+}

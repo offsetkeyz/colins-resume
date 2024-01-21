@@ -39,11 +39,11 @@ def generate_skills(skills=None, specialty_skills=None):
 
 # Function to generate experience section
 def generate_experience(work_experience):
-    markdown = "## Experience\n\n"
+    markdown = '''<div class="no-break"> \n'''
+    markdown += "## Experience\n\n"
     for company, positions in work_experience.items():
         markdown += f"### {company}  \n"
         for position in positions:
-            markdown += '''<div class="no-break"> \n'''
             responsibilities = position.get('responsibilities', None)
             skills = position.get('skills', None)
             markdown += f"#### {position['job_title']}  \n{s.get_month_and_year(position['start_date'])} - {s.get_month_and_year(position['end_date'])}, {position['location']}  \n"

@@ -57,7 +57,6 @@ A seasoned Security Developer with a profound committment to cyber security, und
 ### Bachelor's in Computer Science @ Auburn University
 2020 - 2021  
 - Honors: *Summa Cum Laude*  
-- Courses: Algorithms, Data Structures, Software Development  
 
   </div>  
   <div class="no-break">  
@@ -67,10 +66,10 @@ A seasoned Security Developer with a profound committment to cyber security, und
 
   </div>  
 
+<div class="no-break"> 
 ## Experience
 
 ### Arctic Wolf Networks  
-<div class="no-break"> 
 #### Security Developer  
 Nov 2022 - Present, Remote  
 - Spearheaded the review and refinement of three major rotations by utilizing our internal PostgreSQL reporting service, enhancing team efficiency and demonstrating leadership in process improvement.  
@@ -81,7 +80,6 @@ Nov 2022 - Present, Remote
 *Skills*: ```Python```, ```Git```, ```AWS```, ```YAML```  
 
   </div>  
-<div class="no-break"> 
 #### Business Analyst  
 Dec 2021 - Nov 2022, Remote  
 - Worked closely with senior leaders to develop meaningful metrics and then visualize the data using IRS and PostgreSQL.  
@@ -91,7 +89,6 @@ Dec 2021 - Nov 2022, Remote
 *Skills*: ```Python```, ```Excel```, ```PostgreSQL```, ```Leadership```  
 
   </div>  
-<div class="no-break"> 
 #### Team Captain  
 Jul 2021 - Dec 2021, San Antonio, TX  
 - Lead a team of six Security Analysts and Engineers, ensuring that they were meeting their goals and had the resources they needed to succeed.  
@@ -101,7 +98,6 @@ Jul 2021 - Dec 2021, San Antonio, TX
 *Skills*: ```Leadership```, ```Mentoring```, ```Scheduling```  
 
   </div>  
-<div class="no-break"> 
 #### Triage Security Engineer  
 Dec 2020 - Dec 2021, San Antonio, TX  
 - Use MITRE ATT&CK framework to investigate and triage incidents within a customer's network.  
@@ -113,14 +109,12 @@ Dec 2020 - Dec 2021, San Antonio, TX
 
   </div>  
 ### CarKey  
-<div class="no-break"> 
 #### Lead Videographer  
 Sep 2019 - Dec 2020, Las Vegas, NV  
 *Skills*: ```Leadership```, ```Premiere Pro```, ```Excel```, ```SQL```  
 
   </div>  
 ### US Army  
-<div class="no-break"> 
 #### Public Affairs Officer  
 Nov 2015 - Sep 2019, Schofield Barracks, HI  
 *Skills*: ```Leadership```, ```Mentoring```  
