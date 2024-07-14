@@ -24,6 +24,14 @@ jobs:
           sudo apt install ./pandoc-3.0.1-1-amd64.deb
           sudo apt install ./wkhtmltox_0.12.6.1-2.jammy_amd64.deb
 
+      - name: "Build Markdown File"
+        run: |
+          cd resume_builder
+          python3 md_generator.py
+          python3 cover-letter_generator.py
+          python3 html_generator.py
+          cd -
+
       - name: "Convert MD to HTML"
         run: |
           pandoc resume_builder/resume.md -f markdown -t html -c resume_builder/resume-stylesheet.css -s -o output/${{github.actor}}-resume.html
