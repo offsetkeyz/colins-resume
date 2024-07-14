@@ -41,10 +41,21 @@
   "work_experience": {
     "Arctic Wolf Networks": [
       {
+        "job_title": "Team Lead - Security Developer",
+        "location": "Remote",
+        "start_date": "2024-03-01",
+        "end_date": "Present",
+        "responsibilities": [
+        ],
+        "skills": [
+          "Leadership"
+        ]
+      },
+      {
         "job_title": "Security Developer",
         "location": "Remote",
         "start_date": "2022-11-01",
-        "end_date": "Present",
+        "end_date": "2024-03-01",
         "responsibilities": [
           "Spearheaded the review and refinement of three major rotations by utilizing our internal PostgreSQL reporting service, enhancing team efficiency and demonstrating leadership in process improvement.",
           "Proficiently debugged Python and YAML codebases using tools in VSCode, identifying and resolving critical bugs. Collaborated cross-functionally to address these issues, ensuring code reliability and system integrity.",
@@ -195,6 +206,16 @@
     }
   ],
   "certifications": [
+    {
+      "title": "GIAC Defensible Security Architecture (GDSA)",
+      "date": "2024-07-07",
+      "url": "https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url"
+    },
+    {
+      "title": "GIAC Strategic Planning, Policy, and Leadership (GSTRT)",
+      "date": "2023-12-22",
+      "url": "https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url"
+    },
     {
       "title": "GIAC Certified Incident Handler (GCIH)",
       "date": "2023-12-22",
