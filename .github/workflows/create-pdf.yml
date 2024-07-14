@@ -13,8 +13,8 @@ jobs:
       - name: "Create a folder called output"
         run: |
           mkdir output
-          cp resume-stylesheet.css output/resume-stylesheet.css
-          cp resume.md output/${{ github.actor }}-resume.md
+          cp ../../resume_builder/resume-stylesheet.css output/resume-stylesheet.css
+          cp ../../resume_builder/resume.md output/${{ github.actor }}-resume.md
       # Downloading the binaries directly, because they are newer and work better, than the ones that come with Ubuntu latest.
       - name: "Install pandoc and wkhtmltopdf"
         run: |
