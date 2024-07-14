@@ -32,7 +32,21 @@ jobs:
         run: "wkhtmltopdf --enable-local-file-access output/${{github.actor}}-resume.html output/${{github.actor}}-resume.pdf"
       # run: |
       #     /usr/bin/pandoc -standalone --output=output/resume.pdf --css=resume-stylesheet.css --from=markdown --to=pdf --pdf-engine=/usr/bin/wkhtmltopdf resume.md
-      - uses: actions/upload-artifact@master
-        with: # basically this will put resume.md, resume.html, resume.pdf and resume-stylesheet.css in a zip file.
-          name: ${{ github.actor }}'s Resume
-          path: output
+      # - uses: actions/upload-artifact@master
+      #   with: # basically this will put resume.md, resume.html, resume.pdf and resume-stylesheet.css in a zip file.
+      #     name: ${{ github.actor }}'s Resume
+      #     path: output
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Updating ciles created by workflow
+
+      # - name: Commit and push artifacts to the repository
+      #   run: |
+      #     git config --global user.name 'github-actions[bot]'
+      #     git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+      #     git add output/
+      #     git commit -m "Add resume artifacts for ${{ github.actor }}"
+      #     git push origin HEAD:main
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
