@@ -36,6 +36,8 @@ A seasoned Security Developer with a profound committment to cyber security, und
 <div class="no-break"> 
 ## Certifications
 
+- **[GIAC Defensible Security Architecture (GDSA)](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)** | Jul 2024
+- **[GIAC Strategic Planning, Policy, and Leadership (GSTRT)](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)** | Dec 2023
 - **[GIAC Certified Incident Handler (GCIH)](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023
 - **[GIAC Advisory Board](https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url)** | Oct 2023
 - **[AWS Certified Cloud Practitioner (CCP)](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)** | Nov 2023
@@ -70,8 +72,13 @@ A seasoned Security Developer with a profound committment to cyber security, und
 ## Experience
 
 ### Arctic Wolf Networks  
+#### Team Lead - Security Developer  
+Mar 2024 - Present, Remote  
+*Skills*: ```Leadership```  
+
+  </div>  
 #### Security Developer  
-Nov 2022 - Present, Remote  
+Nov 2022 - Mar 2024, Remote  
 - Spearheaded the review and refinement of three major rotations by utilizing our internal PostgreSQL reporting service, enhancing team efficiency and demonstrating leadership in process improvement.  
 - Proficiently debugged Python and YAML codebases using tools in VSCode, identifying and resolving critical bugs. Collaborated cross-functionally to address these issues, ensuring code reliability and system integrity.  
 - Acted as a key representative for my team during incident investigations, leveraging my comprehensive understanding of our systems and processes to provide crucial insights and solutions.  
