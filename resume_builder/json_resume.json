@@ -7,7 +7,7 @@
     "email": "keyz@null.net",
     "phone": "7028092988",
     "url": "https://colinmca.com",
-    "summary": "A seasoned Security Developer with a profound committment to cyber security, underpinned by a robust understanding of Python and YAML. Adept at working in a fast-paced environment, with a proven track record of delivering high-quality work on time. A strong team player with a passion for automation, education, and leadership.",
+    "summary": "A seasoned Security Developer with a profound commitment to cyber security, underpinned by a robust understanding of Python and MDR Pipelines. Adept at working in a fast-paced environment, with a proven track record of delivering high-quality work on time. A strong team player with a passion for automation, education, and leadership.",
     "profiles": [
       {
         "network": "Github",
@@ -26,12 +26,15 @@
       "name": "Arctic Wolf Networks",
       "position": "Security Developer",
       "startDate": "2022-11-01",
-      "summary": "Spearheaded the review and refinement of three major rotations, enhancing team efficiency and demonstrating leadership in process improvement.",
+      "summary": "Member of the Core team, supporting our surface detection teams through testing, automation, and development",
       "highlights": [
-        "Proficiently debugged Python and YAML codebases, ensuring code reliability and system integrity.",
-        "Acted as a key representative for my team during incident investigations.",
-        "Regularly enhanced operational processes by writing automation scripts.",
-        "Leveraged extensive experience to provide unique context and insights to the team."
+        "Organized and led over 100 daily standup meetings. Introduced and ran council meetings to discuss solutions to problems as a team. Acted as a key representative for my team during incident investigations.",
+        "Responsible for the CI/CD of our detections pipeline using Jenkins.",
+        "Regularly enhanced operational processes by writing automation scripts and documentation.",
+        "Served as an official mentor for multiple team members as they joined the team. Delivered 3 hour-long seminars on new technologies and evolving cybersecurity threats.",
+        "Served as the representative for the detections team as an on-call after-hours representative for over 250 hours.",
+        "AGILE",
+        "Spearheaded the review and refinement of three major rotations, enhancing team efficiency and demonstrating leadership in process improvement."
       ]
     },
     {
@@ -39,9 +42,9 @@
       "position": "Business Analyst",
       "startDate": "2021-12-01",
       "endDate": "2022-11-01",
-      "summary": "Worked closely with senior leaders to develop meaningful metrics and visualize data, automating 25% of recurring tasks.",
       "highlights": [
-        "Headed the implementation of a new scheduling software solution for over 250 employees.",
+        "Independently identified and presented trends in alert delays, ticketability of detections, and team performance using Metabase and postgreSQL to senior leadership on a weekly basis.",
+        "Headed the implementation of a new scheduling software solution for over 250 employees using Python to interact with the scheduling platform's API.",
         "Led dozens of meetings, demonstrating strong communication and coordination skills."
       ]
     },
