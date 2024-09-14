@@ -4,12 +4,8 @@ margin-right: 2cm
 margin-top: 1cm
 margin-bottom: 2cm
 title: Colin McAllister
-description-meta: 'Resume of Colin McAllister - Security Developer'
+description-meta: 'Resume of Colin McAllister - Tem'
 keywords:
-- Customer Relations
-- Technical Presenting
-- Process Documentation
-- ZenDesk
 
 author:
 - Colin McAllister
@@ -17,16 +13,11 @@ subject: 'Resume'
 ---
 ###### Email: **keyz@null.net** | Website: **colinmca.com** | Phone: **702-809-2988**
 
-A seasoned Security Developer with a profound committment to cyber security, underpinned by a robust understanding of Python and YAML. Adept at working in a fast-paced environment, with a proven track record of delivering high-quality work on time. A strong team player with a passion for automation, education, and leadership.
+I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.
 
 ## Skills
 
 <div class="no-break"> 
-```Customer Relations```
-```Technical Presenting```
-```Process Documentation```
-```ZenDesk```
-
 **Cyber Security**: SIEM Detections, Deception Tactics, Threat Hunting, Advanced Network Forensics  
 **Development**: Python, Debugging, AWS, YAML, Agile  
 **Soft Skills**: Communication, Empathy, Leadership, Attention to Detail  
@@ -36,6 +27,7 @@ A seasoned Security Developer with a profound committment to cyber security, und
 <div class="no-break"> 
 ## Certifications
 
+- **[SANS Security Awareness Professional (SSAP)](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)** | Aug 2024
 - **[GIAC Defensible Security Architecture (GDSA)](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)** | Jul 2024
 - **[GIAC Strategic Planning, Policy, and Leadership (GSTRT)](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)** | Dec 2023
 - **[GIAC Certified Incident Handler (GCIH)](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023
@@ -74,6 +66,9 @@ A seasoned Security Developer with a profound committment to cyber security, und
 ### Arctic Wolf Networks  
 #### Team Lead - Security Developer  
 Mar 2024 - Present, Remote  
+- Reduced team backlog from over 300 tickets to 0, maintaining fewer than 10 tickets over the previous quarter, empowering the team to work efficiently and focus on high-impact tasks.  
+- Prioritized team happiness, health, and productivity by fostering a collaborative, supportive environment where each individual's needs are met.  
+- Spearheaded the development of an automation tool that eliminated repetitive tasks, saving over 2000 hours annually through collaborative stakeholder engagement and precise requirement gathering.  
 *Skills*: ```Leadership```  
 
   </div>  
@@ -136,13 +131,21 @@ Nov 2015 - Sep 2019, Schofield Barracks, HI
 
 ## Projects
 
-**Public Speaking Engagement at Local Library** (Nov 2023 - Mar 2024)  
-*Paul Sawyier Public Library asked me to speak about the Dark Web and the importance of personal security online.*  
-- Explained the nature of the dark web and its impact on personal security.  
-- Discussed real-life incidents, including the 2016 incident involving Donald Trump's Twitter account, to illustrate the risks of data breaches.  
-- Provided actionable steps for audience members to secure their online accounts, emphasizing the importance of Multi-Factor Authentication and unique passwords.  
-- Recommended the use of password managers and other tools to enhance online security.  
-- Engaged with the community to raise awareness about cybersecurity and personal data protection.  
+**[The Daily Decrypt](https://thedailydecrypt.com)** (Jan 2024 - Present)  
+*A cybersecurity news podcast that simplifies complex cybersecurity concepts into short, digestible episodes with humor and education, hosted on AWS Lightsail and WordPress.*  
+- Created the podcast to fill a gap in short-form cybersecurity news, aiming to educate beginners and keep professionals up-to-date with the latest cybersecurity developments without long-form content.  
+- Launched the podcast to stay informed about industry news and deepen my understanding of cybersecurity breaches and attacks while improving my public speaking skills.  
+- Learned cloud hosting and security by managing the podcast on AWS Lightsail and securing WordPress, with a focus on Identity and Access Management for contributors.  
+- Integrated automation using n8n hosted on an Unraid server and OpenAI APIs to streamline content creation, generating show notes and bullet points from news articles to enhance episode preparation.  
+- Improved public speaking and content delivery skills, developing a more engaging and concise style to deliver complex information in a clear, approachable manner.  
+
+**Guest Lecturer - Paul Sawyier Public Library** (Nov 2023 - Present)  
+*Guest security lecturer and advisor to the technology educator, presenting on topics such as The Dark Web and Artificial Intelligence.*  
+- Provided accessible, easy-to-understand explanations of the dark web and AI to help elderly community members better understand emerging technologies.  
+- Delivered actionable advice on preventing identity theft and password reuse to help attendees protect themselves from common cyber threats.  
+- Engaged with the elderly community to raise awareness of cybersecurity risks, offering practical steps for safeguarding personal information.  
+- Discussed the potential impacts of artificial intelligence, addressing both valid concerns and reasons for optimism, tailored to the needs of a vulnerable audience.  
+- Advised the library's technology educator on relevant security topics to enhance community learning and improve digital literacy.  
 
 **[Cloud Resume Challenge](https://github.com/offsetkeyz/colin-resume)** (Oct 2023 - Present)  
 *The first step to becoming a cloud engineer is to build and host your resume in the cloud.*  
