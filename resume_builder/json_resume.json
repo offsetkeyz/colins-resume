@@ -2,12 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json",
   "basics": {
     "name": "Colin McAllister",
-    "label": "Leader",
+    "label": "Team Lead",
     "image": "../img/colin.jpg",
-    "email": "keyz@null.net",
+    "email": "colin@thedailydecrypt.com",
     "phone": "7028092988",
     "url": "https://colinmca.com",
-    "summary": "A seasoned Security Developer with a profound committment to cyber security, underpinned by a robust understanding of Python and YAML. Adept at working in a fast-paced environment, with a proven track record of delivering high-quality work on time. A strong team player with a passion for automation, education, and leadership.",
+    "summary": "I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.",
     "profiles": [
       {
         "network": "Github",
@@ -22,6 +22,17 @@
     ]
   },
   "work": [
+    {
+      "name": "Arctic Wolf Networks",
+      "position": "Team Lead",
+      "startDate": "2022-11-01",
+      "summary": "My leadership philosophy is centered on empowering each team member to perform at their best by providing encouragement, constructive feedback, and the autonomy they need to thrive. I adapt my leadership style to suit the individual, ensuring they have the resources and support necessary to succeed.",
+      "highlights": [
+        "Reduced team backlog from over 300 tickets to 0, maintaining fewer than 10 tickets over the previous quarter, empowering the team to work efficiently and focus on high-impact tasks.",
+        "Prioritized team happiness, health, and productivity by fostering a collaborative, supportive environment where each individual's needs are met.",
+        "Spearheaded the development of an automation tool that eliminated repetitive tasks, saving over 2000 hours annually through collaborative stakeholder engagement and precise requirement gathering."
+        ]
+    },
     {
       "name": "Arctic Wolf Networks",
       "position": "Security Developer",
