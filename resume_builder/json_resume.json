@@ -161,6 +161,24 @@
   ],
   "certificates": [
     {
+      "name": "SANS Security Awareness Professional (SSAP)",
+      "date": "2024-08-29",
+      "url": "https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url",
+      "issuer": "SANS"
+    },
+    {
+      "name": "GIAC Defensible Security Architecture (GDSA)",
+      "date": "2024-07-07",
+      "url": "https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url",
+      "issuer": "SANS"
+    },
+    {
+      "name": "GIAC Strategic Planning, Policy, and Leadership (GSTRT)",
+      "date": "2024-03-05",
+      "url": "https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url",
+      "issuer": "SANS"
+    },
+    {
       "name": "GIAC Certified Incident Handler (GCIH)",
       "date": "2023-12-22",
       "url": "https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url",
@@ -226,7 +244,8 @@
       "name": "Automation",
       "keywords": [
         "Home Assistant",
-        "Node Red"
+        "Node Red",
+        "n8n"
       ]
     },
     {
@@ -239,12 +258,8 @@
       ]
     },
     {
-      "name": "Photography",
-      "keywords": [
-        "Canon DSLR",
-        "Portraiture",
-        "Photoshop"
-      ]
+      "name": "Leadership",
+      "keywords": []
     },
     {
       "name": "Music",
@@ -355,29 +370,6 @@
         "Detection Developer"
       ],
       "type": "Personal Project"
-    },    
-    {
-      "name": "Discord Alerter for Security Onion",
-      "description": "Interact with Security Onion alerts and cases via Discord",
-      "highlights": [
-        "Use Security Onion as a home Intrusion Detection System (IDS) with a forward node on ESXI and a manager node on Proxmox.",
-        "Configure Elastalert to send raw data to n8n automation platform via webhook where threat intel is injected.",
-        "Write a Discord Bot using Python to receive injected raw data from n8n and parse it into a readable format.",
-        "Discord bot sends button interactions to n8n automation server where it interprets the interaction and makes API calls back to Security Onion with the action.",
-        "Current actions are to suppress by source or destination, open the Security Onion Hunt interface with pre-loaded data, or escalate to a case."
-      ],
-      "keywords": [
-        "ELK Stack",
-        "N8N Automation",
-        "Python"
-      ],
-      "startDate": "2023-01-01",
-      "roles": [
-        "Cloud Developer",
-        "Security Automations Engineer",
-        "Full Stack Developer"
-      ],
-      "type": "application"
     }
   ],
   "meta": {
