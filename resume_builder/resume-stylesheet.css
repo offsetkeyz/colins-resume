@@ -458,17 +458,6 @@
      padding: 0
  }
  
- body {
-     font: 13.34pxHelvetica;
-     -webkit-font-smoothing: subpixel-antialiased;
-     line-height: 1.4;
-     padding: 3px;
-     background: #fff;
-     border-radius: 3px;
-     -moz-border-radius: 3px;
-     -webkit-border-radius: 3px
- }
- 
  p {
      margin: 1em 0
  }
@@ -480,10 +469,10 @@
  
  body {
      background-color: #fff;
-     padding: 30px;
+     padding: 10px;
      margin: 15px;
      font-size: 14px;
-     line-height: 1.6
+     line-height: 1.0
  }
  
  body>*:first-child {
