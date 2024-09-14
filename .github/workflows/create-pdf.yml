@@ -42,7 +42,7 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Updating ciles created by workflow
+          commit_message: Updating files created by workflow
 
       # - name: Commit and push artifacts to the repository
       #   run: |
