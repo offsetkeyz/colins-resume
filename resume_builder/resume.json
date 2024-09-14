@@ -9,14 +9,15 @@
     "phone": "",
     "url": "https://colinmca.com",
     "summary": "I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.",
+    "short_summary": "A people-first cybersecurity leader and problem solver.",
     "contact_info": [
       {
         "title": "Email",
-        "value": "keyz@null.net"
+        "value": "colin@thedailydecrypt.com"
       },
       {
         "title": "Website",
-        "value": "colinmca.com"
+        "value": "https://colinmca.com"
       },
       {
         "title": "Phone",
@@ -349,6 +350,7 @@
     {
       "name": "Guest Lecturer - Paul Sawyier Public Library",
       "description": "Guest security lecturer and advisor to the technology educator, presenting on topics such as The Dark Web and Artificial Intelligence.",
+      "url": "https://share.descript.com/view/FasABjh4C3X",
       "highlights": [
         "Provided accessible, easy-to-understand explanations of the dark web and AI to help elderly community members better understand emerging technologies.",
         "Delivered actionable advice on preventing identity theft and password reuse to help attendees protect themselves from common cyber threats.",

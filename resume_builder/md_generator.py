@@ -60,17 +60,20 @@ def generate_experience(work_experience):
             markdown += "\n  </div>  \n"
     return markdown
 
-def generate_certifications(certifications):
+def generate_certifications(certifications : list):
     if not certifications:
         return None
     markdown = '''<div class="no-break"> \n'''
     markdown += "## Certifications\n\n"
-    for certification in certifications:
+    for i in range(0, len(certifications)-1):
+        certification = certifications[i]
         url = certification.get('url', None)
         if url:
-            markdown += f"- **[{certification['title']}]({url})** | {s.get_month_and_year(certification['date'])}\n"
+            markdown += f"- **[{certification['acronym']}]({url})** | {s.get_month_and_year(certification['date'])}"
         else: 
-            markdown += f"- **{certification['title']}** | {s.get_month_and_year(certification['date'])}\n"
+            markdown += f"- **{certification['acronym']}** | {s.get_month_and_year(certification['date'])}"
+        if i < len(certifications)-1:
+            markdown += ", "
     return markdown + "\n  </div>  \n"
 
 # Function to generate education section
@@ -80,7 +83,7 @@ def generate_education(education):
     markdown = "## Education  \n\n"
     for edu in education:
         markdown += '''  <div class="no-break">  \n'''
-        courses = edu.get('courses', None)
+        # courses = edu.get('courses', None)
         honors = edu.get('honors', None)
         gpa = edu.get('score', None)
         start_year = s.get_year(edu['startDate'])
@@ -92,8 +95,8 @@ def generate_education(education):
             markdown += f"- Honors: *{honors}*  \n"
         if gpa:
             markdown += f"- GPA: *{gpa}*  \n"
-        if courses:
-            markdown += f"- Courses: {', '.join(edu['courses'])}  \n"
+        # if courses:
+        #     markdown += f"- Courses: {', '.join(edu['courses'])}  \n"
         markdown += "\n  </div>  \n"
     return markdown
 
@@ -110,18 +113,18 @@ def generate_awards(awards):
 def generate_projects(projects):
     if not projects:
         return None
-    markdown = "## Projects\n\n"
+    markdown = "## Projects\n\n see https://colinmca.com for more information"
     for project in projects:
         project_url = (project.get('url',None))
         if project_url:
             markdown += f"**[{project['name']}]({project_url})**"
         else:
             markdown += f"**{project['name']}**"            
-        markdown += f" ({s.get_month_and_year(project['startDate'])} - {s.get_month_and_year(project['endDate'])})  \n"
+        markdown += f" ({s.get_month_and_year(project['startDate'])}\n"
         markdown += f"*{project['description']}*  \n"
-        for highlight in project['highlights']:
-            markdown += f"- {highlight}  \n"
-        markdown += "\n"
+        # for highlight in project['highlights']:
+        #     markdown += f"- {highlight}  \n"
+        # markdown += "\n"
     return markdown
 
 def generate_keywords(skills):
@@ -157,15 +160,16 @@ subject: 'Resume'
 ---
 {generate_contact_info(json_data['basics']['contact_info'])}
 
-{json_data['basics']['summary']}
+{json_data['basics']['short_summary']}
 
-{generate_skills(json_data['skills'], json_data.get('specialty_skills', None))}
 {generate_certifications(json_data.get('certifications', None))}
 {generate_education(json_data.get('education', None))}
 {generate_experience(json_data['work_experience'])}
 {generate_awards(json_data.get('awards', None))}
 {generate_projects(json_data.get('projects', None))}
 '''
+# {generate_skills(json_data['skills'], json_data.get('specialty_skills', None))}
+
 
     # Write the content to a Markdown file
     with open("resume.md", "w") as file:
