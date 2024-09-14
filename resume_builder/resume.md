@@ -18,7 +18,7 @@ A people-first cybersecurity leader and problem solver.
 <div class="no-break"> 
 ## Certifications
 
-- **[SSAP](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)** | Aug 2024, - **[GDSA](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)** | Jul 2024, - **[GSTRT](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)** | Dec 2023, - **[GCIH](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023, , - **[AWS CCP](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)** | Nov 2023, - **[GNFA](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)** | Mar 2022, 
+**[SSAP](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)**, **[GDSA](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)**, **[GSTRT](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)**, **[GCIH](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)**, **[GIAC Advisory Board](https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url)**, **[AWS CCP](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)**, **[GNFA](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)**
   </div>  
 
 ## Education  

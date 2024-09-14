@@ -69,16 +69,18 @@ def generate_certifications(certifications : list):
         certification = certifications[i]
         url = certification.get('url', None)
         acronym = certification.get('acronym', None)
-        name = certification.get('name', None)
+        title = certification.get('title', None)
         if acronym and url:
-            markdown += f"- **[{certification['acronym']}]({url})** | {s.get_month_and_year(certification['date'])}"
+            markdown += f"**[{acronym}]({url})**"
         elif acronym:
-            markdown += f"- **[{certification['acronym']}]({url})** | {s.get_month_and_year(certification['date'])}"
+            markdown += f"**[{acronym}]({url})**"
         elif url:
-            f"- **[{name}]({url})** | {s.get_month_and_year(certification['date'])}"
-        else: 
-            markdown += f"- **{name}** | {s.get_month_and_year(certification['date'])}"
-        if i < len(certifications)-1:
+            markdown += f"**[{title}]({url})**"
+        elif title: 
+            markdown += f"**{title}**"
+        else:
+            continue
+        if i < len(certifications)-2 and certification:
             markdown += ", "
     return markdown + "\n  </div>  \n"
 
