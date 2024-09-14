@@ -11,31 +11,14 @@ author:
 - Colin McAllister
 subject: 'Resume'
 ---
-###### Email: **keyz@null.net** | Website: **colinmca.com** | Phone: **702-809-2988**
+###### Email: **colin@thedailydecrypt.com** | Website: **https://colinmca.com** | Phone: **702-809-2988**
 
-I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.
-
-## Skills
-
-<div class="no-break"> 
-**Cyber Security**: SIEM Detections, Deception Tactics, Threat Hunting, Advanced Network Forensics  
-**Development**: Python, Debugging, AWS, YAML, Agile  
-**Soft Skills**: Communication, Empathy, Leadership, Attention to Detail  
-
-  </div>  
+A people-first cybersecurity leader and problem solver.
 
 <div class="no-break"> 
 ## Certifications
 
-- **[SANS Security Awareness Professional (SSAP)](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)** | Aug 2024
-- **[GIAC Defensible Security Architecture (GDSA)](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)** | Jul 2024
-- **[GIAC Strategic Planning, Policy, and Leadership (GSTRT)](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)** | Dec 2023
-- **[GIAC Certified Incident Handler (GCIH)](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023
-- **[GIAC Advisory Board](https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url)** | Oct 2023
-- **[AWS Certified Cloud Practitioner (CCP)](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)** | Nov 2023
-- **[GIAC Network Forensic Analyst (GNFA)](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)** | Mar 2022
-- **[GIAC Security Essentials (GSEC)](https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url)** | Oct 2023
-
+- **[SSAP](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)** | Aug 2024, - **[GDSA](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)** | Jul 2024, - **[GSTRT](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)** | Dec 2023, - **[GCIH](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023, , - **[AWS CCP](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)** | Nov 2023, - **[GNFA](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)** | Mar 2022, 
   </div>  
 
 ## Education  
@@ -44,7 +27,6 @@ I am a people-first cybersecurity leader who believes that empowering individual
 ### Master's in Cyber Security @ SANS Technical Institute
 2023 - Present  
 - GPA: *4.0*  
-- Courses: ISE 5101 - Security Essentials, ISE 5201 - Hacker Tools, Techniques, Exploits, and Incident Handling, ISE 6440 - Advanced Network Forensics and Analysis  
 
   </div>  
   <div class="no-break">  
@@ -131,41 +113,14 @@ Nov 2015 - Sep 2019, Schofield Barracks, HI
 
 ## Projects
 
-**[The Daily Decrypt](https://thedailydecrypt.com)** (Jan 2024 - Present)  
+ see https://colinmca.com for more information**[The Daily Decrypt](https://thedailydecrypt.com)** (Jan 2024
 *A cybersecurity news podcast that simplifies complex cybersecurity concepts into short, digestible episodes with humor and education, hosted on AWS Lightsail and WordPress.*  
-- Created the podcast to fill a gap in short-form cybersecurity news, aiming to educate beginners and keep professionals up-to-date with the latest cybersecurity developments without long-form content.  
-- Launched the podcast to stay informed about industry news and deepen my understanding of cybersecurity breaches and attacks while improving my public speaking skills.  
-- Learned cloud hosting and security by managing the podcast on AWS Lightsail and securing WordPress, with a focus on Identity and Access Management for contributors.  
-- Integrated automation using n8n hosted on an Unraid server and OpenAI APIs to streamline content creation, generating show notes and bullet points from news articles to enhance episode preparation.  
-- Improved public speaking and content delivery skills, developing a more engaging and concise style to deliver complex information in a clear, approachable manner.  
-
-**Guest Lecturer - Paul Sawyier Public Library** (Nov 2023 - Present)  
+**[Guest Lecturer - Paul Sawyier Public Library](https://share.descript.com/view/FasABjh4C3X)** (Nov 2023
 *Guest security lecturer and advisor to the technology educator, presenting on topics such as The Dark Web and Artificial Intelligence.*  
-- Provided accessible, easy-to-understand explanations of the dark web and AI to help elderly community members better understand emerging technologies.  
-- Delivered actionable advice on preventing identity theft and password reuse to help attendees protect themselves from common cyber threats.  
-- Engaged with the elderly community to raise awareness of cybersecurity risks, offering practical steps for safeguarding personal information.  
-- Discussed the potential impacts of artificial intelligence, addressing both valid concerns and reasons for optimism, tailored to the needs of a vulnerable audience.  
-- Advised the library's technology educator on relevant security topics to enhance community learning and improve digital literacy.  
-
-**[Cloud Resume Challenge](https://github.com/offsetkeyz/colin-resume)** (Oct 2023 - Present)  
+**[Cloud Resume Challenge](https://github.com/offsetkeyz/colin-resume)** (Oct 2023
 *The first step to becoming a cloud engineer is to build and host your resume in the cloud.*  
-- Resume is created using JSON Schema and automatically converted to HTML, Markdown, and PDF using Python  
-- The HTML version of the resume is hosted on AWS S3 and served via CloudFront, with domain registered on Route53  
-
-**Home Network Security Monitoring Project** (Jan 2023 - Present)  
+**Home Network Security Monitoring Project** (Jan 2023
 *Implemented a comprehensive network monitoring solution in my home using Security Onion.*  
-- Configured a forward node to capture and forward all network packets for thorough monitoring.  
-- Utilized Proxmox for virtualization of the manager/search node, efficiently managing and analyzing network data.  
-- Custom-tuned Suricata detection rules to align with the specific network environment and usage patterns of my home.  
-- Integrated endpoint log monitoring, including devices across Windows, Linux, and mobile platforms.  
-- Developed new network detections to identify and mitigate common threats, enhancing home network security.  
-
-**Discord Alerter for Security Onion** (Jan 2023 - Present)  
+**Discord Alerter for Security Onion** (Jan 2023
 *Interact with Security Onion alerts and cases via Discord*  
-- Use Security Onion as a home Intrusion Detection System (IDS) with a forward node on ESXI and a manager node on Proxmox.  
-- Configure Elastalert to send raw data to n8n automation platform via webhook where threat intel is injected.  
-- Write a Discord Bot using Python to receive injected raw data from n8n and parse it into a readable format.  
-- Discord bot sends button interactions to n8n automation server where it interprets the interaction and makes API calls back to Security Onion with the action.  
-- Current actions are to suppress by source or destination, open the Security Onion Hunt interface with pre-loaded data, or escalate to a case.  
-
 
