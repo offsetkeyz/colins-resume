@@ -47,6 +47,10 @@
             "type": "string",
             "description": "Write a short 2-3 sentence biography about yourself"
           },
+          "short_summary": {
+            "type": "string",
+            "description": "Write a short summary for the pdf resume."
+          },
           "location": {
             "type": "object",
             "additionalProperties": true,
@@ -272,6 +276,10 @@
             "name": {
               "type": "string",
               "description": "e.g. Certified Kubernetes Administrator"
+            },
+            "acronym": {
+              "type": "string",
+              "description": "e.g. CKA"
             },
             "date": {
               "$ref": "#/definitions/iso8601"

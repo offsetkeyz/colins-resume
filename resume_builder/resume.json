@@ -9,14 +9,15 @@
     "phone": "",
     "url": "https://colinmca.com",
     "summary": "I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.",
+    "short_summary": "A people-first cybersecurity leader and problem solver.",
     "contact_info": [
       {
         "title": "Email",
-        "value": "keyz@null.net"
+        "value": "colin@thedailydecrypt.com"
       },
       {
         "title": "Website",
-        "value": "colinmca.com"
+        "value": "https://colinmca.com"
       },
       {
         "title": "Phone",
@@ -210,22 +211,26 @@
   ],
   "certifications": [
     {
-      "title": "SANS Security Awareness Professional (SSAP)",
+      "title": "SANS Security Awareness Professional",
+      "acronym": "SSAP",
       "date": "2024-08-29",
       "url": "https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url"
     },
     {
-      "title": "GIAC Defensible Security Architecture (GDSA)",
+      "title": "GIAC Defensible Security Architecture",
+      "acronym": "GDSA",
       "date": "2024-07-07",
       "url": "https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url"
     },
     {
-      "title": "GIAC Strategic Planning, Policy, and Leadership (GSTRT)",
+      "title": "GIAC Strategic Planning, Policy, and Leadership",
+      "acronym": "GSTRT",
       "date": "2023-12-22",
       "url": "https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url"
     },
     {
       "title": "GIAC Certified Incident Handler (GCIH)",
+      "acronym": "GCIH",
       "date": "2023-12-22",
       "url": "https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url"
     },
@@ -235,17 +240,20 @@
       "url": "https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url"
     },
     {
-      "title": "AWS Certified Cloud Practitioner (CCP)",
+      "title": "AWS Certified Cloud Practitioner",
+      "acronym": "AWS CCP",
       "date": "2023-11-01",
       "url": "https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url"
     },
     {
-      "title": "GIAC Network Forensic Analyst (GNFA)",
+      "title": "GIAC Network Forensic Analyst",
+      "acronym": "GNFA",
       "date": "2022-03-01",
       "url": "https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url"
     },
     {
-      "title": "GIAC Security Essentials (GSEC)",
+      "title": "GIAC Security Essentials",
+      "acronym": "GSEC",
       "date": "2023-10-01",
       "url": "https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url"
     }
@@ -342,6 +350,7 @@
     {
       "name": "Guest Lecturer - Paul Sawyier Public Library",
       "description": "Guest security lecturer and advisor to the technology educator, presenting on topics such as The Dark Web and Artificial Intelligence.",
+      "url": "https://share.descript.com/view/FasABjh4C3X",
       "highlights": [
         "Provided accessible, easy-to-understand explanations of the dark web and AI to help elderly community members better understand emerging technologies.",
         "Delivered actionable advice on preventing identity theft and password reuse to help attendees protect themselves from common cyber threats.",
