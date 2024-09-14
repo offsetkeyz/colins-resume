@@ -273,6 +273,10 @@
               "type": "string",
               "description": "e.g. Certified Kubernetes Administrator"
             },
+            "acronym": {
+              "type": "string",
+              "description": "e.g. CKA"
+            },
             "date": {
               "$ref": "#/definitions/iso8601"
             },
