@@ -2,12 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json",
   "basics": {
     "name": "Colin McAllister",
-    "label": "Leader",
+    "label": "Team Lead",
     "image": "../img/colin.jpg",
-    "email": "keyz@null.net",
+    "email": "colin@thedailydecrypt.com",
     "phone": "7028092988",
     "url": "https://colinmca.com",
-    "summary": "A seasoned Security Developer with a profound committment to cyber security, underpinned by a robust understanding of Python and YAML. Adept at working in a fast-paced environment, with a proven track record of delivering high-quality work on time. A strong team player with a passion for automation, education, and leadership.",
+    "summary": "I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.",
     "profiles": [
       {
         "network": "Github",
@@ -24,8 +24,20 @@
   "work": [
     {
       "name": "Arctic Wolf Networks",
+      "position": "Team Lead",
+      "startDate": "2024-02-01",
+      "summary": "My leadership philosophy is centered on empowering each team member to perform at their best by providing encouragement, constructive feedback, and the autonomy they need to thrive. I adapt my leadership style to suit the individual, ensuring they have the resources and support necessary to succeed.",
+      "highlights": [
+        "Reduced team backlog from over 300 tickets to 0, maintaining fewer than 10 tickets over the previous quarter, empowering the team to work efficiently and focus on high-impact tasks.",
+        "Prioritized team happiness, health, and productivity by fostering a collaborative, supportive environment where each individual's needs are met.",
+        "Spearheaded the development of an automation tool that eliminated repetitive tasks, saving over 2000 hours annually through collaborative stakeholder engagement and precise requirement gathering."
+        ]
+    },
+    {
+      "name": "Arctic Wolf Networks",
       "position": "Security Developer",
       "startDate": "2022-11-01",
+      "endDate": "2024-02-01",
       "summary": "Spearheaded the review and refinement of three major rotations, enhancing team efficiency and demonstrating leadership in process improvement.",
       "highlights": [
         "Proficiently debugged Python and YAML codebases, ensuring code reliability and system integrity.",
@@ -128,6 +140,13 @@
       "summary": "Awarded the prestigious Moonshot Award by Arctic Wolf Networks in recognition of presenting the most innovative and impactful idea during the 2023 Hackathon. Demonstrated exceptional creativity and strategic thinking in developing a comprehensive plan to implement this idea, showcasing potential significant contributions to the company's future endeavors."
     },
     {
+      "title": "GIAC Advisory Board",
+      "date": "2023-10-01",
+      "awarder": "SANS",
+      "url" : "https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url",
+      "summary": "Participation in the GIAC Advisory Board is by invitation only and is made up of GIAC certified professionals who wish to give back to the security community by taking an active role in the GIAC program. The GIAC Advisory Board provides a forum where IT Security professionals can exchange ideas and advice."
+    },
+    {
       "title": "Triage Security Engineer 1 of the Quarter",
       "date": "2021-07-01",
       "awarder": "Arctic Wolf Networks",
@@ -142,15 +161,27 @@
   ],
   "certificates": [
     {
-      "name": "GIAC Certified Incident Handler (GCIH)",
-      "date": "2023-12-22",
-      "url": "https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url",
+      "name": "SANS Security Awareness Professional (SSAP)",
+      "date": "2024-08-29",
+      "url": "https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url",
       "issuer": "SANS"
     },
     {
-      "name": "GIAC Advisory Board",
-      "date": "2023-10-01",
-      "url": "https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url",
+      "name": "GIAC Defensible Security Architecture (GDSA)",
+      "date": "2024-07-07",
+      "url": "https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url",
+      "issuer": "SANS"
+    },
+    {
+      "name": "GIAC Strategic Planning, Policy, and Leadership (GSTRT)",
+      "date": "2024-03-05",
+      "url": "https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url",
+      "issuer": "SANS"
+    },
+    {
+      "name": "GIAC Certified Incident Handler (GCIH)",
+      "date": "2023-12-22",
+      "url": "https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url",
       "issuer": "SANS"
     },
     {
@@ -213,7 +244,8 @@
       "name": "Automation",
       "keywords": [
         "Home Assistant",
-        "Node Red"
+        "Node Red",
+        "n8n"
       ]
     },
     {
@@ -226,12 +258,8 @@
       ]
     },
     {
-      "name": "Photography",
-      "keywords": [
-        "Canon DSLR",
-        "Portraiture",
-        "Photoshop"
-      ]
+      "name": "Leadership",
+      "keywords": []
     },
     {
       "name": "Music",
@@ -244,29 +272,58 @@
   ],
   "projects": [
     {
-      "name": "Public Speaking Engagement at Local Library",
-      "description": "Paul Sawyier Public Library asked me to speak about the Dark Web and the importance of personal security online.",
+      "name": "The Daily Decrypt",
+      "description": "A cybersecurity news podcast that simplifies complex cybersecurity concepts into short, digestible episodes with humor and education, hosted on AWS Lightsail and WordPress.",
+      "url" : "https://thedailydecrypt.com",
       "highlights": [
-        "Explained the nature of the dark web and its impact on personal security.",
-        "Discussed real-life incidents, including the 2016 incident involving Donald Trump's Twitter account, to illustrate the risks of data breaches.",
-        "Provided actionable steps for audience members to secure their online accounts, emphasizing the importance of Multi-Factor Authentication and unique passwords.",
-        "Recommended the use of password managers and other tools to enhance online security.",
-        "Engaged with the community to raise awareness about cybersecurity and personal data protection."
+        "Created the podcast to fill a gap in short-form cybersecurity news, aiming to educate beginners and keep professionals up-to-date with the latest cybersecurity developments without long-form content.",
+        "Launched the podcast to stay informed about industry news and deepen my understanding of cybersecurity breaches and attacks while improving my public speaking skills.",
+        "Learned cloud hosting and security by managing the podcast on AWS Lightsail and securing WordPress, with a focus on Identity and Access Management for contributors.",
+        "Integrated automation using n8n hosted on an Unraid server and OpenAI APIs to streamline content creation, generating show notes and bullet points from news articles to enhance episode preparation.",
+        "Improved public speaking and content delivery skills, developing a more engaging and concise style to deliver complex information in a clear, approachable manner."
+      ],
+      "keywords": [
+        "Podcast Production",
+        "Cybersecurity Education",
+        "AWS Lightsail",
+        "WordPress",
+        "Automation",
+        "Public Speaking",
+        "Cloud Security"
+      ],
+      "startDate": "2024-01-01",
+      "roles": [
+        "Host",
+        "Producer",
+        "Content Creator",
+        "Technical Administrator"
+      ],
+      "type": "Community Education"
+    },    
+    {
+      "name": "Guest Lecturer - Paul Sawyier Public Library",
+      "description": "Guest security lecturer and advisor to the technology educator, presenting on topics such as The Dark Web and Artificial Intelligence.",
+      "highlights": [
+        "Provided accessible, easy-to-understand explanations of the dark web and AI to help elderly community members better understand emerging technologies.",
+        "Delivered actionable advice on preventing identity theft and password reuse to help attendees protect themselves from common cyber threats.",
+        "Engaged with the elderly community to raise awareness of cybersecurity risks, offering practical steps for safeguarding personal information.",
+        "Discussed the potential impacts of artificial intelligence, addressing both valid concerns and reasons for optimism, tailored to the needs of a vulnerable audience.",
+        "Advised the library's technology educator on relevant security topics to enhance community learning and improve digital literacy."
       ],
       "keywords": [
         "Public Speaking",
         "Leadership",
-        "Community Engagement"
+        "Community Engagement",
+        "Security Awareness"
       ],
       "startDate": "2023-11-01",
-      "endDate": "2024-03-07",
       "roles": [
-        "Security Engineer",
         "Leader",
+        "Educator",
         "Public Speaker"
       ],
       "type": "Community Engagement"
-    },
+    },    
     {
       "name": "Cloud Resume Challenge",
       "description": "The first step to becoming a cloud engineer is to build and host your resume in the cloud.",
@@ -313,29 +370,6 @@
         "Detection Developer"
       ],
       "type": "Personal Project"
-    },    
-    {
-      "name": "Discord Alerter for Security Onion",
-      "description": "Interact with Security Onion alerts and cases via Discord",
-      "highlights": [
-        "Use Security Onion as a home Intrusion Detection System (IDS) with a forward node on ESXI and a manager node on Proxmox.",
-        "Configure Elastalert to send raw data to n8n automation platform via webhook where threat intel is injected.",
-        "Write a Discord Bot using Python to receive injected raw data from n8n and parse it into a readable format.",
-        "Discord bot sends button interactions to n8n automation server where it interprets the interaction and makes API calls back to Security Onion with the action.",
-        "Current actions are to suppress by source or destination, open the Security Onion Hunt interface with pre-loaded data, or escalate to a case."
-      ],
-      "keywords": [
-        "ELK Stack",
-        "N8N Automation",
-        "Python"
-      ],
-      "startDate": "2023-01-01",
-      "roles": [
-        "Cloud Developer",
-        "Security Automations Engineer",
-        "Full Stack Developer"
-      ],
-      "type": "application"
     }
   ],
   "meta": {
