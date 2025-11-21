@@ -1,0 +1,1049 @@
+# ============================================================================
+# RESUME YAML SCHEMA
+# ============================================================================
+# This schema defines the structure for YAML-based resumes with support for
+# profile-based filtering using include_in tags.
+#
+# Version: 1.0.0
+# Compatible with: Dynamic YAML-Based Resume System
+# ============================================================================
+
+# Schema metadata
+schema_version: "1.0.0"
+schema_url: "https://raw.githubusercontent.com/offsetkeyz/colins-resume/main/resume_builder/resume-schema.yaml"
+
+# ============================================================================
+# INCLUDE_IN TAG SYSTEM
+# ============================================================================
+# The include_in field allows you to tag resume items for different profiles.
+# This enables one master resume to generate multiple targeted versions.
+#
+# Common tag values:
+#   - all: Include in all resume profiles (default)
+#   - leadership: Leadership and management focused resumes
+#   - technical: Technical and development focused resumes
+#   - management: People management emphasis
+#   - development: Software development emphasis
+#
+# Examples:
+#   include_in: [all]                    # Appears in all profiles
+#   include_in: [leadership, management] # Only in leadership profiles
+#   include_in: [technical, development] # Only in technical profiles
+# ============================================================================
+
+# Root level validation rules
+required_fields:
+  - basics
+
+optional_fields:
+  - work_experience
+  - education
+  - awards
+  - certifications
+  - publications
+  - skills
+  - specialty_skills
+  - languages
+  - interests
+  - references
+  - projects
+  - volunteer
+  - meta
+
+# ============================================================================
+# BASICS SECTION
+# ============================================================================
+# Personal information and contact details
+# ============================================================================
+basics:
+  description: "Basic personal and contact information"
+  required_fields:
+    - name
+    - email
+
+  optional_fields:
+    - label
+    - image
+    - phone
+    - url
+    - summary
+    - short_summary
+    - quote
+    - contact_info
+    - location
+    - profiles
+
+  field_definitions:
+    name:
+      type: string
+      description: "Full name"
+      example: "Colin McAllister"
+
+    label:
+      type: string
+      description: "Professional title or role"
+      example: "Team Lead - Security Developer"
+
+    quote:
+      type: string
+      description: "Personal tagline or motto"
+      example: "Automate / Educate / Secure"
+
+    image:
+      type: string
+      format: file_path
+      description: "Path to profile image"
+      example: "../img/colin.jpg"
+
+    email:
+      type: string
+      format: email
+      description: "Primary email address"
+      example: "colin@example.com"
+      validation:
+        - must_be_valid_email
+
+    phone:
+      type: string
+      description: "Phone number (any format)"
+      example: "702-809-2988"
+
+    url:
+      type: string
+      format: uri
+      description: "Personal website URL"
+      example: "https://colinmca.com"
+      validation:
+        - must_be_valid_url
+
+    summary:
+      type: string
+      description: "Comprehensive professional summary (2-3 paragraphs)"
+      max_length: 1000
+
+    short_summary:
+      type: string
+      description: "Brief summary for PDF resume (1-2 sentences)"
+      max_length: 250
+
+    contact_info:
+      type: array
+      description: "Alternative contact information display"
+      max_items: 3
+      items:
+        type: object
+        required_fields:
+          - title
+          - value
+        fields:
+          title:
+            type: string
+            example: "Email"
+          value:
+            type: string
+            example: "colin@example.com"
+
+    location:
+      type: object
+      description: "Physical location information"
+      fields:
+        address:
+          type: string
+          description: "Street address"
+        city:
+          type: string
+          example: "San Antonio"
+        region:
+          type: string
+          description: "State or province"
+          example: "TX"
+        postalCode:
+          type: string
+          example: "78201"
+        countryCode:
+          type: string
+          description: "ISO-3166-1 ALPHA-2 country code"
+          example: "US"
+
+    profiles:
+      type: array
+      description: "Social media and professional profiles"
+      items:
+        type: object
+        required_fields:
+          - network
+          - url
+        fields:
+          network:
+            type: string
+            description: "Platform name"
+            example: "LinkedIn"
+          username:
+            type: string
+            example: "offsetcolin"
+          url:
+            type: string
+            format: uri
+            example: "https://www.linkedin.com/in/offsetcolin/"
+          icon:
+            type: string
+            description: "Font Awesome icon class"
+            example: "fa fa-linkedin-square"
+
+# ============================================================================
+# WORK EXPERIENCE SECTION
+# ============================================================================
+# Professional work history organized by company
+# Supports include_in tags at job level and responsibility level
+# ============================================================================
+work_experience:
+  description: "Professional work history organized by company name"
+  type: object
+  pattern_properties: "Company names as keys"
+
+  # Each company is a key with an array of positions
+  company_entry:
+    type: array
+    description: "Array of positions held at this company"
+    items:
+      type: object
+      required_fields:
+        - job_title
+        - location
+        - start_date
+        - end_date
+
+      optional_fields:
+        - responsibilities
+        - skills
+        - projects
+        - include_in  # Tag for profile filtering
+
+      field_definitions:
+        job_title:
+          type: string
+          description: "Position title"
+          example: "Team Lead - Security Developer"
+
+        location:
+          type: string
+          description: "Job location"
+          example: "Remote"
+
+        start_date:
+          type: string
+          format: date
+          description: "Start date in YYYY-MM-DD format"
+          example: "2024-03-01"
+          validation:
+            - must_be_valid_date
+
+        end_date:
+          type: string
+          description: "End date (YYYY-MM-DD) or 'Present'"
+          example: "Present"
+          validation:
+            - must_be_valid_date_or_present
+
+        responsibilities:
+          type: array
+          description: "List of responsibilities and achievements"
+          items:
+            # Can be either a string OR an object with include_in tag
+            oneOf:
+              - type: string
+                description: "Simple responsibility description"
+                example: "Led team of 6 security analysts"
+
+              - type: object
+                description: "Responsibility with profile filtering"
+                required_fields:
+                  - description
+                  - include_in
+                fields:
+                  description:
+                    type: string
+                    example: "Mentored junior developers in Python best practices"
+                  include_in:
+                    type: array
+                    items:
+                      type: string
+                    example: ["leadership", "management"]
+
+        skills:
+          type: array
+          description: "Skills used in this role"
+          items:
+            type: string
+          example: ["Python", "AWS", "Leadership"]
+
+        projects:
+          type: array
+          description: "Projects completed in this role"
+          items:
+            type: object
+            required_fields:
+              - name
+              - description
+            optional_fields:
+              - include_in
+            fields:
+              name:
+                type: string
+                example: "Automation Framework"
+              description:
+                type: string
+                example: "Built Python automation tool saving 2000 hours annually"
+              include_in:
+                type: array
+                items:
+                  type: string
+                example: ["technical", "development"]
+
+        include_in:
+          type: array
+          description: "Profile tags for filtering this job entry"
+          items:
+            type: string
+          example: ["all"]
+          default: ["all"]
+
+# ============================================================================
+# EDUCATION SECTION
+# ============================================================================
+# Educational background with degree information
+# ============================================================================
+education:
+  type: array
+  description: "Educational history"
+  items:
+    type: object
+    required_fields:
+      - institution
+      - area
+      - studyType
+      - startDate
+      - endDate
+
+    optional_fields:
+      - url
+      - score
+      - honors
+      - courses
+      - include_in
+
+    field_definitions:
+      institution:
+        type: string
+        description: "School or university name"
+        example: "Auburn University"
+
+      url:
+        type: string
+        format: uri
+        description: "Institution website"
+
+      area:
+        type: string
+        description: "Field of study"
+        example: "Computer Science"
+
+      studyType:
+        type: string
+        description: "Degree type"
+        example: "Bachelor's"
+        common_values: ["Bachelor's", "Master's", "PhD", "Certificate"]
+
+      startDate:
+        type: string
+        format: date
+        description: "Start date (YYYY-MM-DD or YYYY-MM or YYYY)"
+        example: "2020-01-01"
+
+      endDate:
+        type: string
+        description: "End date or 'Present'"
+        example: "2021-11-01"
+
+      score:
+        type: string
+        description: "GPA or grade"
+        example: "4.0"
+
+      honors:
+        type: string
+        description: "Academic honors"
+        example: "Summa Cum Laude"
+
+      courses:
+        type: array
+        description: "Notable courses taken"
+        items:
+          type: string
+        example: ["ISE 5101 - Security Essentials"]
+
+      include_in:
+        type: array
+        description: "Profile tags for filtering"
+        items:
+          type: string
+        default: ["all"]
+
+# ============================================================================
+# AWARDS SECTION
+# ============================================================================
+# Professional awards and recognition
+# ============================================================================
+awards:
+  type: array
+  description: "Awards and recognition received"
+  items:
+    type: object
+    required_fields:
+      - title
+      - date
+      - awarder
+
+    optional_fields:
+      - summary
+      - include_in
+
+    field_definitions:
+      title:
+        type: string
+        description: "Award title"
+        example: "Hackathon Winner"
+
+      date:
+        type: string
+        format: date
+        description: "Date received"
+        example: "2023-11-01"
+
+      awarder:
+        type: string
+        description: "Organization that gave the award"
+        example: "Arctic Wolf Networks"
+
+      summary:
+        type: string
+        description: "Award description or context"
+
+      include_in:
+        type: array
+        description: "Profile tags for filtering"
+        items:
+          type: string
+        default: ["all"]
+
+# ============================================================================
+# CERTIFICATIONS SECTION
+# ============================================================================
+# Professional certifications and licenses
+# ============================================================================
+certifications:
+  type: array
+  description: "Professional certifications"
+  items:
+    type: object
+    required_fields:
+      - title
+      - date
+      - url
+
+    optional_fields:
+      - acronym
+      - issuer
+      - include_in
+
+    field_definitions:
+      title:
+        type: string
+        description: "Full certification name"
+        example: "GIAC Certified Incident Handler"
+
+      acronym:
+        type: string
+        description: "Certification abbreviation"
+        example: "GCIH"
+
+      date:
+        type: string
+        format: date
+        description: "Date obtained"
+        example: "2023-12-22"
+
+      url:
+        type: string
+        format: uri
+        description: "Verification URL"
+        example: "https://www.credly.com/badges/..."
+
+      issuer:
+        type: string
+        description: "Issuing organization"
+        example: "GIAC"
+
+      include_in:
+        type: array
+        description: "Profile tags for filtering"
+        items:
+          type: string
+        default: ["all"]
+
+# ============================================================================
+# PUBLICATIONS SECTION
+# ============================================================================
+# Published works, papers, articles
+# ============================================================================
+publications:
+  type: array
+  description: "Published works"
+  items:
+    type: object
+    required_fields:
+      - name
+      - publisher
+      - releaseDate
+      - url
+
+    optional_fields:
+      - summary
+      - include_in
+
+    field_definitions:
+      name:
+        type: string
+        description: "Publication title"
+
+      publisher:
+        type: string
+        description: "Publishing organization"
+
+      releaseDate:
+        type: string
+        format: date
+        description: "Publication date"
+
+      url:
+        type: string
+        format: uri
+        description: "URL to publication"
+
+      summary:
+        type: string
+        description: "Brief description"
+
+      include_in:
+        type: array
+        description: "Profile tags for filtering"
+        items:
+          type: string
+        default: ["all"]
+
+# ============================================================================
+# SKILLS SECTION
+# ============================================================================
+# Technical and professional skills
+# ============================================================================
+skills:
+  type: array
+  description: "Simple list of skills"
+  items:
+    type: string
+  example: ["Python", "AWS", "Leadership"]
+
+specialty_skills:
+  type: array
+  description: "Categorized skills with proficiency levels"
+  items:
+    type: object
+    required_fields:
+      - name
+      - keywords
+
+    optional_fields:
+      - level
+      - include_in
+
+    field_definitions:
+      name:
+        type: string
+        description: "Skill category name"
+        example: "Cyber Security"
+
+      level:
+        type: string
+        description: "Proficiency level"
+        example: "Expert"
+        common_values: ["Beginner", "Intermediate", "Advanced", "Expert"]
+
+      keywords:
+        type: array
+        description: "Specific skills in this category"
+        items:
+          type: string
+        example: ["SIEM Detections", "Threat Hunting", "Network Forensics"]
+
+      include_in:
+        type: array
+        description: "Profile tags for filtering"
+        items:
+          type: string
+        default: ["all"]
+
+# ============================================================================
+# LANGUAGES SECTION
+# ============================================================================
+# Spoken languages and proficiency
+# ============================================================================
+languages:
+  type: array
+  description: "Languages spoken"
+  items:
+    type: object
+    required_fields:
+      - language
+      - fluency
+
+    field_definitions:
+      language:
+        type: string
+        example: "English"
+
+      fluency:
+        type: string
+        example: "Native speaker"
+        common_values: ["Native speaker", "Fluent", "Conversational", "Basic"]
+
+# ============================================================================
+# INTERESTS SECTION
+# ============================================================================
+# Personal and professional interests
+# ============================================================================
+interests:
+  type: array
+  description: "Personal interests"
+  items:
+    type: object
+    required_fields:
+      - name
+
+    optional_fields:
+      - keywords
+
+    field_definitions:
+      name:
+        type: string
+        example: "Automation"
+
+      keywords:
+        type: array
+        description: "Related topics"
+        items:
+          type: string
+
+# ============================================================================
+# REFERENCES SECTION
+# ============================================================================
+# Professional references
+# ============================================================================
+references:
+  type: array
+  description: "Professional references"
+  items:
+    type: object
+    required_fields:
+      - name
+      - contact
+      - reference
+
+    field_definitions:
+      name:
+        type: string
+        description: "Reference name"
+
+      contact:
+        type: string
+        description: "Contact information"
+
+      reference:
+        type: string
+        description: "Reference text or relationship"
+
+# ============================================================================
+# PROJECTS SECTION
+# ============================================================================
+# Personal and professional projects
+# Supports detailed include_in filtering
+# ============================================================================
+projects:
+  type: array
+  description: "Notable projects"
+  items:
+    type: object
+    required_fields:
+      - name
+      - description
+      - startDate
+      - roles
+      - type
+
+    optional_fields:
+      - url
+      - highlights
+      - keywords
+      - endDate
+      - entity
+      - include_in
+
+    field_definitions:
+      name:
+        type: string
+        description: "Project name"
+        example: "The Daily Decrypt"
+
+      description:
+        type: string
+        description: "Project summary"
+
+      url:
+        type: string
+        format: uri
+        description: "Project URL"
+
+      highlights:
+        type: array
+        description: "Key achievements and features"
+        items:
+          # Can be string or object with include_in tag
+          oneOf:
+            - type: string
+            - type: object
+              required_fields:
+                - description
+                - include_in
+              fields:
+                description:
+                  type: string
+                include_in:
+                  type: array
+                  items:
+                    type: string
+
+      keywords:
+        type: array
+        description: "Technologies and topics"
+        items:
+          type: string
+        example: ["Python", "AWS", "Automation"]
+
+      startDate:
+        type: string
+        format: date
+        description: "Project start date"
+
+      endDate:
+        type: string
+        description: "End date or 'Present'"
+
+      roles:
+        type: array
+        description: "Your roles in the project"
+        items:
+          type: string
+        example: ["Host", "Developer", "Technical Lead"]
+
+      entity:
+        type: string
+        description: "Associated organization"
+
+      type:
+        type: string
+        description: "Project category"
+        example: "application"
+        common_values: ["application", "volunteering", "presentation", "community"]
+
+      include_in:
+        type: array
+        description: "Profile tags for filtering"
+        items:
+          type: string
+        default: ["all"]
+
+# ============================================================================
+# VOLUNTEER SECTION
+# ============================================================================
+# Volunteer work and community service
+# ============================================================================
+volunteer:
+  type: array
+  description: "Volunteer experience"
+  items:
+    type: object
+    required_fields:
+      - organization
+      - position
+      - startDate
+      - endDate
+
+    optional_fields:
+      - url
+      - summary
+      - highlights
+      - include_in
+
+    field_definitions:
+      organization:
+        type: string
+        description: "Organization name"
+
+      position:
+        type: string
+        description: "Volunteer role"
+
+      url:
+        type: string
+        format: uri
+        description: "Organization website"
+
+      startDate:
+        type: string
+        format: date
+        description: "Start date"
+
+      endDate:
+        type: string
+        description: "End date or 'Present'"
+
+      summary:
+        type: string
+        description: "Role summary"
+
+      highlights:
+        type: array
+        description: "Key accomplishments"
+        items:
+          type: string
+
+      include_in:
+        type: array
+        description: "Profile tags for filtering"
+        items:
+          type: string
+        default: ["all"]
+
+# ============================================================================
+# META SECTION
+# ============================================================================
+# Resume metadata and versioning
+# ============================================================================
+meta:
+  type: object
+  description: "Resume metadata"
+
+  optional_fields:
+    - canonical
+    - version
+    - lastModified
+
+  field_definitions:
+    canonical:
+      type: string
+      format: uri
+      description: "URL to latest version of this schema"
+      example: "https://raw.githubusercontent.com/offsetkeyz/colins-resume/main/resume_builder/resume-schema.yaml"
+
+    version:
+      type: string
+      description: "Resume version (semver)"
+      example: "v1.0.2"
+
+    lastModified:
+      type: string
+      format: datetime
+      description: "Last modification timestamp"
+      example: "2025-11-21T14:30:00Z"
+
+# ============================================================================
+# VALIDATION RULES
+# ============================================================================
+# Custom validation rules for this schema
+# ============================================================================
+validation_rules:
+
+  # Include_in tag validation
+  include_in_tags:
+    description: "Validation rules for include_in tags"
+    rules:
+      - name: "must_be_array"
+        description: "include_in must be an array"
+        error_message: "include_in must be a list/array, not a string"
+
+      - name: "must_contain_valid_tags"
+        description: "Only predefined tags are allowed"
+        allowed_tags:
+          - "all"
+          - "leadership"
+          - "management"
+          - "technical"
+          - "development"
+          - "consulting"
+          - "startup"
+        error_message: "include_in contains invalid tag. Allowed: all, leadership, management, technical, development, consulting, startup"
+
+      - name: "must_not_be_empty"
+        description: "include_in array must not be empty"
+        error_message: "include_in array cannot be empty. Use ['all'] for items that appear in all profiles"
+
+      - name: "all_tag_is_sufficient"
+        description: "If 'all' tag is present, other tags are redundant but allowed"
+        warning_message: "include_in contains 'all' tag along with other tags. The 'all' tag makes other tags redundant."
+
+  # Date validation
+  dates:
+    description: "Date format validation"
+    rules:
+      - name: "must_be_valid_date"
+        description: "Date must be in YYYY-MM-DD, YYYY-MM, or YYYY format"
+        regex: "^([1-2][0-9]{3}(-[0-1][0-9](-[0-3][0-9])?)?|Present)$"
+        error_message: "Invalid date format. Use YYYY-MM-DD, YYYY-MM, YYYY, or 'Present'"
+
+      - name: "start_before_end"
+        description: "Start date must be before end date"
+        error_message: "Start date must be before or equal to end date"
+
+  # Email validation
+  email:
+    description: "Email format validation"
+    rules:
+      - name: "must_be_valid_email"
+        description: "Must be a valid email address"
+        regex: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+        error_message: "Invalid email format"
+
+  # URL validation
+  url:
+    description: "URL format validation"
+    rules:
+      - name: "must_be_valid_url"
+        description: "Must be a valid HTTP/HTTPS URL"
+        regex: "^https?://[a-zA-Z0-9.-]+(:[0-9]+)?(/.*)?$"
+        error_message: "Invalid URL format. Must start with http:// or https://"
+
+# ============================================================================
+# SCHEMA EXAMPLES
+# ============================================================================
+# Example resume snippets for reference
+# ============================================================================
+examples:
+
+  basic_work_experience:
+    description: "Simple work experience entry"
+    yaml: |
+      work_experience:
+        "Arctic Wolf Networks":
+          - job_title: "Team Lead - Security Developer"
+            location: "Remote"
+            start_date: "2024-03-01"
+            end_date: "Present"
+            responsibilities:
+              - "Led team of 6 security analysts"
+              - "Reduced backlog from 300 to 0 tickets"
+            skills:
+              - "Leadership"
+              - "Python"
+            include_in: ["all"]
+
+  filtered_work_experience:
+    description: "Work experience with profile-specific responsibilities"
+    yaml: |
+      work_experience:
+        "Arctic Wolf Networks":
+          - job_title: "Team Lead - Security Developer"
+            location: "Remote"
+            start_date: "2024-03-01"
+            end_date: "Present"
+            responsibilities:
+              - description: "Mentored 6 junior developers in Python best practices"
+                include_in: ["leadership", "management"]
+
+              - description: "Built automation framework using AWS Lambda and Python"
+                include_in: ["technical", "development"]
+
+              - description: "Collaborated with stakeholders on requirements"
+                include_in: ["all"]
+            include_in: ["all"]
+
+  filtered_project:
+    description: "Project with tagged highlights"
+    yaml: |
+      projects:
+        - name: "The Daily Decrypt"
+          description: "Cybersecurity news podcast"
+          startDate: "2024-01-01"
+          endDate: "Present"
+          url: "https://thedailydecrypt.com"
+          highlights:
+            - description: "Launched podcast reaching 10k monthly listeners"
+              include_in: ["all"]
+
+            - description: "Built AWS infrastructure with Lightsail and CloudFront"
+              include_in: ["technical", "development"]
+
+            - description: "Managed team of 3 content creators"
+              include_in: ["leadership", "management"]
+          roles:
+            - "Host"
+            - "Technical Administrator"
+          type: "Community Education"
+          include_in: ["all"]
+
+  education_with_filtering:
+    description: "Education entry with profile filtering"
+    yaml: |
+      education:
+        - institution: "SANS Technical Institute"
+          area: "Cyber Security"
+          studyType: "Master's"
+          startDate: "2023-07-01"
+          endDate: "Present"
+          score: "4.0"
+          courses:
+            - "ISE 5101 - Security Essentials"
+            - "ISE 5201 - Hacker Tools and Techniques"
+          include_in: ["all"]
+
+# ============================================================================
+# MIGRATION NOTES
+# ============================================================================
+# Notes for migrating from JSON to YAML format
+# ============================================================================
+migration_notes:
+  from_json:
+    description: "Converting from resume.json to resume.yaml"
+    steps:
+      - "Load existing resume.json"
+      - "Convert JSON structure to YAML"
+      - "Add include_in: [all] to all existing entries"
+      - "Validate against this schema"
+      - "Test with profile manager"
+
+    common_changes:
+      - field: "work_experience"
+        note: "Structure remains the same (company names as keys)"
+
+      - field: "responsibilities"
+        note: "Can now be array of strings OR array of objects with include_in tags"
+
+      - field: "include_in"
+        note: "New field added throughout for profile filtering"
+
+    backward_compatibility:
+      - "JSON resume can still be used until migration complete"
+      - "Parallel running period allows validation"
+      - "Existing generators work with both formats during transition"
+
+# ============================================================================
+# END OF SCHEMA
+# ============================================================================
