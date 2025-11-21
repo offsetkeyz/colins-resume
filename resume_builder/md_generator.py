@@ -381,7 +381,8 @@ margin-bottom: 2cm
 title: {name}
 description-meta: 'Resume of {name} - {label}'
 keywords:
-{generate_keywords(skill_keywords)}author:
+{generate_keywords(skill_keywords)}
+author:
 - {name}
 subject: 'Resume'
 ---
