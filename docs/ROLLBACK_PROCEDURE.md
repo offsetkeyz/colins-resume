@@ -1,7 +1,7 @@
 # Rollback Procedure for YAML Resume Migration
 
 **Document Version:** 1.0.0
-**Last Updated:** 2024-11-21
+**Last Updated:** 2025-11-21
 **Status:** Active
 
 ---
