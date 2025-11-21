@@ -25,6 +25,7 @@ Author: Resume Builder System
 """
 
 import argparse
+import math
 import os
 import secrets
 import string
@@ -232,7 +233,6 @@ def calculate_collision_probability(token_length: int, num_tokens: int) -> float
 
     # Birthday problem approximation: p ~ 1 - e^(-n^2 / 2m)
     # where n = num_tokens, m = total_possible
-    import math
     exponent = -(num_tokens ** 2) / (2 * total_possible)
     probability = 1 - math.exp(exponent)
 
@@ -362,7 +362,7 @@ Token Security:
     # Show statistics if requested
     if args.stats:
         total_possible = 62 ** args.length
-        entropy_bits = args.length * 5.954  # log2(62) ~ 5.954
+        entropy_bits = args.length * math.log2(62)  # bits per character
         collision_prob_10k = calculate_collision_probability(args.length, 10000)
         collision_prob_1m = calculate_collision_probability(args.length, 1000000)
 
