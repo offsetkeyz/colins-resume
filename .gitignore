@@ -5,3 +5,5 @@ config.codekit3
 __pycache__/
 *.pyc
 *.pyo
+.coverage
+htmlcov/
