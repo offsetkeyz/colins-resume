@@ -1,0 +1,397 @@
+basics:
+  name: Colin McAllister
+  label: Tem
+  quote: Automate / Educate / Secure
+  image: ../img/colin.jpg
+  email: ''
+  phone: ''
+  url: https://colinmca.com
+  summary: |-
+    I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.
+  short_summary: A people-first cybersecurity leader and problem solver.
+  contact_info:
+  - title: Email
+    value: colin@thedailydecrypt.com
+  - title: Website
+    value: https://colinmca.com
+  - title: Phone
+    value: 702-809-2988
+  profiles:
+  - network: Github
+    username: offsetkeyz
+    url: https://github.com/offsetkeyz
+    icon: fa fa-github-square
+  - network: LinkedIn
+    username: offsetcolin
+    url: https://www.linkedin.com/in/offsetcolin/
+    icon: fa fa-linkedin-square
+work_experience:
+  Arctic Wolf Networks:
+  - job_title: Team Lead - Security Developer
+    location: Remote
+    start_date: '2024-03-01'
+    end_date: Present
+    responsibilities:
+    - |-
+      Reduced team backlog from over 300 tickets to 0, maintaining fewer than 10 tickets over the previous quarter, empowering the team to work efficiently and focus on high-impact tasks.
+    - |-
+      Prioritized team happiness, health, and productivity by fostering a collaborative, supportive environment where each individual's needs are met.
+    - |-
+      Spearheaded the development of an automation tool that eliminated repetitive tasks, saving over 2000 hours annually through collaborative stakeholder engagement and precise requirement gathering.
+    skills:
+    - Leadership
+    include_in: &id001
+    - all
+  - job_title: Security Developer
+    location: Remote
+    start_date: '2022-11-01'
+    end_date: '2024-03-01'
+    responsibilities:
+    - |-
+      Spearheaded the review and refinement of three major rotations by utilizing our internal PostgreSQL reporting service, enhancing team efficiency and demonstrating leadership in process improvement.
+    - |-
+      Proficiently debugged Python and YAML codebases using tools in VSCode, identifying and resolving critical bugs. Collaborated cross-functionally to address these issues, ensuring code reliability and system integrity.
+    - |-
+      Acted as a key representative for my team during incident investigations, leveraging my comprehensive understanding of our systems and processes to provide crucial insights and solutions.
+    - |-
+      Regularly enhanced operational processes by writing automation scripts, contributing to more efficient and streamlined workflows.
+    - |-
+      Leveraged my extensive experience and tenure at Arctic Wolf to provide unique context and insights to the team, enabling them to perform their roles more effectively and efficiently.
+    skills:
+    - Python
+    - Git
+    - AWS
+    - YAML
+    include_in: *id001
+  - job_title: Business Analyst
+    location: Remote
+    start_date: '2021-12-01'
+    end_date: '2022-11-01'
+    responsibilities:
+    - |-
+      Worked closely with senior leaders to develop meaningful metrics and then visualize the data using IRS and PostgreSQL.
+    - |-
+      Utilized and implemented multiple new tools to automate 25% of Business Analysts recurring tasks.
+    - |-
+      Headed the implementation of a new scheduling software solution for over 250 employees using Python to make HTTP calls to their RESTful API.
+    - |-
+      Led dozens of meetings, demonstrating strong communication and coordination skills, essential for team alignment and project success.
+    skills:
+    - Python
+    - Excel
+    - PostgreSQL
+    - Leadership
+    include_in: *id001
+  - job_title: Team Captain
+    location: San Antonio, TX
+    start_date: '2021-07-01'
+    end_date: '2021-12-01'
+    responsibilities:
+    - |-
+      Lead a team of six Security Analysts and Engineers, ensuring that they were meeting their goals and had the resources they needed to succeed.
+    - |-
+      Provide daily mentorship to team members to ensure the highest level of performance in all required tasks.
+    - Considered subject matter expert on all daily tasks for Level 1 Engineers.
+    - |-
+      Cultivating meaningful relationships with and amongst team members and ensuring their success.
+    skills:
+    - Leadership
+    - Mentoring
+    - Scheduling
+    include_in: *id001
+  - job_title: Triage Security Engineer
+    location: San Antonio, TX
+    start_date: '2020-12-01'
+    end_date: '2021-12-01'
+    responsibilities:
+    - |-
+      Use MITRE ATT&CK framework to investigate and triage incidents within a customer's network.
+    - |-
+      Facilitated customer understanding and issue resolution through adept communication via Zendesk, enhancing user experience and satisfaction.
+    - |-
+      Developed and implemented macros and dashboards in Zendesk, significantly improving team efficiency and optimizing support workflows.
+    - |-
+      Expertly triaged and responded to security alerts in customer environments, ensuring rapid resolution and minimal impact.
+    - |-
+      Developed and refined new runbooks for processes and procedures to ensure consistency and transparency among employees at all levels.
+    skills:
+    - ZenDesk
+    - Network Monitoring
+    - Collaboration
+    - Communication
+    include_in: *id001
+  CarKey:
+  - job_title: Lead Videographer
+    location: Las Vegas, NV
+    start_date: '2019-09-01'
+    end_date: '2020-12-01'
+    skills:
+    - Leadership
+    - Premiere Pro
+    - Excel
+    - SQL
+    include_in: *id001
+  US Army:
+  - job_title: Public Affairs Officer
+    location: Schofield Barracks, HI
+    start_date: '2015-11-01'
+    end_date: '2019-09-01'
+    skills:
+    - Leadership
+    - Mentoring
+    include_in: *id001
+education:
+- institution: SANS Technical Institute
+  url: https://www.sans.edu/cyber-security-programs/masters-degree/
+  area: Cyber Security
+  studyType: Master's
+  startDate: '2023-07-01'
+  endDate: Present
+  score: '4.0'
+  courses:
+  - ISE 5101 - Security Essentials
+  - ISE 5201 - Hacker Tools, Techniques, Exploits, and Incident Handling
+  - ISE 6440 - Advanced Network Forensics and Analysis
+  include_in: *id001
+- institution: Auburn University
+  area: Computer Science
+  studyType: Bachelor's
+  startDate: '2020-01-01'
+  endDate: '2021-11-01'
+  honors: Summa Cum Laude
+  courses: []
+  include_in: *id001
+- institution: University of Nevada Reno
+  area: Music Education
+  studyType: Bachelor's
+  startDate: '2008-01-01'
+  endDate: '2012-01-01'
+  score: '3.3'
+  include_in: *id001
+awards:
+- title: Hackathon Winner
+  date: '2023-11-01'
+  awarder: Arctic Wolf Networks
+  include_in: *id001
+- title: Triage Security Engineer 1 of the Quarter
+  date: '2021-07-01'
+  awarder: Arctic Wolf Networks
+  include_in: *id001
+- title: Commandant's List
+  date: '2015-01-01'
+  awarder: Leadership Academy - US Army
+  include_in: *id001
+certifications:
+- title: SANS Security Awareness Professional
+  acronym: SSAP
+  date: '2024-08-29'
+  url: https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url
+  include_in: *id001
+- title: GIAC Defensible Security Architecture
+  acronym: GDSA
+  date: '2024-07-07'
+  url: https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url
+  include_in: *id001
+- title: GIAC Strategic Planning, Policy, and Leadership
+  acronym: GSTRT
+  date: '2023-12-22'
+  url: https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url
+  include_in: *id001
+- title: GIAC Certified Incident Handler (GCIH)
+  acronym: GCIH
+  date: '2023-12-22'
+  url: https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url
+  include_in: *id001
+- title: GIAC Advisory Board
+  date: '2023-10-01'
+  url: https://www.credly.com/badges/144c9ca4-ff0e-479e-aef6-7fd2c4d344f0/public_url
+  include_in: *id001
+- title: AWS Certified Cloud Practitioner
+  acronym: AWS CCP
+  date: '2023-11-01'
+  url: https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url
+  include_in: *id001
+- title: GIAC Network Forensic Analyst
+  acronym: GNFA
+  date: '2022-03-01'
+  url: https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url
+  include_in: *id001
+- title: GIAC Security Essentials
+  acronym: GSEC
+  date: '2023-10-01'
+  url: https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url
+  include_in: *id001
+skills: []
+specialty_skills:
+- name: Cyber Security
+  level: ''
+  keywords:
+  - SIEM Detections
+  - Deception Tactics
+  - Threat Hunting
+  - Advanced Network Forensics
+  include_in: *id001
+- name: Development
+  level: ''
+  keywords:
+  - Python
+  - Debugging
+  - AWS
+  - YAML
+  - Agile
+  include_in: *id001
+- name: Soft Skills
+  level: ''
+  keywords:
+  - Communication
+  - Empathy
+  - Leadership
+  - Attention to Detail
+  include_in: *id001
+languages:
+- language: English
+  fluency: Native speaker
+interests:
+- name: Automation
+- name: Security
+- name: Leadership
+- name: Education
+- name: Music
+projects:
+- name: The Daily Decrypt
+  description: |-
+    A cybersecurity news podcast that simplifies complex cybersecurity concepts into short, digestible episodes with humor and education, hosted on AWS Lightsail and WordPress.
+  url: https://thedailydecrypt.com
+  highlights:
+  - |-
+    Created the podcast to fill a gap in short-form cybersecurity news, aiming to educate beginners and keep professionals up-to-date with the latest cybersecurity developments without long-form content.
+  - |-
+    Launched the podcast to stay informed about industry news and deepen my understanding of cybersecurity breaches and attacks while improving my public speaking skills.
+  - |-
+    Learned cloud hosting and security by managing the podcast on AWS Lightsail and securing WordPress, with a focus on Identity and Access Management for contributors.
+  - |-
+    Integrated automation using n8n hosted on an Unraid server and OpenAI APIs to streamline content creation, generating show notes and bullet points from news articles to enhance episode preparation.
+  - |-
+    Improved public speaking and content delivery skills, developing a more engaging and concise style to deliver complex information in a clear, approachable manner.
+  keywords:
+  - Podcast Production
+  - Cybersecurity Education
+  - AWS Lightsail
+  - WordPress
+  - Automation
+  - Public Speaking
+  - Cloud Security
+  startDate: '2024-01-01'
+  endDate: Present
+  roles:
+  - Host
+  - Producer
+  - Content Creator
+  - Technical Administrator
+  type: Community Education
+  include_in: *id001
+- name: Guest Lecturer - Paul Sawyier Public Library
+  description: |-
+    Guest security lecturer and advisor to the technology educator, presenting on topics such as The Dark Web and Artificial Intelligence.
+  url: https://share.descript.com/view/FasABjh4C3X
+  highlights:
+  - |-
+    Provided accessible, easy-to-understand explanations of the dark web and AI to help elderly community members better understand emerging technologies.
+  - |-
+    Delivered actionable advice on preventing identity theft and password reuse to help attendees protect themselves from common cyber threats.
+  - |-
+    Engaged with the elderly community to raise awareness of cybersecurity risks, offering practical steps for safeguarding personal information.
+  - |-
+    Discussed the potential impacts of artificial intelligence, addressing both valid concerns and reasons for optimism, tailored to the needs of a vulnerable audience.
+  - |-
+    Advised the library's technology educator on relevant security topics to enhance community learning and improve digital literacy.
+  keywords:
+  - Public Speaking
+  - Leadership
+  - Community Engagement
+  - Security Awareness
+  startDate: '2023-11-01'
+  endDate: Present
+  roles:
+  - Leader
+  - Educator
+  - Public Speaker
+  type: Community Engagement
+  include_in: *id001
+- name: Cloud Resume Challenge
+  description: |-
+    The first step to becoming a cloud engineer is to build and host your resume in the cloud.
+  highlights:
+  - |-
+    Resume is created using JSON Schema and automatically converted to HTML, Markdown, and PDF using Python
+  - |-
+    The HTML version of the resume is hosted on AWS S3 and served via CloudFront, with domain registered on Route53
+  keywords:
+  - AWS
+  - Cloud Resume Challenge
+  - Python
+  startDate: '2023-10-01'
+  endDate: Present
+  url: https://github.com/offsetkeyz/colin-resume
+  roles:
+  - Cloud Developer
+  - Full Stack Developer
+  type: application
+  include_in: *id001
+- name: Home Network Security Monitoring Project
+  description: |-
+    Implemented a comprehensive network monitoring solution in my home using Security Onion.
+  highlights:
+  - |-
+    Configured a forward node to capture and forward all network packets for thorough monitoring.
+  - |-
+    Utilized Proxmox for virtualization of the manager/search node, efficiently managing and analyzing network data.
+  - |-
+    Custom-tuned Suricata detection rules to align with the specific network environment and usage patterns of my home.
+  - |-
+    Integrated endpoint log monitoring, including devices across Windows, Linux, and mobile platforms.
+  - |-
+    Developed new network detections to identify and mitigate common threats, enhancing home network security.
+  keywords:
+  - Network Security
+  - Security Onion
+  - Suricata
+  - Proxmox Virtualization
+  - Endpoint Monitoring
+  - Detection Development
+  startDate: '2023-01-01'
+  endDate: Present
+  roles:
+  - Network Security Administrator
+  - Detection Developer
+  type: Personal Project
+  include_in: *id001
+- name: Discord Alerter for Security Onion
+  description: Interact with Security Onion alerts and cases via Discord
+  highlights:
+  - |-
+    Use Security Onion as a home Intrusion Detection System (IDS) with a forward node on ESXI and a manager node on Proxmox.
+  - |-
+    Configure Elastalert to send raw data to n8n automation platform via webhook where threat intel is injected.
+  - |-
+    Write a Discord Bot using Python to receive injected raw data from n8n and parse it into a readable format.
+  - |-
+    Discord bot sends button interactions to n8n automation server where it interprets the interaction and makes API calls back to Security Onion with the action.
+  - |-
+    Current actions are to suppress by source or destination, open the Security Onion Hunt interface with pre-loaded data, or escalate to a case.
+  keywords:
+  - ELK Stack
+  - N8N Automation
+  - Python
+  startDate: '2023-01-01'
+  endDate: Present
+  roles:
+  - Cloud Developer
+  - Full Stack Developer
+  type: application
+  include_in: *id001
+meta:
+  canonical: |-
+    https://raw.githubusercontent.com/offsetkeyz/colin-resume/main/resume_builder/resume-schema.yaml
+  version: v1.0.2
+  lastModified: '2025-11-21T17:42:41Z'
