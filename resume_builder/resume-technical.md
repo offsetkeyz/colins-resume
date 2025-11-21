@@ -57,7 +57,6 @@ Nov 2022 - Feb 2024, Remote
 - Proficiently debugged Python and YAML codebases, ensuring code reliability and system integrity.  
 - Acted as a key representative for my team during incident investigations.  
 - Regularly enhanced operational processes by writing automation scripts.  
-- Leveraged extensive experience to provide unique context and insights to the team.  
 
   </div>  
 #### Business Analyst  
