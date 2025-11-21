@@ -285,7 +285,7 @@ Token Security:
     # Show statistics if requested
     if args.stats:
         total_possible = 62 ** args.length
-        entropy_bits = args.length * math.log2(62)  # bits per character
+        entropy_bits = args.length * math.log2(62)  # total entropy in bits
         collision_prob_10k = calculate_collision_probability(args.length, 10000)
         collision_prob_1m = calculate_collision_probability(args.length, 1000000)
 
