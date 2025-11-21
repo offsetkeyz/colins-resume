@@ -7,3 +7,6 @@ __pycache__/
 *.pyo
 .coverage
 htmlcov/
+
+# Token files (keep private)
+resume_token.txt
