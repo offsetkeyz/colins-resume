@@ -89,7 +89,6 @@ def load_resume_data(data_path=None, profile_name='default'):
     except pm.InvalidProfileError as e:
         print(f"Invalid profile: {e}")
         return None, None
-    
 def generate_header(basics):
     f_name = basics['name'].split(' ')[0]
     return f'''<head>
