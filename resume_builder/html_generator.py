@@ -173,8 +173,8 @@ def generate_work_experience(work_experience):
 	return markup
 
 def generate_education_and_certs(education=None, certifications=None, awards=None):
-	if not certifications and education:
-		return None
+	if not certifications and not education:
+		return ''
 	if certifications:
 		markup = '''<!-- Certifications --><div class="certifications section second" id="education">
 		<div class="container">
@@ -237,7 +237,7 @@ def generate_skills(skills, specialty_skills):
 
 def generate_projects(projects):
     if not projects:
-        return None
+        return ''
     markup = '''<!-- Projects -->
     <div class="projects section second" id="projects">
  	<div class="container">
@@ -256,7 +256,7 @@ def generate_projects(projects):
 
 def generate_quote(basics):
 	if not basics.get('quote',None):
-		return None
+		return ''
 	return f'''<!-- Quote -->
 	<div class="quote">
 		<div class="container text-centered">
@@ -269,7 +269,12 @@ def generate_footer(json_data):
         s = f'''<div class="unit-50">
 					<ul class="social list-flat right">'''
         for profile in profiles:
-            s += f'''<li><a href="{profile.get('url')}" target="_blank"><i class="{profile.get('icon')}"></i></a></li>'''
+            # Use icon if provided, otherwise derive from network name
+            icon = profile.get('icon')
+            if not icon:
+                network = profile.get('network', '').lower()
+                icon = f'fa fa-{network}' if network else 'fa fa-link'
+            s += f'''<li><a href="{profile.get('url')}" target="_blank"><i class="{icon}"></i></a></li>'''
         s += '''</ul>
 			    </div>'''
         return s

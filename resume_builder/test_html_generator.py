@@ -289,13 +289,13 @@ class TestEdgeCases(unittest.TestCase):
     def test_generate_projects_with_none(self):
         """Test projects generation with None."""
         result = hg.generate_projects(None)
-        self.assertIsNone(result)
+        self.assertEqual(result, '')
 
     def test_generate_quote_without_quote(self):
         """Test quote generation when no quote exists."""
         basics_no_quote = {'name': 'Test User'}
         result = hg.generate_quote(basics_no_quote)
-        self.assertIsNone(result)
+        self.assertEqual(result, '')
 
 
 if __name__ == '__main__':
