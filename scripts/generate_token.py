@@ -26,25 +26,11 @@ Author: Resume Builder System
 
 import argparse
 import math
-import os
 import secrets
 import string
 import sys
 from pathlib import Path
-from typing import Optional, Set
-
-
-# Offensive word filter - lowercase substrings to check against
-# This list contains common offensive patterns that should not appear in tokens
-OFFENSIVE_PATTERNS: Set[str] = {
-    # Common offensive words and their variations
-    'ass', 'fuk', 'fuc', 'fck', 'sht', 'shit', 'damn', 'hell',
-    'dick', 'cock', 'cunt', 'tits', 'boob', 'porn', 'sex',
-    'nazi', 'hate', 'kill', 'die', 'dead', 'rape', 'pedo',
-    'nig', 'fag', 'gay', 'slut', 'whore', 'bitch',
-    # Potentially problematic letter combinations
-    'kkk', 'wtf', 'stfu', 'lmao', 'anal', 'anus',
-}
+from typing import Optional
 
 
 def generate_token(length: int = 10) -> str:
@@ -83,69 +69,6 @@ def generate_token(length: int = 10) -> str:
     token = ''.join(secrets.choice(alphabet) for _ in range(length))
 
     return token
-
-
-def contains_offensive_word(token: str) -> bool:
-    """
-    Check if a token contains any offensive word patterns.
-
-    Performs a case-insensitive check against a predefined list of
-    offensive patterns to ensure generated tokens are appropriate
-    for professional use.
-
-    Args:
-        token: The token string to check.
-
-    Returns:
-        True if the token contains an offensive pattern, False otherwise.
-
-    Example:
-        >>> contains_offensive_word("abc123xyz")
-        False
-        >>> contains_offensive_word("abcFUKxyz")
-        True
-    """
-    token_lower = token.lower()
-    for pattern in OFFENSIVE_PATTERNS:
-        if pattern in token_lower:
-            return True
-    return False
-
-
-def generate_safe_token(length: int = 10, max_attempts: int = 100) -> str:
-    """
-    Generate a cryptographically secure token that passes the word filter.
-
-    Repeatedly generates tokens until one passes the offensive word filter.
-    Given the low probability of generating an offensive token, this should
-    rarely require more than one attempt.
-
-    Args:
-        length: The desired length of the token (8-12 characters).
-        max_attempts: Maximum number of generation attempts before giving up.
-
-    Returns:
-        A safe, random token that does not contain offensive patterns.
-
-    Raises:
-        ValueError: If length is not between 8 and 12 characters.
-        RuntimeError: If unable to generate a safe token within max_attempts.
-
-    Example:
-        >>> token = generate_safe_token(10)
-        >>> contains_offensive_word(token)
-        False
-    """
-    for attempt in range(max_attempts):
-        token = generate_token(length)
-        if not contains_offensive_word(token):
-            return token
-
-    # This should essentially never happen given the probability
-    raise RuntimeError(
-        f"Failed to generate a safe token after {max_attempts} attempts. "
-        "This is extremely unlikely and may indicate a problem."
-    )
 
 
 def write_token_to_file(token: str, filepath: Optional[str] = None) -> str:
@@ -260,7 +183,7 @@ def verify_uniqueness(length: int = 10, num_tokens: int = 10000) -> bool:
     """
     tokens = set()
     for _ in range(num_tokens):
-        token = generate_safe_token(length)
+        token = generate_token(length)
         if token in tokens:
             return False
         tokens.add(token)
@@ -376,11 +299,8 @@ Token Security:
 
     # Generate token
     try:
-        token = generate_safe_token(args.length)
+        token = generate_token(args.length)
     except ValueError as e:
-        print(f"Error: {e}", file=sys.stderr)
-        return 1
-    except RuntimeError as e:
         print(f"Error: {e}", file=sys.stderr)
         return 1
 
