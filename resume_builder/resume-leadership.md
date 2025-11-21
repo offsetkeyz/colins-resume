@@ -6,6 +6,7 @@ margin-bottom: 2cm
 title: Colin McAllister
 description-meta: 'Resume of Colin McAllister - Team Lead'
 keywords:
+
 author:
 - Colin McAllister
 subject: 'Resume'
