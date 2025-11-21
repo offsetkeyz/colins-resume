@@ -33,8 +33,12 @@ import logging
 
 # File paths
 SCRIPT_DIR = Path(__file__).parent
-JSON_FILE = SCRIPT_DIR / "json_resume.json"  # Source of truth
-YAML_FILE = SCRIPT_DIR / "resume.yaml"
+PROJECT_ROOT = SCRIPT_DIR.parent
+# NOTE: JSON source has been archived as of 2025-11-21
+# Original location was: SCRIPT_DIR / "json_resume.json"
+# Now archived at: PROJECT_ROOT / "archive" / "resume.json.deprecated"
+JSON_FILE = PROJECT_ROOT / "archive" / "resume.json.deprecated"  # Archived source
+YAML_FILE = SCRIPT_DIR / "resume.yaml"  # Current primary source
 REPORT_FILE = SCRIPT_DIR / "migration_report.md"
 LOG_FILE = SCRIPT_DIR / "migration.log"
 

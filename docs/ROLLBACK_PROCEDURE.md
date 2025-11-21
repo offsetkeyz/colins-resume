@@ -1,14 +1,16 @@
 # Rollback Procedure for YAML Resume Migration
 
-**Document Version:** 1.0.0
+**Document Version:** 1.1.0
 **Last Updated:** 2025-11-21
-**Status:** Active
+**Status:** Active (JSON Archived)
 
 ---
 
 ## Overview
 
-This document provides step-by-step instructions for rolling back from the YAML-based resume system to the original JSON-based system in case validation fails or critical issues are discovered.
+This document provides step-by-step instructions for rolling back from the YAML-based resume system to the original JSON-based system in case critical issues are discovered.
+
+**Note:** As of 2025-11-21, the JSON source has been archived. The YAML system is now the primary data source.
 
 ## Prerequisites
 
@@ -21,10 +23,10 @@ Before proceeding with a rollback, ensure:
 
 The following files are part of the migration:
 
-| File | Purpose | Backup Location |
-|------|---------|-----------------|
-| `resume_builder/json_resume.json` | Original JSON source (SOURCE OF TRUTH) | Keep as primary backup |
-| `resume_builder/resume.yaml` | New YAML format | Can be regenerated |
+| File | Purpose | Status |
+|------|---------|--------|
+| `archive/resume.json.deprecated` | Original JSON source | Archived (was `resume_builder/json_resume.json`) |
+| `resume_builder/resume.yaml` | YAML format | **PRIMARY SOURCE** |
 | `resume_builder/profile_manager.py` | Profile filtering logic | Version controlled |
 | `resume_builder/profiles/*.yaml` | Profile configurations | Version controlled |
 
@@ -48,8 +50,8 @@ The following files are part of the migration:
 cd /home/user/colins-resume
 git status
 
-# Verify JSON source file exists
-ls -la resume_builder/json_resume.json
+# Verify archived JSON source file exists
+ls -la archive/resume.json.deprecated
 ```
 
 ### Step 2: Quick Rollback (Build System Only)
@@ -57,12 +59,12 @@ ls -la resume_builder/json_resume.json
 If the issue is with the build system, you can temporarily switch back to JSON without reverting code:
 
 ```bash
-# Option A: Use JSON directly in build scripts
-# Edit build_all.sh to use json_resume.json instead of resume.yaml
+# Option A: Restore JSON from archive
+# Copy archived JSON to resume_builder directory
+cp archive/resume.json.deprecated resume_builder/json_resume.json
 
-# The md_generator.py and html_generator.py use resume.json
-# Create a symlink or copy:
-cp resume_builder/json_resume.json resume_builder/resume.json
+# Uncomment the read_json_file function in md_generator.py and html_generator.py
+# Then modify load_resume_data to use JSON instead of YAML
 ```
 
 ### Step 3: Full Code Rollback
@@ -135,7 +137,7 @@ If issues are fixed and you want to re-attempt migration:
 cat resume_builder/validation_report.md
 
 # Fix issues in migrate_json_to_yaml.py
-# Or fix source data in json_resume.json
+# Or fix source data in archive/resume.json.deprecated
 ```
 
 ### Step 2: Re-run Migration
@@ -180,7 +182,8 @@ If rollback fails or critical issues arise:
 
 After rollback, verify:
 
-- [ ] `json_resume.json` is intact and valid JSON
+- [ ] `archive/resume.json.deprecated` is intact and valid JSON
+- [ ] JSON has been restored to `resume_builder/json_resume.json`
 - [ ] Build scripts execute without errors
 - [ ] PDF is generated correctly
 - [ ] HTML is generated correctly
@@ -191,11 +194,11 @@ After rollback, verify:
 
 ## Timeline for Backup Retention
 
-| Phase | Backup Retention |
-|-------|------------------|
-| Phase 1-3 | Keep json_resume.json as primary source |
-| Phase 4 | After full validation, json_resume.json can be archived |
-| Post-migration | Keep json_resume.json for 90 days minimum |
+| Phase | Status |
+|-------|--------|
+| Phase 1-3 | Completed |
+| Phase 4 | JSON archived to `archive/resume.json.deprecated` |
+| Post-migration | Keep archived JSON for 90 days minimum from 2025-11-21 |
 
 ---
 
@@ -206,21 +209,21 @@ After rollback, verify:
 ```bash
 #!/bin/bash
 # quick_restore.sh
-# Quickly restore JSON-based operation
+# Quickly restore JSON-based operation from archive
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR/resume_builder"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-# Verify JSON exists
-if [ ! -f "json_resume.json" ]; then
-    echo "ERROR: json_resume.json not found!"
+# Verify archived JSON exists
+if [ ! -f "$PROJECT_ROOT/archive/resume.json.deprecated" ]; then
+    echo "ERROR: archive/resume.json.deprecated not found!"
     exit 1
 fi
 
-# Create working copy
-cp json_resume.json resume.json
+# Restore from archive
+cp "$PROJECT_ROOT/archive/resume.json.deprecated" "$PROJECT_ROOT/resume_builder/json_resume.json"
 
-echo "JSON restored. Run ./build_all.sh to rebuild."
+echo "JSON restored from archive. Edit generators to use JSON, then run ./build_all.sh to rebuild."
 ```
 
 ### Script 2: Full Validation Re-run
@@ -250,8 +253,9 @@ echo "Validation complete. Check validation_report.md for results."
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0.0 | 2024-11-21 | Initial rollback procedure document |
+| 1.0.0 | 2025-11-21 | Initial rollback procedure document |
+| 1.1.0 | 2025-11-21 | Updated for JSON archival (Task 2.6) - JSON moved to archive/ directory |
 
 ---
 
-*This document is part of the YAML Resume Migration project (Task 1.5)*
+*This document is part of the YAML Resume Migration project (Task 1.5, updated for Task 2.6)*

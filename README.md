@@ -1,8 +1,9 @@
 # Colin's Resume
 ### Welcome to my cloud hosted resume!
 #### This template can be used to update your self-hosted website, as well as generate a PDF with the same information.
-1. The resume information is stored in a json file.  
-    * The json schema is based on https://jsonresume.org/schema/ but I have made a few changes and created my own schema to track them. You can find the link to the new schema inside resume.json (*hint: it's just a link to this github repo*)
+1. The resume information is stored in a YAML file (`resume_builder/resume.yaml`).
+    * The YAML schema supports profile-based filtering with `include_in` tags for generating different resume variants (default, technical, leadership)
+    * Schema documentation is available in `resume_builder/SCHEMA_DOCUMENTATION.md`
 2. The web design is forked from [this repo](https://github.com/afnizarnur/draco). Thank you @draco for the beautiful resume template! Please go sponsor them if you are able and find value in the template like I do.
 
 ## Installation
@@ -14,18 +15,25 @@ This template uses two main tools to accomplish the conversion to PDF: [Pandoc](
     ```
     *Thank you to [@vidluther](https://github.com/vidluther) for breaking it down in your [repo](https://github.com/vidluther/markdown-resume). It was a long google-fu road to you.*
 
-2. Update the json file called `resume.json`. Yes, it is my resume that you are walking all over. Don't worry, I won't be offended.  
-    - Look to the schema for additional fields you can use. If they aren't compatible with the code, please submit a bug ticket. I'm just one guy!
-3. Run the build script in the `resume_builder` folder. The names are all generic so the script can be reused.  
+2. Update the YAML file at `resume_builder/resume.yaml`. Yes, it is my resume that you are walking all over. Don't worry, I won't be offended.
+    - Look to `resume_builder/SCHEMA_DOCUMENTATION.md` for additional fields you can use
+    - Use `include_in` tags to control which items appear in different profile variants
+    - Available profiles: `default`, `technical`, `leadership`
+3. Run the build script in the `resume_builder` folder. The names are all generic so the script can be reused.
+    ```bash
+    cd resume_builder
+    ./build_all.sh                     # Build with default profile
+    ./build_all.sh --profile leadership  # Build with specific profile
+    ./build_all.sh --all-profiles      # Build all available profiles
+    ./build_all.sh --help              # Show all options
     ```
-    source build_all.sh
-    ```   
-    - This script will do as it says, build all.   
-        - `index.html` for your website home page  
-        - `resume.md` to construct the html for the pdf 
-        - `resume.html` to construct the pdf  
-        - `resume.pdf` to have a pdf resume!  
-            - *this will be in the home directory so that it can be accessed quicker online*  
+    - This script will do as it says, build all.
+        - `index.html` for your website home page
+        - `resume.md` to construct the html for the pdf
+        - `resume.html` to construct the pdf
+        - `resume.pdf` to have a pdf resume!
+            - *this will be in the home directory so that it can be accessed quicker online*
+        - `output/resume.json` for API/dynamic website loading  
 
 #### From there, you are off to the races!
 

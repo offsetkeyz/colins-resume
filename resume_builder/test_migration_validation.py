@@ -38,7 +38,10 @@ import hashlib
 # ============================================================================
 
 SCRIPT_DIR = Path(__file__).parent
-JSON_FILE = SCRIPT_DIR / "json_resume.json"
+PROJECT_ROOT = SCRIPT_DIR.parent
+# JSON file has been archived as of 2025-11-21 (Task 2.6)
+# Original location: SCRIPT_DIR / "json_resume.json"
+JSON_FILE = PROJECT_ROOT / "archive" / "resume.json.deprecated"
 YAML_FILE = SCRIPT_DIR / "resume.yaml"
 VALIDATION_OUTPUT_DIR = SCRIPT_DIR / "validation_output"
 

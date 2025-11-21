@@ -306,10 +306,12 @@ Please verify the following during manual review:
 
 | File | Location | Purpose |
 |------|----------|---------|
-| Original JSON | `resume_builder/json_resume.json` | Source of truth |
-| New YAML | `resume_builder/resume.yaml` | Migrated data |
+| Original JSON | `archive/resume.json.deprecated` | Archived source (was `resume_builder/json_resume.json`) |
+| New YAML | `resume_builder/resume.yaml` | **PRIMARY SOURCE** |
 | JSON Export | `resume_builder/yaml_exported_to_json.json` | For direct comparison |
 | Validation Report | `resume_builder/validation_report.md` | Automated test results |
+
+**Note:** As of 2025-11-21, the JSON source has been archived. YAML is now the primary data source.
 
 ---
 
