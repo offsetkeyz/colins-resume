@@ -1,0 +1,10 @@
+profile:
+  name: "Technical Focused"
+  description: "Emphasizes technical skills and development"
+  slug: "technical"
+filters:
+  include_tags: [technical, development, all]
+  max_bullets_per_job: 4
+output:
+  title_suffix: " - Technical Focus"
+  filename: "resume-technical"
