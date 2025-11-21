@@ -273,7 +273,7 @@ def generate_footer(json_data):
             icon = profile.get('icon')
             if not icon:
                 network = profile.get('network', '').lower()
-                icon = f'fa fa-{network}' if network else 'fa fa-link'
+                icon = f'fa fa-{network}-square' if network else 'fa fa-link'
             s += f'''<li><a href="{profile.get('url')}" target="_blank"><i class="{icon}"></i></a></li>'''
         s += '''</ul>
 			    </div>'''
