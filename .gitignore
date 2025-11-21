@@ -1,2 +1,7 @@
 .sass-cache
 config.codekit3
+
+# Python
+__pycache__/
+*.pyc
+*.pyo

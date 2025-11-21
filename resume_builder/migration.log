@@ -1,0 +1,77 @@
+2025-11-21 18:29:47,597 - INFO - ======================================================================
+2025-11-21 18:29:47,597 - INFO - JSON Resume to YAML Migration
+2025-11-21 18:29:47,598 - INFO - ======================================================================
+2025-11-21 18:29:47,598 - INFO - Source: /home/user/colins-resume/resume_builder/json_resume.json (source of truth)
+2025-11-21 18:29:47,598 - INFO - Target: /home/user/colins-resume/resume_builder/resume.yaml
+2025-11-21 18:29:47,598 - INFO - Report: /home/user/colins-resume/resume_builder/migration_report.md
+2025-11-21 18:29:47,598 - INFO - Dry run: False
+2025-11-21 18:29:47,598 - INFO - ======================================================================
+2025-11-21 18:29:47,598 - INFO - 
+📖 Reading JSON Resume file: /home/user/colins-resume/resume_builder/json_resume.json
+2025-11-21 18:29:47,599 - INFO - ✓ JSON file loaded successfully
+2025-11-21 18:29:47,599 - INFO - 
+🔄 Starting migration...
+2025-11-21 18:29:47,599 - INFO - ======================================================================
+2025-11-21 18:29:47,599 - INFO - Starting JSON Resume to YAML migration
+2025-11-21 18:29:47,599 - INFO - ======================================================================
+2025-11-21 18:29:47,599 - INFO - 
+Migrating 'basics' section...
+2025-11-21 18:29:47,599 - INFO - ✓ Basics section migrated (8 fields)
+2025-11-21 18:29:47,599 - INFO - 
+Migrating 'work' section (JSON Resume format)...
+2025-11-21 18:29:47,599 - INFO -   Processing company: Arctic Wolf Networks
+2025-11-21 18:29:47,599 - INFO -   Processing company: CarKey
+2025-11-21 18:29:47,599 - INFO -   Processing company: US Army
+2025-11-21 18:29:47,599 - INFO - ✓ Work experience migrated (3 companies, 7 positions)
+2025-11-21 18:29:47,599 - INFO - 
+Migrating 'education' section...
+2025-11-21 18:29:47,599 - INFO - ✓ Education section migrated (3 entries)
+2025-11-21 18:29:47,599 - INFO - 
+Migrating 'awards' section...
+2025-11-21 18:29:47,600 - INFO - ✓ Awards section migrated (4 entries)
+2025-11-21 18:29:47,600 - INFO - 
+Migrating 'certificates' section (JSON Resume format)...
+2025-11-21 18:29:47,600 - INFO - ✓ Certifications section migrated (7 entries)
+2025-11-21 18:29:47,600 - INFO - 
+Migrating 'skills' section (JSON Resume format)...
+2025-11-21 18:29:47,600 - INFO - ✓ Specialty skills section migrated (3 entries)
+2025-11-21 18:29:47,600 - INFO - 
+Migrating 'languages' section...
+2025-11-21 18:29:47,600 - INFO - ✓ Languages section migrated (1 entries)
+2025-11-21 18:29:47,600 - INFO - 
+Migrating 'interests' section...
+2025-11-21 18:29:47,600 - INFO - ✓ Interests section migrated (4 entries)
+2025-11-21 18:29:47,600 - INFO - 
+Migrating 'projects' section...
+2025-11-21 18:29:47,600 - INFO - ✓ Projects section migrated (4 entries)
+2025-11-21 18:29:47,600 - INFO - 
+Migrating 'meta' section...
+2025-11-21 18:29:47,600 - INFO - ✓ Meta section migrated and updated
+2025-11-21 18:29:47,600 - INFO - ======================================================================
+2025-11-21 18:29:47,600 - INFO - Migration completed successfully
+2025-11-21 18:29:47,600 - INFO - ======================================================================
+2025-11-21 18:29:47,600 - INFO - 
+📝 Writing YAML file: /home/user/colins-resume/resume_builder/resume.yaml
+2025-11-21 18:29:47,613 - INFO - ✓ YAML file written successfully
+2025-11-21 18:29:47,613 - INFO - 
+✅ Validating YAML file...
+2025-11-21 18:29:47,632 - INFO - ✓ Validation passed
+2025-11-21 18:29:47,632 - INFO - 
+📊 Generating migration report...
+2025-11-21 18:29:47,633 - INFO - ✓ Report written to: /home/user/colins-resume/resume_builder/migration_report.md
+2025-11-21 18:29:47,633 - INFO - 
+======================================================================
+2025-11-21 18:29:47,633 - INFO - MIGRATION SUMMARY
+2025-11-21 18:29:47,633 - INFO - ======================================================================
+2025-11-21 18:29:47,633 - INFO - Duration: 0.04 seconds
+2025-11-21 18:29:47,633 - INFO - Items converted: 28
+2025-11-21 18:29:47,633 - INFO - Fields migrated: 167
+2025-11-21 18:29:47,633 - INFO - Include_in tags added: 28
+2025-11-21 18:29:47,633 - INFO - Warnings: 0
+2025-11-21 18:29:47,633 - INFO - Errors: 0
+2025-11-21 18:29:47,633 - INFO - 
+✓ Migration completed successfully!
+2025-11-21 18:29:47,633 - INFO -   - All data preserved
+2025-11-21 18:29:47,633 - INFO -   - YAML file validated
+2025-11-21 18:29:47,633 - INFO -   - Report generated
+2025-11-21 18:29:47,633 - INFO - ======================================================================
