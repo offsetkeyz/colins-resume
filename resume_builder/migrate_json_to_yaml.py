@@ -372,7 +372,7 @@ class ResumeMigrator:
         return result
 
     def _migrate_education(self, education: List) -> List:
-        """Migrate education section"""
+        """Migrate education section (keeps camelCase dates per schema)"""
         self.logger.info("\nMigrating 'education' section...")
 
         result = []
@@ -380,7 +380,7 @@ class ResumeMigrator:
         for idx, entry in enumerate(education):
             migrated_entry = {}
 
-            # Copy all fields
+            # Copy all fields (schema expects camelCase: startDate, endDate)
             for key, value in entry.items():
                 migrated_entry[key] = value
                 self.stats.add_field()
@@ -522,7 +522,7 @@ class ResumeMigrator:
         return result
 
     def _migrate_projects(self, projects: List) -> List:
-        """Migrate projects section"""
+        """Migrate projects section (keeps camelCase dates per schema)"""
         self.logger.info("\nMigrating 'projects' section...")
 
         result = []
@@ -530,7 +530,7 @@ class ResumeMigrator:
         for idx, project in enumerate(projects):
             migrated_project = {}
 
-            # Copy all fields
+            # Copy all fields (schema expects camelCase: startDate, endDate)
             for key, value in project.items():
                 migrated_project[key] = value
                 self.stats.add_field()

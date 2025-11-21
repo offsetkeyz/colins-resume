@@ -1,115 +1,77 @@
-2025-11-21 18:10:03,387 - INFO - ======================================================================
-2025-11-21 18:10:03,387 - INFO - JSON Resume to YAML Migration
-2025-11-21 18:10:03,387 - INFO - ======================================================================
-2025-11-21 18:10:03,387 - INFO - Source: /home/user/colins-resume/resume_builder/json_resume.json (source of truth)
-2025-11-21 18:10:03,387 - INFO - Target: /home/user/colins-resume/resume_builder/resume.yaml
-2025-11-21 18:10:03,387 - INFO - Report: /home/user/colins-resume/resume_builder/migration_report.md
-2025-11-21 18:10:03,387 - INFO - Dry run: False
-2025-11-21 18:10:03,387 - INFO - ======================================================================
-2025-11-21 18:10:03,388 - INFO - 
+2025-11-21 18:29:47,597 - INFO - ======================================================================
+2025-11-21 18:29:47,597 - INFO - JSON Resume to YAML Migration
+2025-11-21 18:29:47,598 - INFO - ======================================================================
+2025-11-21 18:29:47,598 - INFO - Source: /home/user/colins-resume/resume_builder/json_resume.json (source of truth)
+2025-11-21 18:29:47,598 - INFO - Target: /home/user/colins-resume/resume_builder/resume.yaml
+2025-11-21 18:29:47,598 - INFO - Report: /home/user/colins-resume/resume_builder/migration_report.md
+2025-11-21 18:29:47,598 - INFO - Dry run: False
+2025-11-21 18:29:47,598 - INFO - ======================================================================
+2025-11-21 18:29:47,598 - INFO - 
 📖 Reading JSON Resume file: /home/user/colins-resume/resume_builder/json_resume.json
-2025-11-21 18:10:03,388 - INFO - ✓ JSON file loaded successfully
-2025-11-21 18:10:03,388 - INFO - 
+2025-11-21 18:29:47,599 - INFO - ✓ JSON file loaded successfully
+2025-11-21 18:29:47,599 - INFO - 
 🔄 Starting migration...
-2025-11-21 18:10:03,388 - INFO - ======================================================================
-2025-11-21 18:10:03,388 - INFO - Starting JSON Resume to YAML migration
-2025-11-21 18:10:03,388 - INFO - ======================================================================
-2025-11-21 18:10:03,388 - INFO - 
+2025-11-21 18:29:47,599 - INFO - ======================================================================
+2025-11-21 18:29:47,599 - INFO - Starting JSON Resume to YAML migration
+2025-11-21 18:29:47,599 - INFO - ======================================================================
+2025-11-21 18:29:47,599 - INFO - 
 Migrating 'basics' section...
-2025-11-21 18:10:03,388 - DEBUG -   - Migrated field: name
-2025-11-21 18:10:03,388 - DEBUG -   - Migrated field: label
-2025-11-21 18:10:03,388 - DEBUG -   - Migrated field: image
-2025-11-21 18:10:03,388 - DEBUG -   - Migrated field: email
-2025-11-21 18:10:03,388 - DEBUG -   - Migrated field: phone
-2025-11-21 18:10:03,388 - DEBUG -   - Migrated field: url
-2025-11-21 18:10:03,388 - DEBUG -   - Migrated field: summary
-2025-11-21 18:10:03,388 - DEBUG -   - Migrated field: profiles
-2025-11-21 18:10:03,388 - INFO - ✓ Basics section migrated (8 fields)
-2025-11-21 18:10:03,388 - INFO - 
+2025-11-21 18:29:47,599 - INFO - ✓ Basics section migrated (8 fields)
+2025-11-21 18:29:47,599 - INFO - 
 Migrating 'work' section (JSON Resume format)...
-2025-11-21 18:10:03,388 - INFO -   Processing company: Arctic Wolf Networks
-2025-11-21 18:10:03,388 - DEBUG -     ✓ Position: Team Lead
-2025-11-21 18:10:03,389 - DEBUG -     ✓ Position: Security Developer
-2025-11-21 18:10:03,389 - DEBUG -     ✓ Position: Business Analyst
-2025-11-21 18:10:03,389 - DEBUG -     ✓ Position: Team Captain
-2025-11-21 18:10:03,389 - DEBUG -     ✓ Position: Triage Security Engineer
-2025-11-21 18:10:03,389 - INFO -   Processing company: CarKey
-2025-11-21 18:10:03,389 - DEBUG -     ✓ Position: Lead Videographer
-2025-11-21 18:10:03,389 - INFO -   Processing company: US Army
-2025-11-21 18:10:03,389 - DEBUG -     ✓ Position: Public Affairs Officer
-2025-11-21 18:10:03,389 - INFO - ✓ Work experience migrated (3 companies, 7 positions)
-2025-11-21 18:10:03,389 - INFO - 
+2025-11-21 18:29:47,599 - INFO -   Processing company: Arctic Wolf Networks
+2025-11-21 18:29:47,599 - INFO -   Processing company: CarKey
+2025-11-21 18:29:47,599 - INFO -   Processing company: US Army
+2025-11-21 18:29:47,599 - INFO - ✓ Work experience migrated (3 companies, 7 positions)
+2025-11-21 18:29:47,599 - INFO - 
 Migrating 'education' section...
-2025-11-21 18:10:03,389 - DEBUG -     - Added endDate: Present (ongoing education)
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Education 1: SANS Technical Institute
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Education 2: Auburn University
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Education 3: University of Nevada Reno
-2025-11-21 18:10:03,389 - INFO - ✓ Education section migrated (3 entries)
-2025-11-21 18:10:03,389 - INFO - 
+2025-11-21 18:29:47,599 - INFO - ✓ Education section migrated (3 entries)
+2025-11-21 18:29:47,599 - INFO - 
 Migrating 'awards' section...
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Award 1: Hackathon Winner
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Award 2: GIAC Advisory Board
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Award 3: Triage Security Engineer 1 of the Quarter
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Award 4: Commandant's List
-2025-11-21 18:10:03,389 - INFO - ✓ Awards section migrated (4 entries)
-2025-11-21 18:10:03,389 - INFO - 
+2025-11-21 18:29:47,600 - INFO - ✓ Awards section migrated (4 entries)
+2025-11-21 18:29:47,600 - INFO - 
 Migrating 'certificates' section (JSON Resume format)...
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Certification 1: SANS Security Awareness Professional (SSAP)
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Certification 2: GIAC Defensible Security Architecture (GDSA)
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Certification 3: GIAC Strategic Planning, Policy, and Leadership (GSTRT)
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Certification 4: GIAC Certified Incident Handler (GCIH)
-2025-11-21 18:10:03,389 - DEBUG -   ✓ Certification 5: AWS Certified Cloud Practitioner (CCP)
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Certification 6: GIAC Network Forensic Analyst (GNFA)
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Certification 7: GIAC Security Essentials (GSEC)
-2025-11-21 18:10:03,390 - INFO - ✓ Certifications section migrated (7 entries)
-2025-11-21 18:10:03,390 - INFO - 
+2025-11-21 18:29:47,600 - INFO - ✓ Certifications section migrated (7 entries)
+2025-11-21 18:29:47,600 - INFO - 
 Migrating 'skills' section (JSON Resume format)...
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Skill category 1: Development
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Skill category 2: Cyber Security
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Skill category 3: Soft Skills
-2025-11-21 18:10:03,390 - INFO - ✓ Specialty skills section migrated (3 entries)
-2025-11-21 18:10:03,390 - INFO - 
+2025-11-21 18:29:47,600 - INFO - ✓ Specialty skills section migrated (3 entries)
+2025-11-21 18:29:47,600 - INFO - 
 Migrating 'languages' section...
-2025-11-21 18:10:03,390 - INFO - ✓ Languages section migrated (1 entries)
-2025-11-21 18:10:03,390 - INFO - 
+2025-11-21 18:29:47,600 - INFO - ✓ Languages section migrated (1 entries)
+2025-11-21 18:29:47,600 - INFO - 
 Migrating 'interests' section...
-2025-11-21 18:10:03,390 - INFO - ✓ Interests section migrated (4 entries)
-2025-11-21 18:10:03,390 - INFO - 
+2025-11-21 18:29:47,600 - INFO - ✓ Interests section migrated (4 entries)
+2025-11-21 18:29:47,600 - INFO - 
 Migrating 'projects' section...
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Project 1: The Daily Decrypt
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Project 2: Guest Lecturer - Paul Sawyier Public Library
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Project 3: Cloud Resume Challenge
-2025-11-21 18:10:03,390 - DEBUG -   ✓ Project 4: Home Network Security Monitoring Project
-2025-11-21 18:10:03,390 - INFO - ✓ Projects section migrated (4 entries)
-2025-11-21 18:10:03,390 - INFO - 
+2025-11-21 18:29:47,600 - INFO - ✓ Projects section migrated (4 entries)
+2025-11-21 18:29:47,600 - INFO - 
 Migrating 'meta' section...
-2025-11-21 18:10:03,390 - DEBUG -   - Updated canonical URL to point to YAML schema
-2025-11-21 18:10:03,390 - INFO - ✓ Meta section migrated and updated
-2025-11-21 18:10:03,391 - INFO - ======================================================================
-2025-11-21 18:10:03,391 - INFO - Migration completed successfully
-2025-11-21 18:10:03,391 - INFO - ======================================================================
-2025-11-21 18:10:03,391 - INFO - 
+2025-11-21 18:29:47,600 - INFO - ✓ Meta section migrated and updated
+2025-11-21 18:29:47,600 - INFO - ======================================================================
+2025-11-21 18:29:47,600 - INFO - Migration completed successfully
+2025-11-21 18:29:47,600 - INFO - ======================================================================
+2025-11-21 18:29:47,600 - INFO - 
 📝 Writing YAML file: /home/user/colins-resume/resume_builder/resume.yaml
-2025-11-21 18:10:03,403 - INFO - ✓ YAML file written successfully
-2025-11-21 18:10:03,404 - INFO - 
+2025-11-21 18:29:47,613 - INFO - ✓ YAML file written successfully
+2025-11-21 18:29:47,613 - INFO - 
 ✅ Validating YAML file...
-2025-11-21 18:10:03,422 - INFO - ✓ Validation passed
-2025-11-21 18:10:03,422 - INFO - 
+2025-11-21 18:29:47,632 - INFO - ✓ Validation passed
+2025-11-21 18:29:47,632 - INFO - 
 📊 Generating migration report...
-2025-11-21 18:10:03,422 - INFO - ✓ Report written to: /home/user/colins-resume/resume_builder/migration_report.md
-2025-11-21 18:10:03,422 - INFO - 
+2025-11-21 18:29:47,633 - INFO - ✓ Report written to: /home/user/colins-resume/resume_builder/migration_report.md
+2025-11-21 18:29:47,633 - INFO - 
 ======================================================================
-2025-11-21 18:10:03,422 - INFO - MIGRATION SUMMARY
-2025-11-21 18:10:03,422 - INFO - ======================================================================
-2025-11-21 18:10:03,422 - INFO - Duration: 0.04 seconds
-2025-11-21 18:10:03,423 - INFO - Items converted: 28
-2025-11-21 18:10:03,423 - INFO - Fields migrated: 167
-2025-11-21 18:10:03,423 - INFO - Include_in tags added: 28
-2025-11-21 18:10:03,423 - INFO - Warnings: 0
-2025-11-21 18:10:03,423 - INFO - Errors: 0
-2025-11-21 18:10:03,423 - INFO - 
+2025-11-21 18:29:47,633 - INFO - MIGRATION SUMMARY
+2025-11-21 18:29:47,633 - INFO - ======================================================================
+2025-11-21 18:29:47,633 - INFO - Duration: 0.04 seconds
+2025-11-21 18:29:47,633 - INFO - Items converted: 28
+2025-11-21 18:29:47,633 - INFO - Fields migrated: 167
+2025-11-21 18:29:47,633 - INFO - Include_in tags added: 28
+2025-11-21 18:29:47,633 - INFO - Warnings: 0
+2025-11-21 18:29:47,633 - INFO - Errors: 0
+2025-11-21 18:29:47,633 - INFO - 
 ✓ Migration completed successfully!
-2025-11-21 18:10:03,423 - INFO -   - All data preserved
-2025-11-21 18:10:03,423 - INFO -   - YAML file validated
-2025-11-21 18:10:03,423 - INFO -   - Report generated
-2025-11-21 18:10:03,423 - INFO - ======================================================================
+2025-11-21 18:29:47,633 - INFO -   - All data preserved
+2025-11-21 18:29:47,633 - INFO -   - YAML file validated
+2025-11-21 18:29:47,633 - INFO -   - Report generated
+2025-11-21 18:29:47,633 - INFO - ======================================================================
