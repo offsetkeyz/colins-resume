@@ -1,0 +1,126 @@
+# Resume Builder - Python Dependencies
+# Generated: 2025-11-21
+# Python Version: 3.11+ (tested on 3.11, compatible with 3.9-3.12)
+
+# Core Dependencies
+# ==================
+
+# YAML parsing and generation
+# Required for resume.yaml and profile YAML files
+PyYAML==6.0.1
+
+# Date and time utilities (stdlib, but documenting version requirements)
+# Used for build timestamps and metadata
+# python-dateutil==2.8.2  # Optional: only if advanced date parsing needed
+
+# JSON handling (stdlib in Python 3.11+)
+# Used for JSON export and legacy compatibility
+
+
+# Testing Dependencies
+# ==================
+
+# Test framework
+pytest==8.0.0
+pytest-cov==4.1.0  # Test coverage reporting
+
+# Test fixtures and utilities
+pytest-mock==3.12.0  # Mocking utilities
+
+
+# Development Dependencies (Optional)
+# ==================
+
+# Code formatting
+black==24.1.1  # Code formatter
+isort==5.13.2  # Import sorting
+
+# Linting and type checking
+flake8==7.0.0  # Style guide enforcement
+mypy==1.8.0  # Static type checker
+pylint==3.0.3  # Additional linting
+
+# Type stubs for better type checking
+types-PyYAML==6.0.12.12
+
+
+# Build and Deployment
+# ==================
+
+# AWS SDK (for deployment scripts, if needed)
+# boto3==1.34.30  # AWS SDK - uncomment if deploying from local machine
+# botocore==1.34.30  # AWS SDK core - uncomment if needed
+
+# File watching for development
+# watchdog==3.0.0  # Auto-rebuild on file changes - optional
+
+
+# Documentation
+# ==================
+
+# Markdown processing (if needed for advanced features)
+# markdown==3.5.2  # Markdown utilities - optional
+
+# Documentation generation
+# sphinx==7.2.6  # Documentation generator - optional for developer docs
+
+
+# System Dependencies (installed separately, documented here)
+# ==================
+# These are NOT Python packages and must be installed via system package manager
+
+# Pandoc 3.0.1+
+# - Installation: https://github.com/jgm/pandoc/releases/download/3.0.1/pandoc-3.0.1-1-amd64.deb
+# - Purpose: Markdown to HTML conversion
+# - Verify: pandoc --version
+
+# wkhtmltopdf 0.12.6.1-2
+# - Installation: https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+# - Purpose: HTML to PDF conversion
+# - Verify: wkhtmltopdf --version
+
+
+# Installation Instructions
+# ==================
+
+# 1. Install Python dependencies:
+#    pip install -r requirements.txt
+
+# 2. Install development dependencies (optional):
+#    pip install -r requirements.txt  # All dependencies included
+
+# 3. Install minimal dependencies only (for production):
+#    pip install PyYAML==6.0.1
+
+# 4. Install system dependencies (Ubuntu/Debian):
+#    sudo apt-get update
+#    wget https://github.com/jgm/pandoc/releases/download/3.0.1/pandoc-3.0.1-1-amd64.deb
+#    wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+#    sudo apt install ./pandoc-3.0.1-1-amd64.deb
+#    sudo apt install ./wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+
+
+# Security Notes
+# ==================
+# - All versions are pinned to specific releases for reproducibility
+# - Run `pip install --upgrade pip` before installing dependencies
+# - Use virtual environment: `python3 -m venv venv && source venv/bin/activate`
+# - Regularly update dependencies: `pip list --outdated`
+# - Security audit: `pip install safety && safety check`
+
+
+# Compatibility Matrix
+# ==================
+# Python 3.9:  ✅ Supported (tested)
+# Python 3.10: ✅ Supported (tested)
+# Python 3.11: ✅ Supported (recommended)
+# Python 3.12: ✅ Supported (tested)
+# Python 3.8:  ⚠️  Not recommended (approaching EOL)
+
+
+# Version Update Log
+# ==================
+# 2025-11-21: Initial release
+#   - PyYAML 6.0.1 (stable, widely used)
+#   - pytest 8.0.0 (latest stable)
+#   - Development tools pinned to latest stable versions

@@ -4,12 +4,14 @@ This directory contains comprehensive planning documentation for the Dynamic YAM
 
 ## 📚 Documentation Files
 
-### [Refactoring Plan](refactoring-plan.md)
+### Core Planning Documents
+
+#### [Refactoring Plan](refactoring-plan.md)
 **Comprehensive Project Management Document**
 - Executive summary and project vision
 - Detailed requirements (functional and non-functional)
 - Technical architecture and data models
-- 5-phase implementation plan with tasks and timelines
+- 5-phase implementation plan with tasks and timelines (updated with migration validation)
 - Risk assessment and mitigation strategies
 - Success criteria and acceptance test plan
 
@@ -17,7 +19,7 @@ This directory contains comprehensive planning documentation for the Dynamic YAM
 
 ---
 
-### [Architectural Decisions](architectural-decisions.md)
+#### [Architectural Decisions](architectural-decisions.md)
 **Architecture Decision Records (ADR)**
 - ADR-001: Data Format Migration (JSON to YAML)
 - ADR-002: Content Filtering Strategy (Tagging System)
@@ -32,7 +34,50 @@ This directory contains comprehensive planning documentation for the Dynamic YAM
 
 ---
 
-### [Changelog](../CHANGELOG.md)
+### Infrastructure & Security Documents
+
+#### [AWS Infrastructure](aws-infrastructure.md)
+**Complete AWS Setup and Configuration**
+- S3 bucket structure and configuration
+- CloudFront distribution settings and cache behaviors
+- IAM roles and permissions (OIDC recommended)
+- Deployment strategy and scripts
+- Cost analysis and monitoring
+- Security considerations and logging
+
+**Start here for:** AWS setup, deployment configuration, infrastructure details
+
+---
+
+#### [GitHub Actions Specification](github-actions-spec.md)
+**Detailed Workflow Implementation**
+- Complete workflow file with all steps
+- Branch detection and configuration logic
+- Build steps specification with error handling
+- AWS credential management (OIDC)
+- Deployment to S3 and CloudFront invalidation
+- Testing strategy and troubleshooting guide
+
+**Start here for:** GitHub Actions setup, CI/CD pipeline, automated deployment
+
+---
+
+#### [Security Model](security-model.md)
+**Threat Analysis and Security Strategy**
+- Threat model and attack surface analysis
+- Token security (generation, validation, entropy analysis)
+- Search engine protection (robots.txt, meta tags, headers)
+- Access logging and monitoring
+- Incident response procedures
+- GDPR and privacy considerations
+
+**Start here for:** Security requirements, token implementation, threat mitigation
+
+---
+
+### Version History
+
+#### [Changelog](../CHANGELOG.md)
 **Version History and Release Notes**
 - Current version: 1.0.2 (JSON-based)
 - Planned versions: 2.0.0+ (YAML-based)
@@ -96,7 +141,8 @@ This directory contains comprehensive planning documentation for the Dynamic YAM
 - Complete documentation
 - Future roadmap
 
-**Total Timeline:** 5 weeks part-time or 2-3 weeks full-time
+**Total Timeline:** 6-8 weeks part-time or 3-4 weeks full-time
+**Revised Estimate:** 150-195 hours (includes migration validation and testing)
 
 ---
 
@@ -146,9 +192,19 @@ responsibilities:
 
 | Document | Location | Purpose |
 |----------|----------|---------|
-| Claude Instructions | `/.claude/claude.md` | AI assistant context and workflow |
-| Quick Reference | `/.claude/quick-reference.md` | Common commands and troubleshooting |
-| Main README | `/README.md` | Project overview and setup |
+| **Planning & Architecture** | | |
+| Refactoring Plan | `refactoring-plan.md` | Complete project roadmap |
+| Architectural Decisions | `architectural-decisions.md` | ADRs and design rationale |
+| AWS Infrastructure | `aws-infrastructure.md` | Cloud setup and deployment |
+| GitHub Actions Spec | `github-actions-spec.md` | CI/CD pipeline details |
+| Security Model | `security-model.md` | Threat analysis and mitigations |
+| **Development** | | |
+| Requirements | `/requirements.txt` | Python dependencies (pinned) |
+| Requirements (Minimal) | `/requirements-minimal.txt` | Production dependencies only |
+| Claude Instructions | `/.claude/claude.md` | AI assistant context |
+| Quick Reference | `/.claude/quick-reference.md` | Commands and troubleshooting |
+| **Project** | | |
+| Main README | `/README.md` | Project overview |
 | Changelog | `/docs/CHANGELOG.md` | Version history |
 
 ---
@@ -158,8 +214,11 @@ responsibilities:
 ### For Developers
 1. Read the [Refactoring Plan](refactoring-plan.md) for complete project overview
 2. Review [Architectural Decisions](architectural-decisions.md) to understand design choices
-3. Check `/.claude/claude.md` for development workflow and guidelines
-4. Use `/.claude/quick-reference.md` for common commands
+3. Study [GitHub Actions Specification](github-actions-spec.md) for CI/CD implementation
+4. Review [AWS Infrastructure](aws-infrastructure.md) for deployment setup
+5. Understand [Security Model](security-model.md) for security requirements
+6. Install dependencies: `pip install -r requirements.txt`
+7. Check `/.claude/claude.md` for development workflow
 
 ### For Project Managers
 1. Review [Executive Summary](refactoring-plan.md#executive-summary) for business value
@@ -177,10 +236,17 @@ responsibilities:
 
 ## 📊 Current Status
 
-**Phase:** Planning Complete
+**Phase:** Planning Complete ✅
+**Documentation Status:** Complete with infrastructure, security, and CI/CD specs
 **Next Milestone:** Phase 1, Task 1.1 (YAML Schema Creation)
+**Pre-Implementation Requirements:**
+- ✅ AWS infrastructure documented
+- ✅ GitHub Actions workflow specified
+- ✅ Security model defined
+- ✅ Migration validation strategy added
+- ✅ Dependencies documented (requirements.txt)
 **Blockers:** None
-**Ready to Start:** ✅ Yes
+**Ready to Start:** ✅ Yes (all pre-work complete)
 
 ---
 

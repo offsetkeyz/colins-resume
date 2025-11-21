@@ -1,0 +1,8 @@
+# Resume Builder - Minimal Production Dependencies
+# For GitHub Actions and production builds
+
+# Core dependency for YAML parsing
+PyYAML==6.0.1
+
+# That's it! Minimal footprint for production builds.
+# For development, use requirements.txt instead.

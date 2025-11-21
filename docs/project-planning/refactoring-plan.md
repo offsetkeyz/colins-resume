@@ -224,8 +224,8 @@ a8f3k2j9
 ## 📅 Implementation Plan
 
 ### Phase 1: Foundation & Migration
-**Duration:** 1 week
-**Goal:** Migrate to YAML and establish core infrastructure
+**Duration:** 1.5-2 weeks
+**Goal:** Migrate to YAML and establish core infrastructure with validation
 
 #### Tasks:
 
@@ -236,12 +236,15 @@ a8f3k2j9
 - [ ] Document schema with inline comments
 - **Deliverable:** `resume_builder/resume-schema.yaml`
 
-**1.2 Convert resume.json → resume.yaml** ⏱️ 3 hours
-- [ ] Write conversion script `migrate_json_to_yaml.py`
+**1.2 Convert resume.json → resume.yaml** ⏱️ 6 hours
+- [ ] Write conversion script `migrate_json_to_yaml.py` with comprehensive logging
+- [ ] Back up current resume.json to `resume.json.backup`
 - [ ] Run conversion on current resume.json
+- [ ] Generate conversion report (fields converted, warnings, etc.)
 - [ ] Manually review output for accuracy
 - [ ] Add `include_in: [all]` to every existing item (default)
-- **Deliverable:** `resume_builder/resume.yaml`
+- [ ] Validate YAML syntax and schema compliance
+- **Deliverable:** `resume_builder/resume.yaml` and conversion report
 
 **1.3 Create Profile System** ⏱️ 4 hours
 - [ ] Create `profiles/` directory structure
@@ -251,24 +254,43 @@ a8f3k2j9
 - [ ] Document profile creation guide
 - **Deliverable:** `resume_builder/profiles/*.yaml`
 
-**1.4 Build Profile Manager** ⏱️ 6 hours
+**1.4 Build Profile Manager** ⏱️ 8 hours
 - [ ] Create `profile_manager.py`
 - [ ] Implement tag filtering logic
 - [ ] Add max_bullets_per_job limiting
-- [ ] Write unit tests for filtering
+- [ ] Write unit tests for filtering (see test cases below)
+- [ ] Test with edge cases (missing tags, empty profiles, etc.)
 - **Deliverable:** `resume_builder/profile_manager.py`
+
+**1.5 Migration Validation** ⏱️ 6 hours
+- [ ] Create YAML→JSON export function for comparison
+- [ ] Build resume using JSON system (baseline)
+- [ ] Build resume using YAML system (new)
+- [ ] Automated comparison tests:
+  - [ ] Compare generated HTML (diff should be minimal)
+  - [ ] Compare generated PDF metadata (page count, file size)
+  - [ ] Verify all content fields present in both outputs
+  - [ ] Check for data loss or corruption
+- [ ] Manual review of both PDFs side-by-side
+- [ ] Document any intentional differences
+- [ ] Create rollback procedure if validation fails
+- [ ] Keep `resume.json.backup` until Phase 4 complete
+- **Deliverable:** Validation report and rollback procedure
 
 **Phase 1 Acceptance Criteria:**
 - ✅ resume.yaml validates successfully
 - ✅ All 3 profiles load without errors
 - ✅ Profile manager filters content correctly
-- ✅ Unit tests pass with 100% coverage
+- ✅ Unit tests pass with 85%+ coverage
+- ✅ YAML-generated output matches JSON-generated output (content-wise)
+- ✅ No data loss detected in migration
+- ✅ Rollback procedure documented and tested
 
 ---
 
 ### Phase 2: Generator Updates
-**Duration:** 1 week
-**Goal:** Update all generators to use YAML and profiles
+**Duration:** 1.5 weeks
+**Goal:** Update all generators to use YAML and profiles with parallel validation
 
 #### Tasks:
 
@@ -297,18 +319,30 @@ a8f3k2j9
 - [ ] Test local builds with all profiles
 - **Deliverable:** Updated `build_all.sh`
 
-**2.5 Remove JSON Dependencies** ⏱️ 2 hours
-- [ ] Delete `resume.json`
-- [ ] Update documentation
-- [ ] Remove JSON-specific code
-- **Deliverable:** Clean codebase
+**2.5 Parallel Running Period** ⏱️ 4 hours
+- [ ] Keep both JSON and YAML systems functional
+- [ ] Build outputs from both systems for comparison
+- [ ] Run for at least 1 week in parallel
+- [ ] Monitor for discrepancies or issues
+- [ ] Final validation before JSON removal
+- **Deliverable:** Confidence in YAML system
+
+**2.6 Remove JSON Dependencies** ⏱️ 2 hours
+- [ ] Rename `resume.json` to `resume.json.deprecated`
+- [ ] Move to `archive/` directory (keep for reference)
+- [ ] Update documentation to reference YAML
+- [ ] Remove JSON-specific code paths
+- [ ] Update build scripts to YAML-only
+- **Deliverable:** Clean codebase with JSON archived
 
 **Phase 2 Acceptance Criteria:**
 - ✅ Generate HTML from YAML successfully
 - ✅ Generate PDF from YAML successfully
 - ✅ All 3 profiles produce valid outputs
-- ✅ No JSON files remain in repository
+- ✅ Parallel running validates consistency
+- ✅ JSON system archived (not deleted)
 - ✅ Local builds work with `./build_all.sh --profile leadership`
+- ✅ Visual comparison shows no quality degradation
 
 ---
 
@@ -462,32 +496,35 @@ a8f3k2j9
 ## 📊 Project Timeline
 
 ```
-Week 1: Foundation & Migration
+Week 1-2: Foundation & Migration (Updated: +4 hours for validation)
 ├─ Day 1-2: YAML Schema & Validation
-├─ Day 3-4: JSON → YAML Conversion
-└─ Day 5-7: Profile System & Manager
+├─ Day 3-4: JSON → YAML Conversion (with backups and logging)
+├─ Day 5-7: Profile System & Manager
+└─ Day 8-9: Migration Validation (parallel testing)
 
-Week 2: Generator Updates
+Week 3-4: Generator Updates (Updated: +4 hours for parallel running)
 ├─ Day 1-2: HTML & Markdown Generators
 ├─ Day 3-4: JSON Export & Build Scripts
-└─ Day 5: Remove JSON Dependencies
+├─ Day 5-7: Parallel Running Period (both systems)
+└─ Day 8: Archive JSON Dependencies
 
-Week 3: Branch Workflow & Automation
+Week 5: Branch Workflow & Automation
 ├─ Day 1-2: Token System & Branch Template
 ├─ Day 3-5: GitHub Actions Enhancement
 └─ Day 6-7: S3 Deployment & Documentation
 
-Week 4: Content Enhancement & Testing
+Week 6: Content Enhancement & Testing
 ├─ Day 1-2: Master Resume Expansion
 ├─ Day 3-4: Profile Refinement & Test Branches
 └─ Day 5-7: Integration Testing & Deployment
 
-Week 5: Polish & Documentation
+Week 7: Polish & Documentation
 ├─ Day 1-2: Error Handling & Monitoring
 ├─ Day 3-4: Helper Scripts
 └─ Day 5: Final Documentation
 
-Total Duration: 5 weeks (Part-time) or 2-3 weeks (Full-time)
+Total Duration: 6-8 weeks (Part-time) or 3-4 weeks (Full-time)
+Revised Estimate: 150-195 hours (was 97 hours)
 ```
 
 ---
@@ -552,42 +589,126 @@ Total Duration: 5 weeks (Part-time) or 2-3 weeks (Full-time)
 
 ## 🧪 Acceptance Test Plan
 
-### Test Case 1: YAML Validation
+### Unit Test Cases for Profile Manager
+
+**Test Suite 1: Tag Filtering**
+```python
+def test_include_in_filtering():
+    """Test that items are filtered based on include_in tags."""
+    item_leadership = {"text": "Led team", "include_in": ["leadership"]}
+    item_technical = {"text": "Wrote code", "include_in": ["technical"]}
+    item_all = {"text": "Collaborated", "include_in": ["all"]}
+
+    # Leadership profile should include leadership and all items
+    result = filter_items([item_leadership, item_technical, item_all], "leadership")
+    assert item_leadership in result
+    assert item_all in result
+    assert item_technical not in result
+
+def test_missing_include_in_tag():
+    """Test handling of items without include_in tag."""
+    item_no_tag = {"text": "Something"}
+
+    # Should either raise error or default to [all]
+    # (Document which behavior is chosen)
+    result = filter_items([item_no_tag], "leadership")
+    # Assert based on chosen behavior
+```
+
+**Test Suite 2: Max Bullets Limiting**
+```python
+def test_max_bullets_per_job():
+    """Test max_bullets_per_job limiting."""
+    bullets = [
+        {"text": "Bullet 1", "include_in": ["all"]},
+        {"text": "Bullet 2", "include_in": ["all"]},
+        {"text": "Bullet 3", "include_in": ["all"]},
+        {"text": "Bullet 4", "include_in": ["all"]},
+        {"text": "Bullet 5", "include_in": ["all"]},
+    ]
+
+    profile_config = {"max_bullets_per_job": 3}
+    result = apply_profile_limits(bullets, profile_config)
+
+    assert len(result) == 3
+    assert result[0]["text"] == "Bullet 1"  # First 3 bullets
+    assert result[2]["text"] == "Bullet 3"
+```
+
+**Test Suite 3: Edge Cases**
+```python
+def test_profile_not_found():
+    """Test error handling when profile doesn't exist."""
+    with pytest.raises(ProfileNotFoundError):
+        load_profile("nonexistent_profile")
+
+def test_empty_profile():
+    """Test handling of profile with no items selected."""
+    result = filter_resume_with_profile(resume_data, "empty_profile")
+    assert result is not None  # Should return valid but empty structure
+
+def test_nested_filtering():
+    """Test that nested items (skills within jobs) are filtered."""
+    job = {
+        "title": "Engineer",
+        "responsibilities": [
+            {"text": "Led", "include_in": ["leadership"]},
+            {"text": "Coded", "include_in": ["technical"]}
+        ]
+    }
+
+    result = filter_job(job, "leadership")
+    assert len(result["responsibilities"]) == 1
+    assert result["responsibilities"][0]["text"] == "Led"
+```
+
+### Integration Test Case 1: YAML Validation
 ```
 Given: resume.yaml with all content
 When: Running validation script
 Then: No errors, all tags valid, schema compliant
 ```
 
-### Test Case 2: Profile Filtering
+### Integration Test Case 2: Profile Filtering
 ```
 Given: Master resume with mixed tags
 When: Building with "leadership" profile
 Then: Only items with include_in: [leadership, all] appear
 ```
 
-### Test Case 3: Job Branch Creation
+### Integration Test Case 3: Migration Validation
+```
+Given: Existing resume.json and new resume.yaml
+When: Building outputs from both systems
+Then:
+  - HTML content is equivalent (ignoring whitespace)
+  - PDF has same page count
+  - All key fields present in both
+  - No data loss detected
+```
+
+### Integration Test Case 4: Job Branch Creation
 ```
 Given: Main branch with profiles
 When: Creating new job branch with setup script
 Then: Branch created, active_profile.txt exists, token generated
 ```
 
-### Test Case 4: End-to-End Build
+### Integration Test Case 5: End-to-End Build
 ```
 Given: Job branch pushed to GitHub
 When: GitHub Actions runs
 Then: PDF generated, deployed to /r/{token}/, URL accessible
 ```
 
-### Test Case 5: Private URL Access
+### Integration Test Case 6: Private URL Access
 ```
 Given: Deployed resume at /r/a8f3k2j9/resume.pdf
 When: Accessing URL directly
 Then: PDF downloads successfully, not indexed by search engines
 ```
 
-### Test Case 6: Profile Comparison
+### Integration Test Case 7: Profile Comparison
 ```
 Given: Same master resume
 When: Building leadership vs technical profiles
