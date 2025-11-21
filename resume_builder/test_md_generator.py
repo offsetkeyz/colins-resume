@@ -11,6 +11,7 @@ This module tests:
 """
 
 import os
+import re
 import sys
 import tempfile
 import unittest
@@ -362,7 +363,6 @@ class TestMarkdownPipelineReadiness(unittest.TestCase):
         markdown = mg.generate_markdown(data, profile_info)
 
         # Check that links follow Markdown format [text](url)
-        import re
         links = re.findall(r'\[([^\]]+)\]\(([^\)]+)\)', markdown)
 
         for text, url in links:
