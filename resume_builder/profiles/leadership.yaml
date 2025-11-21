@@ -1,0 +1,10 @@
+profile:
+  name: "Leadership Focused"
+  description: "Emphasizes people management and team leadership"
+  slug: "leadership"
+filters:
+  include_tags: [leadership, management, all]
+  max_bullets_per_job: 4
+output:
+  title_suffix: " - Leadership Focus"
+  filename: "resume-leadership"

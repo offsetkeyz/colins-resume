@@ -1,0 +1,9 @@
+profile:
+  name: "Full Resume"
+  description: "Complete resume with all experience"
+  slug: "default"
+filters:
+  include_tags: [all]
+output:
+  title_suffix: ""
+  filename: "resume"
