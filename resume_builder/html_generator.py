@@ -1,8 +1,48 @@
-import json
+import argparse
+import os
+import sys
 from datetime import datetime
+from pathlib import Path
+
+import yaml
+
 import shared_functions as s
+import profile_manager as pm
+
+
+def read_yaml_file(file_path):
+    """Read and parse a YAML file.
+
+    Args:
+        file_path: Path to the YAML file.
+
+    Returns:
+        Dictionary containing the YAML data, or None if an error occurs.
+    """
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return yaml.safe_load(f)
+    except FileNotFoundError:
+        print(f"The file at {file_path} was not found.")
+        return None
+    except yaml.YAMLError as e:
+        print(f"Error decoding YAML. Please ensure the file is a valid YAML format: {e}")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
 
 def read_json_file(file_path):
+    """Read and parse a JSON file (kept for backward compatibility).
+
+    Args:
+        file_path: Path to the JSON file.
+
+    Returns:
+        Dictionary containing the JSON data, or None if an error occurs.
+    """
+    import json
     try:
         with open(file_path, 'r') as f:
             return json.load(f)
@@ -15,6 +55,40 @@ def read_json_file(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
         return None
+
+
+def load_resume_data(data_path=None, profile_name='default'):
+    """Load resume data from YAML and apply profile filtering.
+
+    Args:
+        data_path: Path to the YAML data file. Defaults to resume.yaml in same directory.
+        profile_name: Name of the profile to apply for filtering.
+
+    Returns:
+        Tuple of (filtered_data, profile_info) or (None, None) if an error occurs.
+    """
+    # Determine the data file path
+    if data_path is None:
+        script_dir = Path(__file__).parent
+        data_path = script_dir / 'resume.yaml'
+
+    # Load the resume data
+    resume_data = read_yaml_file(data_path)
+    if resume_data is None:
+        return None, None
+
+    # Load and apply profile filtering
+    try:
+        profile = pm.load_profile(profile_name)
+        filtered_data = pm.filter_resume_data(resume_data, profile)
+        profile_info = pm.get_profile_info(profile)
+        return filtered_data, profile_info
+    except pm.ProfileNotFoundError as e:
+        print(f"Profile error: {e}")
+        return None, None
+    except pm.InvalidProfileError as e:
+        print(f"Invalid profile: {e}")
+        return None, None
     
 def generate_header(basics):
     f_name = basics['name'].split(' ')[0]
@@ -228,30 +302,164 @@ def generate_javascript(json_data):
     </script>'''
     return s
 
-if __name__ == "__main__":
-    # Reading the JSON file
-    json_data = read_json_file('resume.json')
-    
-    # Generating the markup
+def generate_html(resume_data, profile_info=None):
+    """Generate HTML markup from resume data.
+
+    Args:
+        resume_data: Dictionary containing resume data.
+        profile_info: Optional profile info dictionary for customization.
+
+    Returns:
+        HTML markup string.
+    """
+    if resume_data is None:
+        return None
+
     markup = f'''<!DOCTYPE html>
 <html>
-{generate_header(json_data.get('basics'))}
+{generate_header(resume_data.get('basics'))}
 <body>
-	{generate_navigation(json_data)}
-	{generate_introduction(json_data.get('basics'))}
-	{generate_work_experience(json_data.get('work_experience'))}
-	{generate_education_and_certs(json_data.get('education', None), json_data.get('certifications', None),json_data.get('awards', None))}
-	{generate_skills(json_data.get('skills', None), json_data.get('specialty_skills', None))}
- 	{generate_projects(json_data.get('projects', None))}
-	{generate_quote(json_data.get('basics'))}
-	{generate_footer(json_data)}
-	{generate_javascript(json_data)}    
+	{generate_navigation(resume_data)}
+	{generate_introduction(resume_data.get('basics'))}
+	{generate_work_experience(resume_data.get('work_experience'))}
+	{generate_education_and_certs(resume_data.get('education', None), resume_data.get('certifications', None), resume_data.get('awards', None))}
+	{generate_skills(resume_data.get('skills', None), resume_data.get('specialty_skills', None))}
+ 	{generate_projects(resume_data.get('projects', None))}
+	{generate_quote(resume_data.get('basics'))}
+	{generate_footer(resume_data)}
+	{generate_javascript(resume_data)}
 </body>
 </html>
 '''
-#TODO detailed work experience
-#TODO Write readme
+    return markup
 
-    # Write the content to a markup file
-    with open("../index.html", "w") as file:
-        file.write(markup)
+
+def parse_args():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description='Generate HTML resume from YAML data with profile filtering.'
+    )
+    parser.add_argument(
+        '-p', '--profile',
+        default='default',
+        help='Profile name to use for filtering (default: default)'
+    )
+    parser.add_argument(
+        '-i', '--input',
+        default=None,
+        help='Path to input YAML file (default: resume.yaml)'
+    )
+    parser.add_argument(
+        '-o', '--output',
+        default=None,
+        help='Path to output HTML file (default: ../index.html or based on profile)'
+    )
+    parser.add_argument(
+        '-l', '--list-profiles',
+        action='store_true',
+        help='List available profiles and exit'
+    )
+    parser.add_argument(
+        '--all-profiles',
+        action='store_true',
+        help='Generate HTML for all available profiles'
+    )
+    return parser.parse_args()
+
+
+def get_output_path(profile_info, output_arg=None):
+    """Determine the output path for the HTML file.
+
+    Args:
+        profile_info: Profile information dictionary.
+        output_arg: Optional output path from command line.
+
+    Returns:
+        Path object for the output file.
+    """
+    if output_arg:
+        return Path(output_arg)
+
+    # Use profile filename if available
+    script_dir = Path(__file__).parent
+    if profile_info and profile_info.get('filename'):
+        filename = profile_info['filename']
+        if filename == 'resume':
+            return script_dir.parent / 'index.html'
+        else:
+            return script_dir.parent / f'{filename}.html'
+    else:
+        return script_dir.parent / 'index.html'
+
+
+def generate_for_profile(profile_name, input_path=None, output_path=None, verbose=True):
+    """Generate HTML for a specific profile.
+
+    Args:
+        profile_name: Name of the profile to use.
+        input_path: Optional path to input YAML file.
+        output_path: Optional path to output HTML file.
+        verbose: Whether to print status messages.
+
+    Returns:
+        True if successful, False otherwise.
+    """
+    if verbose:
+        print(f"Generating HTML for profile: {profile_name}")
+
+    # Load and filter resume data
+    resume_data, profile_info = load_resume_data(input_path, profile_name)
+    if resume_data is None:
+        print(f"Failed to load resume data for profile: {profile_name}")
+        return False
+
+    # Generate HTML
+    html_content = generate_html(resume_data, profile_info)
+    if html_content is None:
+        print(f"Failed to generate HTML for profile: {profile_name}")
+        return False
+
+    # Determine output path
+    final_output = get_output_path(profile_info, output_path)
+
+    # Write the HTML file
+    try:
+        with open(final_output, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+        if verbose:
+            print(f"Successfully wrote HTML to: {final_output}")
+        return True
+    except Exception as e:
+        print(f"Error writing HTML file: {e}")
+        return False
+
+
+if __name__ == "__main__":
+    args = parse_args()
+
+    # List profiles if requested
+    if args.list_profiles:
+        profiles = pm.list_available_profiles()
+        print("Available profiles:")
+        for profile_name in profiles:
+            try:
+                profile = pm.load_profile(profile_name)
+                info = pm.get_profile_info(profile)
+                print(f"  - {profile_name}: {info.get('description', 'No description')}")
+            except Exception as e:
+                print(f"  - {profile_name}: (error loading: {e})")
+        sys.exit(0)
+
+    # Generate for all profiles if requested
+    if args.all_profiles:
+        profiles = pm.list_available_profiles()
+        success_count = 0
+        for profile_name in profiles:
+            if generate_for_profile(profile_name, args.input):
+                success_count += 1
+        print(f"\nGenerated {success_count}/{len(profiles)} HTML files successfully.")
+        sys.exit(0 if success_count == len(profiles) else 1)
+
+    # Generate for single profile
+    success = generate_for_profile(args.profile, args.input, args.output)
+    sys.exit(0 if success else 1)
