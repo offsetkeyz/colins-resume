@@ -172,7 +172,7 @@ def generate_work_experience(work_experience):
 	return markup
 
 def generate_education_and_certs(education=None, certifications=None, awards=None):
-	if not certifications and not education:
+	if not certifications and not education and not awards:
 		return ''
 	if certifications:
 		markup = '''<!-- Certifications --><div class="certifications section second" id="education">
