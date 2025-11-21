@@ -33,28 +33,36 @@ def read_yaml_file(file_path):
         return None
 
 
-def read_json_file(file_path):
-    """Read and parse a JSON file (kept for backward compatibility).
-
-    Args:
-        file_path: Path to the JSON file.
-
-    Returns:
-        Dictionary containing the JSON data, or None if an error occurs.
-    """
-    import json
-    try:
-        with open(file_path, 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print(f"The file at {file_path} was not found.")
-        return None
-    except json.JSONDecodeError:
-        print("Error decoding JSON. Please ensure the file is a valid JSON format.")
-        return None
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return None
+# =============================================================================
+# DEPRECATED: JSON Loading Function
+# =============================================================================
+# The following function is deprecated as of 2025-11-21.
+# The system now uses YAML exclusively. See resume_builder/resume.yaml
+# This code is kept for reference only and may be removed in a future version.
+#
+# def read_json_file(file_path):
+#     """Read and parse a JSON file (DEPRECATED - use read_yaml_file instead).
+#
+#     Args:
+#         file_path: Path to the JSON file.
+#
+#     Returns:
+#         Dictionary containing the JSON data, or None if an error occurs.
+#     """
+#     import json
+#     try:
+#         with open(file_path, 'r') as f:
+#             return json.load(f)
+#     except FileNotFoundError:
+#         print(f"The file at {file_path} was not found.")
+#         return None
+#     except json.JSONDecodeError:
+#         print("Error decoding JSON. Please ensure the file is a valid JSON format.")
+#         return None
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
+#         return None
+# =============================================================================
 
 
 def load_resume_data(data_path=None, profile_name='default'):

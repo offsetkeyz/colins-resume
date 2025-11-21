@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Task 2.6 Complete - JSON Dependencies Removed (2025-11-21)
+
+#### Archived
+- `json_resume.json` moved to `archive/resume.json.deprecated`
+- `json_resume.json.backup` moved to `archive/resume.json.deprecated.backup`
+- JSON loading functions commented out in `md_generator.py` and `html_generator.py`
+
+#### Updated
+- `README.md` - All references updated from JSON to YAML
+- `ROLLBACK_PROCEDURE.md` - Updated with archived file locations
+- `migrate_json_to_yaml.py` - Updated JSON_FILE path to archive location
+- `test_migration.py` - Updated to reference archived JSON
+- `test_migration_validation.py` - Updated to reference archived JSON
+
+#### Added
+- `archive/README.md` - Documentation for archived files
+
+#### Status
+- YAML system is now the primary and only data source
+- JSON system fully archived for reference and rollback capability
+- All build scripts work with YAML only
+
+---
+
 ### Phase 1 Complete - Foundation & Migration (2025-11-21)
 
 #### Added

@@ -362,11 +362,12 @@ class TestFullMigration:
     """Integration tests for full migration"""
 
     def test_full_migration_with_real_data(self):
-        """Test migration with actual json_resume.json file"""
-        json_file = Path(__file__).parent / "json_resume.json"
+        """Test migration with actual json_resume.json file (now archived)"""
+        # JSON file has been archived as of 2025-11-21
+        json_file = Path(__file__).parent.parent / "archive" / "resume.json.deprecated"
 
         if not json_file.exists():
-            pytest.skip("json_resume.json not found")
+            pytest.skip("archive/resume.json.deprecated not found (JSON has been archived)")
 
         with open(json_file, 'r') as f:
             json_data = json.load(f)
