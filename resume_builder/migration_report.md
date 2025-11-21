@@ -1,15 +1,16 @@
 # Resume Migration Report
 
-**Migration Date:** 2025-11-21 17:42:41
+**Migration Date:** 2025-11-21 18:10:03
 **Duration:** 0.04 seconds
 **Status:** ✓ SUCCESS
+**Source:** json_resume.json (source of truth)
 
 ---
 
 ## Executive Summary
 
-This report documents the migration of resume data from JSON format to YAML format
-with comprehensive logging and validation.
+This report documents the migration of resume data from JSON Resume format to our
+YAML schema format with comprehensive logging and validation.
 
 **Result:** All data successfully migrated with zero data loss.
 
@@ -18,22 +19,21 @@ with comprehensive logging and validation.
 ## Migration Statistics
 
 ### Overview
-- **Total Sections Processed:** 11
-- **Total Items Converted:** 30
-- **Total Fields Migrated:** 173
-- **Include_in Tags Added:** 29
+- **Total Sections Processed:** 10
+- **Total Items Converted:** 28
+- **Total Fields Migrated:** 167
+- **Include_in Tags Added:** 28
 
 ### Items by Section
 - **basics:** 1 item(s)
 - **work_experience:** 3 item(s)
 - **education:** 3 item(s)
-- **awards:** 3 item(s)
-- **certifications:** 8 item(s)
-- **skills:** 1 item(s)
+- **awards:** 4 item(s)
+- **certifications:** 7 item(s)
 - **specialty_skills:** 3 item(s)
 - **languages:** 1 item(s)
 - **interests:** 1 item(s)
-- **projects:** 5 item(s)
+- **projects:** 4 item(s)
 - **meta:** 1 item(s)
 
 ---
@@ -67,7 +67,7 @@ Added `include_in: [all]` to the following sections:
 - Specialty Skills (all categories)
 - Projects (all projects)
 
-**Total tags added:** 29
+**Total tags added:** 28
 
 ### 3. Meta Section Updates
 - Updated `lastModified` timestamp
@@ -88,9 +88,8 @@ None - clean migration
 ## Files Generated
 
 1. **resume_builder/resume.yaml** - The migrated YAML resume
-2. **resume.json.backup** - Backup of original JSON file
-3. **migration_report.md** - This report
-4. **migration.log** - Detailed migration log
+2. **migration_report.md** - This report
+3. **migration.log** - Detailed migration log
 
 ---
 

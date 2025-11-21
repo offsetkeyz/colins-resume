@@ -21,7 +21,6 @@ Version: 1.0.0
 import json
 import yaml
 import sys
-import shutil
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Any, Optional
@@ -34,9 +33,8 @@ import logging
 
 # File paths
 SCRIPT_DIR = Path(__file__).parent
-JSON_FILE = SCRIPT_DIR / "resume.json"
+JSON_FILE = SCRIPT_DIR / "json_resume.json"  # Source of truth
 YAML_FILE = SCRIPT_DIR / "resume.yaml"
-BACKUP_FILE = SCRIPT_DIR / "resume.json.backup"
 REPORT_FILE = SCRIPT_DIR / "migration_report.md"
 LOG_FILE = SCRIPT_DIR / "migration.log"
 
@@ -154,19 +152,20 @@ class ResumeMigrator:
         self.stats = stats
 
     def migrate(self, json_data: Dict) -> Dict:
-        """Main migration function"""
+        """Main migration function - transforms JSON Resume format to our YAML schema"""
         self.logger.info("=" * 70)
-        self.logger.info("Starting JSON to YAML migration")
+        self.logger.info("Starting JSON Resume to YAML migration")
         self.logger.info("=" * 70)
 
         yaml_data = {}
 
-        # Migrate each section
+        # Migrate each section (handling JSON Resume field names)
         if "basics" in json_data:
             yaml_data["basics"] = self._migrate_basics(json_data["basics"])
 
-        if "work_experience" in json_data:
-            yaml_data["work_experience"] = self._migrate_work_experience(json_data["work_experience"])
+        # JSON Resume uses "work" array, we transform to "work_experience" dict grouped by company
+        if "work" in json_data:
+            yaml_data["work_experience"] = self._migrate_work_from_json_resume(json_data["work"])
 
         if "education" in json_data:
             yaml_data["education"] = self._migrate_education(json_data["education"])
@@ -174,14 +173,12 @@ class ResumeMigrator:
         if "awards" in json_data:
             yaml_data["awards"] = self._migrate_awards(json_data["awards"])
 
-        if "certifications" in json_data:
-            yaml_data["certifications"] = self._migrate_certifications(json_data["certifications"])
+        # JSON Resume uses "certificates", we use "certifications"
+        if "certificates" in json_data:
+            yaml_data["certifications"] = self._migrate_certifications_from_json_resume(json_data["certificates"])
 
         if "skills" in json_data:
-            yaml_data["skills"] = self._migrate_skills(json_data["skills"])
-
-        if "specialty_skills" in json_data:
-            yaml_data["specialty_skills"] = self._migrate_specialty_skills(json_data["specialty_skills"])
+            yaml_data["specialty_skills"] = self._migrate_skills_from_json_resume(json_data["skills"])
 
         if "languages" in json_data:
             yaml_data["languages"] = self._migrate_languages(json_data["languages"])
@@ -254,6 +251,126 @@ class ResumeMigrator:
 
         return result
 
+    def _migrate_work_from_json_resume(self, work: List) -> Dict:
+        """Migrate JSON Resume 'work' array to our 'work_experience' dict format"""
+        self.logger.info("\nMigrating 'work' section (JSON Resume format)...")
+
+        # Group work entries by company name
+        result = {}
+        total_positions = 0
+
+        for entry in work:
+            company = entry.get("name", "Unknown Company")
+
+            if company not in result:
+                result[company] = []
+                self.logger.info(f"  Processing company: {company}")
+
+            # Transform JSON Resume fields to our schema
+            migrated_position = {
+                "job_title": entry.get("position", ""),
+                "location": entry.get("location", "Remote"),  # Default to Remote if not specified
+                "start_date": entry.get("startDate", ""),
+                "end_date": entry.get("endDate", "Present"),
+            }
+
+            # Map 'highlights' to 'responsibilities'
+            if "highlights" in entry and entry["highlights"]:
+                migrated_position["responsibilities"] = entry["highlights"]
+                self.stats.add_field(len(entry["highlights"]))
+
+            # Keep summary as a note (prepend to responsibilities if present)
+            if "summary" in entry and entry["summary"]:
+                if "responsibilities" not in migrated_position:
+                    migrated_position["responsibilities"] = []
+                # Add summary as first item in responsibilities
+                migrated_position["responsibilities"].insert(0, entry["summary"])
+                self.stats.add_field()
+
+            # Copy any skills if present
+            if "skills" in entry:
+                migrated_position["skills"] = entry["skills"]
+                self.stats.add_field()
+
+            # Add include_in tag
+            migrated_position["include_in"] = DEFAULT_INCLUDE_IN
+            self.stats.add_include_in_tag()
+
+            # Count fields
+            self.stats.add_field(4)  # job_title, location, start_date, end_date
+
+            result[company].append(migrated_position)
+            total_positions += 1
+            self.logger.debug(f"    ✓ Position: {migrated_position['job_title']}")
+
+        self.stats.add_item("work_experience", len(result))
+        self.logger.info(f"✓ Work experience migrated ({len(result)} companies, {total_positions} positions)")
+
+        return result
+
+    def _migrate_certifications_from_json_resume(self, certificates: List) -> List:
+        """Migrate JSON Resume 'certificates' to our 'certifications' format"""
+        self.logger.info("\nMigrating 'certificates' section (JSON Resume format)...")
+
+        result = []
+
+        for idx, cert in enumerate(certificates):
+            migrated_cert = {
+                "title": cert.get("name", ""),
+                "date": cert.get("date", ""),
+                "url": cert.get("url", ""),
+            }
+
+            # Map issuer
+            if "issuer" in cert:
+                migrated_cert["issuer"] = cert["issuer"]
+                self.stats.add_field()
+
+            # Add include_in tag
+            migrated_cert["include_in"] = DEFAULT_INCLUDE_IN
+            self.stats.add_include_in_tag()
+
+            self.stats.add_field(3)  # title, date, url
+
+            result.append(migrated_cert)
+            self.logger.debug(f"  ✓ Certification {idx + 1}: {migrated_cert['title']}")
+
+        self.stats.add_item("certifications", len(result))
+        self.logger.info(f"✓ Certifications section migrated ({len(result)} entries)")
+
+        return result
+
+    def _migrate_skills_from_json_resume(self, skills: List) -> List:
+        """Migrate JSON Resume 'skills' to our 'specialty_skills' format"""
+        self.logger.info("\nMigrating 'skills' section (JSON Resume format)...")
+
+        result = []
+
+        for idx, skill in enumerate(skills):
+            migrated_skill = {
+                "name": skill.get("name", ""),
+                "keywords": skill.get("keywords", []),
+            }
+
+            # Map level if present
+            if "level" in skill:
+                migrated_skill["level"] = skill["level"]
+                self.stats.add_field()
+
+            # Add include_in tag
+            migrated_skill["include_in"] = DEFAULT_INCLUDE_IN
+            self.stats.add_include_in_tag()
+
+            self.stats.add_field(2)  # name, keywords
+
+            result.append(migrated_skill)
+            self.logger.debug(f"  ✓ Skill category {idx + 1}: {migrated_skill['name']}")
+
+        self.stats.add_item("specialty_skills", len(result))
+        self.logger.info(f"✓ Specialty skills section migrated ({len(result)} entries)")
+
+        return result
+
     def _migrate_education(self, education: List) -> List:
         """Migrate education section"""
         self.logger.info("\nMigrating 'education' section...")
@@ -267,6 +384,12 @@ class ResumeMigrator:
             for key, value in entry.items():
                 migrated_entry[key] = value
                 self.stats.add_field()
+
+            # Add endDate if not present (use "Present" for ongoing education)
+            if "endDate" not in migrated_entry:
+                migrated_entry["endDate"] = "Present"
+                self.stats.add_field()
+                self.logger.debug(f"    - Added endDate: Present (ongoing education)")
 
             # Add include_in tag
             if "include_in" not in migrated_entry:
@@ -462,13 +585,14 @@ def generate_report(stats: MigrationStats, validation_passed: bool) -> str:
 **Migration Date:** {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 **Duration:** {summary['duration']}
 **Status:** {'✓ SUCCESS' if stats.data_preserved and validation_passed else '✗ FAILED'}
+**Source:** json_resume.json (source of truth)
 
 ---
 
 ## Executive Summary
 
-This report documents the migration of resume data from JSON format to YAML format
-with comprehensive logging and validation.
+This report documents the migration of resume data from JSON Resume format to our
+YAML schema format with comprehensive logging and validation.
 
 **Result:** {'All data successfully migrated with zero data loss.' if stats.data_preserved else 'Migration completed with issues.'}
 
@@ -555,9 +679,8 @@ Added `include_in: [all]` to the following sections:
 ## Files Generated
 
 1. **resume_builder/resume.yaml** - The migrated YAML resume
-2. **resume.json.backup** - Backup of original JSON file
-3. **migration_report.md** - This report
-4. **migration.log** - Detailed migration log
+2. **migration_report.md** - This report
+3. **migration.log** - Detailed migration log
 
 ---
 
@@ -635,11 +758,10 @@ def main():
     stats = MigrationStats()
 
     logger.info("=" * 70)
-    logger.info("JSON to YAML Resume Migration")
+    logger.info("JSON Resume to YAML Migration")
     logger.info("=" * 70)
-    logger.info(f"Source: {JSON_FILE}")
+    logger.info(f"Source: {JSON_FILE} (source of truth)")
     logger.info(f"Target: {YAML_FILE}")
-    logger.info(f"Backup: {BACKUP_FILE}")
     logger.info(f"Report: {REPORT_FILE}")
     logger.info(f"Dry run: {args.dry_run}")
     logger.info("=" * 70)
@@ -650,7 +772,7 @@ def main():
         sys.exit(1)
 
     # Load JSON data
-    logger.info(f"\n📖 Reading JSON file: {JSON_FILE}")
+    logger.info(f"\n📖 Reading JSON Resume file: {JSON_FILE}")
     try:
         with open(JSON_FILE, 'r', encoding='utf-8') as f:
             json_data = json.load(f)
@@ -659,19 +781,6 @@ def main():
         logger.error(f"❌ Error loading JSON file: {e}")
         stats.add_error(f"Failed to load JSON file: {e}")
         sys.exit(1)
-
-    # Create backup
-    if not args.dry_run:
-        logger.info(f"\n💾 Creating backup: {BACKUP_FILE}")
-        try:
-            shutil.copy2(JSON_FILE, BACKUP_FILE)
-            logger.info(f"✓ Backup created successfully")
-        except Exception as e:
-            logger.error(f"❌ Error creating backup: {e}")
-            stats.add_error(f"Failed to create backup: {e}")
-            sys.exit(1)
-    else:
-        logger.info(f"\n💾 [DRY RUN] Would create backup: {BACKUP_FILE}")
 
     # Perform migration
     logger.info(f"\n🔄 Starting migration...")
@@ -770,7 +879,6 @@ def main():
         logger.info("\n✓ Migration completed successfully!")
         logger.info("  - All data preserved")
         logger.info("  - YAML file validated")
-        logger.info("  - Backup created")
         logger.info("  - Report generated")
     else:
         logger.warning("\n⚠ Migration completed with issues")
