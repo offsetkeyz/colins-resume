@@ -267,12 +267,15 @@ def verify_uniqueness(length: int = 10, num_tokens: int = 10000) -> bool:
     return True
 
 
-def main():
+def main() -> int:
     """
     Main entry point for the token generation CLI.
 
     Parses command-line arguments and generates a token according to
     the specified options.
+
+    Returns:
+        int: Exit code (0 for success, non-zero for errors).
     """
     parser = argparse.ArgumentParser(
         description="Generate cryptographically secure tokens for private resume URLs.",
