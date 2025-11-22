@@ -11,12 +11,12 @@ author:
 - Colin McAllister
 subject: 'Resume'
 ---
-I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.
+Cybersecurity leader with expertise in Python automation, detection engineering, and security operations. Combines technical depth with team leadership to drive operational excellence and build high-performing security teams.
 
 <div class="no-break"> 
 ## Certifications
 
-- **[SANS Security Awareness Professional (SSAP)](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)** | Aug 2024, - **[GIAC Defensible Security Architecture (GDSA)](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)** | Jul 2024, - **[GIAC Strategic Planning, Policy, and Leadership (GSTRT)](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)** | Mar 2024, - **[GIAC Certified Incident Handler (GCIH)](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023, - **[AWS Certified Cloud Practitioner (CCP)](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)** | Nov 2023, - **[GIAC Network Forensic Analyst (GNFA)](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)** | Mar 2022, - **[GIAC Security Essentials (GSEC)](https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url)** | Oct 2023
+- **[SANS Security Awareness Professional (SSAP)](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)** | Aug 2024, - **[GIAC Defensible Security Architecture (GDSA)](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)** | Jul 2024, - **[GIAC Strategic Planning, Policy, and Leadership (GSTRT)](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)** | Mar 2024, - **[GIAC Certified Incident Handler (GCIH)](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023, - **[AWS Certified Cloud Practitioner (CCP)](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)** | Nov 2023, - **[GIAC Security Essentials (GSEC)](https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url)** | Oct 2023
   </div>  
 
 ## Education  
@@ -65,6 +65,7 @@ Dec 2021 - Nov 2022, Remote
 - Worked closely with senior leaders to develop meaningful metrics and visualize data, automating 25% of recurring tasks.  
 - Headed the implementation of a new scheduling software solution for over 250 employees.  
 - Led dozens of meetings, demonstrating strong communication and coordination skills.  
+- Conducted data analysis to identify process inefficiencies, presenting findings to stakeholders with actionable recommendations.  
 
   </div>  
 #### Team Captain  
@@ -72,6 +73,7 @@ Jul 2021 - Dec 2021, Remote
 - Led a team of six Security Analysts and Engineers, focusing on goal achievement and resource allocation.  
 - Provided daily mentorship to team members.  
 - Cultivated meaningful relationships to ensure team success.  
+- Implemented structured feedback mechanisms that improved team morale scores by 15% within first quarter.  
 
   </div>  
 #### Triage Security Engineer  
@@ -79,18 +81,25 @@ Dec 2020 - Dec 2021, Remote
 - Expertly triaged and responded to security alerts, ensuring rapid resolution and minimal impact.  
 - Used MITRE ATT&CK framework for incident investigation.  
 - Developed and refined new runbooks for consistency among employees.  
+- Trained new analysts on alert triage methodology and investigation techniques, accelerating their proficiency.  
 
   </div>  
 ### CarKey  
 #### Lead Videographer  
 Sep 2019 - Dec 2020, Remote  
 - Oversaw video production and editing, bringing innovative ideas to visual storytelling.  
+- Managed end-to-end video production pipeline from concept development through final delivery for marketing campaigns.  
+- Led creative direction for video content, collaborating with marketing team to align messaging with brand strategy.  
+- Trained junior team members on video editing software and production best practices.  
 
   </div>  
 ### US Army  
 #### Public Affairs Officer  
 Nov 2015 - Sep 2019, Remote  
 - Managed public affairs operations, ensuring effective communication and media relations.  
+- Led teams of up to 15 soldiers during training exercises and operational deployments, developing strong leadership under pressure.  
+- Coordinated communication strategies for sensitive operations, ensuring accurate and timely information dissemination.  
+- Developed multimedia content including written articles, photography, and video for internal and external audiences.  
 
   </div>  
 
@@ -111,13 +120,17 @@ Nov 2015 - Sep 2019, Remote
 *The first step to becoming a cloud engineer is to build and host your resume in the cloud.*  
 **Home Network Security Monitoring Project** (Jan 2023)
 *Implemented a comprehensive network monitoring solution in my home using Security Onion.*  
+**Security Operations Automation Framework** (Jan 2024)
+*Led development of internal automation tool that transformed security operations workflows at Arctic Wolf.*  
 
 ## Skills
 
 <div class="no-break"> 
-**Development**: Python, Unit Testing, CI/CD, Git  
-**Cyber Security**: Detection Testing, Sigma, Deception, Forensics, Threat Hunting  
-**Soft Skills**: Effective Communication, Leadership, Empathy, Customer Success  
+**Development**: Python, Unit Testing, CI/CD, Git, REST APIs, AWS Lambda, Docker  
+**Cyber Security**: Detection Testing, Sigma, Deception, Forensics, Threat Hunting, MITRE ATT&CK, Incident Response  
+**Leadership**: Team Building, Mentorship, Performance Management, Career Development, Conflict Resolution  
+**Soft Skills**: Effective Communication, Leadership, Empathy, Customer Success, Stakeholder Management, Cross-functional Collaboration  
+**Process Improvement**: Workflow Optimization, Documentation, Training Development, Change Management  
 
   </div>  
 
