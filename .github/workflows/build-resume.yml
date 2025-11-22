@@ -198,28 +198,31 @@ jobs:
       # -----------------------------------------------------------------------
       # Install Build Dependencies
       # -----------------------------------------------------------------------
+      - name: Cache build tools
+        uses: actions/cache@v4
+        id: cache-build-tools
+        with:
+          path: |
+            ~/.build-tools
+          key: build-tools-pandoc-3.0.1-wkhtmltopdf-0.12.6.1
+
+      - name: Download build tools
+        if: steps.cache-build-tools.outputs.cache-hit != 'true'
+        run: |
+          echo "=== Downloading Build Tools ==="
+          mkdir -p ~/.build-tools
+          wget -q -O ~/.build-tools/pandoc-3.0.1-1-amd64.deb \
+            https://github.com/jgm/pandoc/releases/download/3.0.1/pandoc-3.0.1-1-amd64.deb
+          wget -q -O ~/.build-tools/wkhtmltox_0.12.6.1-2.jammy_amd64.deb \
+            https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+          echo "Download complete"
+
       - name: Install pandoc and wkhtmltopdf
         run: |
           echo "=== Installing Build Dependencies ==="
-
-          # Check if pre-downloaded packages exist (for faster builds)
-          if [[ -f "pandoc-3.0.1-1-amd64.deb" ]]; then
-            echo "Using pre-downloaded pandoc package"
-          else
-            echo "Downloading pandoc..."
-            wget -q https://github.com/jgm/pandoc/releases/download/3.0.1/pandoc-3.0.1-1-amd64.deb
-          fi
-
-          if [[ -f "wkhtmltox_0.12.6.1-2.jammy_amd64.deb" ]]; then
-            echo "Using pre-downloaded wkhtmltopdf package"
-          else
-            echo "Downloading wkhtmltopdf..."
-            wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
-          fi
-
           sudo apt-get update
-          sudo apt-get install -y ./pandoc-3.0.1-1-amd64.deb
-          sudo apt-get install -y ./wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+          sudo apt-get install -y ~/.build-tools/pandoc-3.0.1-1-amd64.deb
+          sudo apt-get install -y ~/.build-tools/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
 
           echo "pandoc version: $(pandoc --version | head -1)"
           echo "wkhtmltopdf version: $(wkhtmltopdf --version)"
