@@ -11,7 +11,7 @@ author:
 - Colin McAllister
 subject: 'Resume'
 ---
-I am a people-first cybersecurity leader who believes that empowering individuals through encouragement and constructive feedback is key to fostering both personal and professional growth. My leadership approach is hands-off, allowing my team the freedom to take ownership of their work while providing the support they need to succeed. I tailor my leadership style to each individual, ensuring that they feel valued and confident, rather than forcing them to adapt to me. By focusing on clear communication, collaboration, and a culture of trust, I create environments where people can thrive and perform at their best. At Arctic Wolf, I lead with the belief that happy, healthy, and productive teams are the foundation of cybersecurity excellence.
+Cybersecurity leader with expertise in Python automation, detection engineering, and security operations. Combines technical depth with team leadership to drive operational excellence and build high-performing security teams.
 
 <div class="no-break"> 
 ## Certifications
@@ -50,6 +50,7 @@ Feb 2024 - Present, Remote
 - Reduced team backlog from over 300 tickets to 0, maintaining fewer than 10 tickets over the previous quarter, empowering the team to work efficiently and focus on high-impact tasks.  
 - Prioritized team happiness, health, and productivity by fostering a collaborative, supportive environment where each individual's needs are met.  
 - Spearheaded the development of an automation tool that eliminated repetitive tasks, saving over 2000 hours annually through collaborative stakeholder engagement and precise requirement gathering.  
+- Conducted weekly 1:1 meetings with each team member to discuss career development, remove blockers, and provide personalized mentorship aligned with individual growth goals.  
 
   </div>  
 #### Security Developer  
@@ -66,6 +67,8 @@ Dec 2021 - Nov 2022, Remote
 - Worked closely with senior leaders to develop meaningful metrics and visualize data, automating 25% of recurring tasks.  
 - Headed the implementation of a new scheduling software solution for over 250 employees.  
 - Led dozens of meetings, demonstrating strong communication and coordination skills.  
+- Built automated reporting dashboards using Python and SQL to provide executives with real-time operational insights.  
+- Conducted data analysis to identify process inefficiencies, presenting findings to stakeholders with actionable recommendations.  
 
   </div>  
 #### Team Captain  
@@ -73,6 +76,8 @@ Jul 2021 - Dec 2021, Remote
 - Led a team of six Security Analysts and Engineers, focusing on goal achievement and resource allocation.  
 - Provided daily mentorship to team members.  
 - Cultivated meaningful relationships to ensure team success.  
+- Implemented structured feedback mechanisms that improved team morale scores by 15% within first quarter.  
+- Coordinated shift coverage and workload balancing to maintain 24/7 security operations coverage without burnout.  
 
   </div>  
 #### Triage Security Engineer  
@@ -80,18 +85,28 @@ Dec 2020 - Dec 2021, Remote
 - Expertly triaged and responded to security alerts, ensuring rapid resolution and minimal impact.  
 - Used MITRE ATT&CK framework for incident investigation.  
 - Developed and refined new runbooks for consistency among employees.  
+- Investigated and documented over 500 security incidents, developing expertise in threat analysis and incident response procedures.  
+- Created custom Sigma rules for detection of emerging threats, improving early warning capabilities for the security operations team.  
 
   </div>  
 ### CarKey  
 #### Lead Videographer  
 Sep 2019 - Dec 2020, Remote  
 - Oversaw video production and editing, bringing innovative ideas to visual storytelling.  
+- Managed end-to-end video production pipeline from concept development through final delivery for marketing campaigns.  
+- Led creative direction for video content, collaborating with marketing team to align messaging with brand strategy.  
+- Implemented workflow automation using scripting to streamline video processing and reduce production time by 30%.  
+- Trained junior team members on video editing software and production best practices.  
 
   </div>  
 ### US Army  
 #### Public Affairs Officer  
 Nov 2015 - Sep 2019, Remote  
 - Managed public affairs operations, ensuring effective communication and media relations.  
+- Led teams of up to 15 soldiers during training exercises and operational deployments, developing strong leadership under pressure.  
+- Coordinated communication strategies for sensitive operations, ensuring accurate and timely information dissemination.  
+- Developed multimedia content including written articles, photography, and video for internal and external audiences.  
+- Served as subject matter expert for social media and digital communications, implementing modern engagement strategies.  
 
   </div>  
 
@@ -112,13 +127,19 @@ Nov 2015 - Sep 2019, Remote
 *The first step to becoming a cloud engineer is to build and host your resume in the cloud.*  
 **Home Network Security Monitoring Project** (Jan 2023)
 *Implemented a comprehensive network monitoring solution in my home using Security Onion.*  
+**Security Operations Automation Framework** (Jan 2024)
+*Led development of internal automation tool that transformed security operations workflows at Arctic Wolf.*  
 
 ## Skills
 
 <div class="no-break"> 
-**Development**: Python, Unit Testing, CI/CD, Git  
-**Cyber Security**: Detection Testing, Sigma, Deception, Forensics, Threat Hunting  
-**Soft Skills**: Effective Communication, Leadership, Empathy, Customer Success  
+**Development**: Python, Unit Testing, CI/CD, Git, REST APIs, AWS Lambda, Docker  
+**Security Engineering**: Sigma Rules, Detection Engineering, Log Analysis, SIEM Operations, Threat Hunting  
+**Cyber Security**: Detection Testing, Sigma, Deception, Forensics, Threat Hunting, MITRE ATT&CK, Incident Response  
+**Cloud & Infrastructure**: AWS, S3, CloudFront, Lambda, EC2, Proxmox  
+**Leadership**: Team Building, Mentorship, Performance Management, Career Development, Conflict Resolution  
+**Soft Skills**: Effective Communication, Leadership, Empathy, Customer Success, Stakeholder Management, Cross-functional Collaboration  
+**Process Improvement**: Workflow Optimization, Documentation, Training Development, Change Management  
 
   </div>  
 

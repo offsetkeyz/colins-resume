@@ -3,7 +3,10 @@ profile:
   description: "Complete resume with all experience"
   slug: "default"
 filters:
-  include_tags: [all]
+  # Include all content regardless of tag
+  include_tags: [all, leadership, management, technical, development]
+  # Limit to 5 bullets per job to keep resume at ~2 pages
+  max_bullets_per_job: 5
 output:
   title_suffix: ""
   filename: "resume"

@@ -175,6 +175,49 @@ def apply_bullet_limit(bullets: list, max_bullets: Optional[int]) -> list:
     return copy.deepcopy(bullets[:max_bullets])
 
 
+def filter_responsibilities(responsibilities: list, include_tags: list) -> list:
+    """Filter individual responsibility items based on their include_in tags.
+
+    Each responsibility can be either:
+    - A string (legacy format) - included if 'all' is in include_tags
+    - A dict with 'description' and 'include_in' keys
+
+    Args:
+        responsibilities: List of responsibility items.
+        include_tags: List of tags to include.
+
+    Returns:
+        Filtered list of description strings (not dicts).
+    """
+    if not responsibilities:
+        return []
+
+    include_tags_set = set(include_tags)
+    filtered = []
+
+    for resp in responsibilities:
+        if isinstance(resp, str):
+            # Legacy string format - include if 'all' is in tags
+            if 'all' in include_tags_set:
+                filtered.append(resp)
+        elif isinstance(resp, dict):
+            # New dict format with description and include_in
+            resp_tags = resp.get('include_in', [])
+            if not isinstance(resp_tags, list):
+                resp_tags = [resp_tags] if resp_tags else []
+
+            resp_tags_set = set(resp_tags)
+
+            # Check if any responsibility tag matches any include tag
+            if resp_tags_set & include_tags_set or (not resp_tags and 'all' in include_tags_set):
+                # Extract just the description text
+                description = resp.get('description', '')
+                if description:
+                    filtered.append(description)
+
+    return filtered
+
+
 def filter_work_experience(work_data: dict, include_tags: list, max_bullets: Optional[int] = None) -> dict:
     """Filter work experience entries based on tags and bullet limits.
 
@@ -226,10 +269,15 @@ def filter_work_experience(work_data: dict, include_tags: list, max_bullets: Opt
             if position_tags_set & include_tags_set or (not position_tags and 'all' in include_tags_set):
                 new_position = copy.deepcopy(position)
 
-                # Apply bullet limit to responsibilities
+                # Filter and extract responsibilities based on include_in tags
                 if 'responsibilities' in new_position:
+                    filtered_resp = filter_responsibilities(
+                        position.get('responsibilities', []),
+                        include_tags
+                    )
+                    # Apply bullet limit after filtering
                     new_position['responsibilities'] = apply_bullet_limit(
-                        new_position['responsibilities'],
+                        filtered_resp,
                         max_bullets
                     )
 
@@ -248,6 +296,49 @@ def filter_work_experience(work_data: dict, include_tags: list, max_bullets: Opt
     return filtered_work
 
 
+def filter_highlights(highlights: list, include_tags: list) -> list:
+    """Filter individual highlight items based on their include_in tags.
+
+    Each highlight can be either:
+    - A string (legacy format) - included if 'all' is in include_tags
+    - A dict with 'description' and 'include_in' keys
+
+    Args:
+        highlights: List of highlight items.
+        include_tags: List of tags to include.
+
+    Returns:
+        Filtered list of description strings (not dicts).
+    """
+    if not highlights:
+        return []
+
+    include_tags_set = set(include_tags)
+    filtered = []
+
+    for highlight in highlights:
+        if isinstance(highlight, str):
+            # Legacy string format - include if 'all' is in tags
+            if 'all' in include_tags_set:
+                filtered.append(highlight)
+        elif isinstance(highlight, dict):
+            # New dict format with description and include_in
+            highlight_tags = highlight.get('include_in', [])
+            if not isinstance(highlight_tags, list):
+                highlight_tags = [highlight_tags] if highlight_tags else []
+
+            highlight_tags_set = set(highlight_tags)
+
+            # Check if any highlight tag matches any include tag
+            if highlight_tags_set & include_tags_set or (not highlight_tags and 'all' in include_tags_set):
+                # Extract just the description text
+                description = highlight.get('description', '')
+                if description:
+                    filtered.append(description)
+
+    return filtered
+
+
 def filter_projects(projects: list, include_tags: list, max_bullets: Optional[int] = None) -> list:
     """Filter projects and apply bullet limits to highlights.
 
@@ -261,16 +352,18 @@ def filter_projects(projects: list, include_tags: list, max_bullets: Optional[in
     """
     filtered = filter_items(projects, include_tags)
 
-    if max_bullets is None or max_bullets <= 0:
-        return filtered
-
-    # Apply bullet limit to highlights
+    # Filter and extract highlights for each project
     for project in filtered:
         if isinstance(project, dict) and 'highlights' in project:
-            project['highlights'] = apply_bullet_limit(
+            filtered_highlights = filter_highlights(
                 project['highlights'],
-                max_bullets
+                include_tags
             )
+            # Apply bullet limit after filtering
+            if max_bullets is not None and max_bullets > 0:
+                project['highlights'] = apply_bullet_limit(filtered_highlights, max_bullets)
+            else:
+                project['highlights'] = filtered_highlights
 
     return filtered
 
