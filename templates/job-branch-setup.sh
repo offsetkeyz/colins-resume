@@ -242,17 +242,9 @@ check_git_repo() {
 #######################################
 check_clean_working_tree() {
     # First check if HEAD exists (repo might have no commits yet)
-    if ! git -C "$PROJECT_ROOT" rev-parse --verify HEAD >/dev/null 2>&1; then
-        # No commits yet - check for staged files instead
-        if [[ -n "$(git -C "$PROJECT_ROOT" diff --cached --name-only 2>/dev/null)" ]]; then
-            warn_msg "Warning: You have staged changes in your working tree."
-            read -p "Continue anyway? (y/N): " -n 1 -r
-            echo
-            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                error_exit "Aborted by user"
-            fi
-        fi
-        return 0
+    if ! git -C "$PROJECT_ROOT" rev-parse --verify HEAD &>/dev/null; then
+        warn_msg "Warning: No commits found in repository. Skipping uncommitted changes check."
+        return
     fi
 
     # HEAD exists, check for uncommitted changes
