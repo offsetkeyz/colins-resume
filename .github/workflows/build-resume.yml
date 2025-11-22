@@ -412,18 +412,14 @@ jobs:
             echo "Deploying to $S3_DEST"
           fi
 
+          # Build sync command with optional content-type-map
+          SYNC_ARGS="--delete --exclude .git/* --exclude *.md --cache-control max-age=3600"
+          if [[ -f "./build/content-types.json" ]]; then
+            SYNC_ARGS="$SYNC_ARGS --content-type-map ./build/content-types.json"
+          fi
+
           # Sync files to S3
-          aws s3 sync ./build "$S3_DEST" \
-            --delete \
-            --exclude ".git/*" \
-            --exclude "*.md" \
-            --cache-control "max-age=3600" \
-            --content-type-map content-types.json 2>/dev/null || \
-          aws s3 sync ./build "$S3_DEST" \
-            --delete \
-            --exclude ".git/*" \
-            --exclude "*.md" \
-            --cache-control "max-age=3600"
+          aws s3 sync ./build "$S3_DEST" $SYNC_ARGS
 
           echo ""
           echo "=== Deployment Complete ==="
