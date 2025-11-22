@@ -326,14 +326,11 @@ main() {
     info_msg "Committing changes..."
     git -C "$PROJECT_ROOT" add "$active_profile_path"
     git -C "$PROJECT_ROOT" add -f "$token_path"
-    git -C "$PROJECT_ROOT" commit -m "$(cat <<EOF
-Setup job branch: $job_name
-
-- Profile: $profile_name
-- Branch: $branch_name
-- Token generated for private resume URL
-EOF
-)"
+    git -C "$PROJECT_ROOT" commit \
+        -m "Setup job branch: $job_name" \
+        -m "- Profile: $profile_name" \
+        -m "- Branch: $branch_name" \
+        -m "- Token generated for private resume URL"
     success_msg "  Changes committed"
 
     # Summary
