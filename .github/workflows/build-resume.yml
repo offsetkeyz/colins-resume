@@ -153,8 +153,8 @@ jobs:
             if [[ -f "$TOKEN_FILE" ]]; then
               TOKEN=$(cat "$TOKEN_FILE" | tr -d '[:space:]')
               echo "Loaded token from $TOKEN_FILE"
-              # Mask token in logs for security (show only first 4 chars)
-              echo "Token preview: ${TOKEN:0:4}****"
+              # Do not log any part of the token for security
+              echo "Token loaded successfully."
               echo "token=$TOKEN" >> $GITHUB_OUTPUT
             else
               echo "ERROR: $TOKEN_FILE not found for job branch"
