@@ -188,18 +188,44 @@ check_profile_exists() {
 generate_token() {
     # Try to use the Python token generator first
     local token_script="$PROJECT_ROOT/scripts/generate_token.py"
+    local token
+    local stderr_output
+    local exit_code
 
     if [[ -f "$token_script" ]]; then
-        python3 "$token_script" --no-write 2>/dev/null
-    else
-        # Fallback: generate token using Python directly
-        python3 -c "
+        # Capture both stdout and stderr, preserving exit code
+        stderr_output=$(mktemp)
+        token=$(python3 "$token_script" --no-write 2>"$stderr_output")
+        exit_code=$?
+
+        if [[ $exit_code -eq 0 ]] && [[ -n "$token" ]]; then
+            rm -f "$stderr_output"
+            echo "$token"
+            return 0
+        else
+            # Script failed - log the error and fall back
+            if [[ -s "$stderr_output" ]]; then
+                warn_msg "  Warning: Token script failed: $(cat "$stderr_output")" >&2
+            fi
+            rm -f "$stderr_output"
+            warn_msg "  Using fallback token generation" >&2
+        fi
+    fi
+
+    # Fallback: generate token using Python directly
+    token=$(python3 -c "
 import secrets
 import string
 alphabet = string.ascii_letters + string.digits
 print(''.join(secrets.choice(alphabet) for _ in range(10)))
-"
+" 2>&1)
+    exit_code=$?
+
+    if [[ $exit_code -ne 0 ]]; then
+        error_exit "Failed to generate token: $token"
     fi
+
+    echo "$token"
 }
 
 #######################################
