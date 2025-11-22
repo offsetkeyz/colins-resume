@@ -1,0 +1,496 @@
+# =============================================================================
+# Resume Builder - GitHub Actions Workflow
+# =============================================================================
+# This workflow builds and deploys resume files based on branch type:
+#
+# Main Branch (main):
+#   - Uses default profile
+#   - Deploys to: https://colinmca.com/
+#
+# Job Branches (resume/*):
+#   - Reads active_profile.txt for profile selection
+#   - Reads resume_token.txt for deployment path
+#   - Deploys to: https://colinmca.com/r/{token}/
+#
+# Outputs:
+#   - HTML (index.html or resume-{profile}.html)
+#   - PDF (resume.pdf or resume-{profile}.pdf)
+#   - JSON (output/resume.json or output/resume-{profile}.json)
+#   - Markdown (resume_builder/resume.md or resume-{profile}.md)
+# =============================================================================
+
+name: Build and Deploy Resume
+
+on:
+  push:
+    branches:
+      - main
+      - 'resume/**'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: 'Profile to use (overrides branch detection)'
+        required: false
+        default: ''
+      deploy:
+        description: 'Deploy to S3 after build'
+        required: false
+        default: 'true'
+        type: boolean
+
+# Prevent concurrent deployments
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  # ===========================================================================
+  # Build Job: Detect branch type and build resume
+  # ===========================================================================
+  build:
+    runs-on: ubuntu-22.04
+    outputs:
+      branch_type: ${{ steps.detect-branch.outputs.branch_type }}
+      profile: ${{ steps.load-profile.outputs.profile }}
+      token: ${{ steps.load-token.outputs.token }}
+      deploy_path: ${{ steps.set-deploy-path.outputs.deploy_path }}
+
+    steps:
+      # -----------------------------------------------------------------------
+      # Checkout and Setup
+      # -----------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pyyaml
+
+      # -----------------------------------------------------------------------
+      # Branch Detection
+      # -----------------------------------------------------------------------
+      - name: Detect Branch Type
+        id: detect-branch
+        run: |
+          echo "=== Branch Detection ==="
+          echo "GitHub ref: ${{ github.ref }}"
+          echo "GitHub ref_name: ${{ github.ref_name }}"
+
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "Branch type: main"
+            echo "branch_type=main" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == refs/heads/resume/* ]]; then
+            echo "Branch type: job"
+            echo "branch_type=job" >> $GITHUB_OUTPUT
+          else
+            echo "Branch type: other (treating as development)"
+            echo "branch_type=other" >> $GITHUB_OUTPUT
+          fi
+
+      # -----------------------------------------------------------------------
+      # Profile Loading
+      # -----------------------------------------------------------------------
+      - name: Load Active Profile
+        id: load-profile
+        run: |
+          echo "=== Profile Loading ==="
+
+          # Check for workflow dispatch override
+          if [[ -n "${{ github.event.inputs.profile }}" ]]; then
+            PROFILE="${{ github.event.inputs.profile }}"
+            echo "Using workflow dispatch profile override: $PROFILE"
+          elif [[ "${{ steps.detect-branch.outputs.branch_type }}" == "job" ]]; then
+            # Job branch: read from active_profile.txt
+            PROFILE_FILE="resume_builder/active_profile.txt"
+            if [[ -f "$PROFILE_FILE" ]]; then
+              PROFILE=$(cat "$PROFILE_FILE" | tr -d '[:space:]')
+              echo "Loaded profile from $PROFILE_FILE: $PROFILE"
+            else
+              echo "WARNING: $PROFILE_FILE not found, using default"
+              PROFILE="default"
+            fi
+          else
+            # Main branch or other: use default
+            PROFILE="default"
+            echo "Using default profile for main/other branch"
+          fi
+
+          # Validate profile exists
+          PROFILE_PATH="resume_builder/profiles/${PROFILE}.yaml"
+          if [[ ! -f "$PROFILE_PATH" ]]; then
+            echo "ERROR: Profile '$PROFILE' not found at $PROFILE_PATH"
+            echo "Available profiles:"
+            ls -la resume_builder/profiles/
+            exit 1
+          fi
+
+          echo "Active profile: $PROFILE"
+          echo "profile=$PROFILE" >> $GITHUB_OUTPUT
+
+      # -----------------------------------------------------------------------
+      # Token Loading (Job Branches Only)
+      # -----------------------------------------------------------------------
+      - name: Read Resume Token
+        id: load-token
+        run: |
+          echo "=== Token Loading ==="
+
+          if [[ "${{ steps.detect-branch.outputs.branch_type }}" == "job" ]]; then
+            TOKEN_FILE="resume_builder/resume_token.txt"
+            if [[ -f "$TOKEN_FILE" ]]; then
+              TOKEN=$(cat "$TOKEN_FILE" | tr -d '[:space:]')
+              echo "Loaded token from $TOKEN_FILE"
+              # Mask token in logs for security (show only first 4 chars)
+              echo "Token preview: ${TOKEN:0:4}****"
+              echo "token=$TOKEN" >> $GITHUB_OUTPUT
+            else
+              echo "ERROR: $TOKEN_FILE not found for job branch"
+              echo "Job branches require a resume_token.txt file"
+              exit 1
+            fi
+          else
+            echo "Not a job branch, no token required"
+            echo "token=" >> $GITHUB_OUTPUT
+          fi
+
+      # -----------------------------------------------------------------------
+      # Set Deployment Path
+      # -----------------------------------------------------------------------
+      - name: Set Deployment Path
+        id: set-deploy-path
+        run: |
+          echo "=== Deployment Path Configuration ==="
+
+          BRANCH_TYPE="${{ steps.detect-branch.outputs.branch_type }}"
+          TOKEN="${{ steps.load-token.outputs.token }}"
+
+          if [[ "$BRANCH_TYPE" == "main" ]]; then
+            DEPLOY_PATH=""
+            echo "Main branch: deploying to root path"
+          elif [[ "$BRANCH_TYPE" == "job" ]]; then
+            if [[ -z "$TOKEN" ]]; then
+              echo "ERROR: Token required for job branch deployment"
+              exit 1
+            fi
+            DEPLOY_PATH="r/$TOKEN"
+            echo "Job branch: deploying to /$DEPLOY_PATH/"
+          else
+            DEPLOY_PATH="dev/${{ github.ref_name }}"
+            echo "Other branch: deploying to /$DEPLOY_PATH/"
+          fi
+
+          echo "deploy_path=$DEPLOY_PATH" >> $GITHUB_OUTPUT
+          echo "Final deployment path: $DEPLOY_PATH"
+
+      # -----------------------------------------------------------------------
+      # Install Build Dependencies
+      # -----------------------------------------------------------------------
+      - name: Install pandoc and wkhtmltopdf
+        run: |
+          echo "=== Installing Build Dependencies ==="
+
+          # Check if pre-downloaded packages exist (for faster builds)
+          if [[ -f "pandoc-3.0.1-1-amd64.deb" ]]; then
+            echo "Using pre-downloaded pandoc package"
+          else
+            echo "Downloading pandoc..."
+            wget -q https://github.com/jgm/pandoc/releases/download/3.0.1/pandoc-3.0.1-1-amd64.deb
+          fi
+
+          if [[ -f "wkhtmltox_0.12.6.1-2.jammy_amd64.deb" ]]; then
+            echo "Using pre-downloaded wkhtmltopdf package"
+          else
+            echo "Downloading wkhtmltopdf..."
+            wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+          fi
+
+          sudo apt-get update
+          sudo apt-get install -y ./pandoc-3.0.1-1-amd64.deb
+          sudo apt-get install -y ./wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+
+          echo "pandoc version: $(pandoc --version | head -1)"
+          echo "wkhtmltopdf version: $(wkhtmltopdf --version)"
+
+      # -----------------------------------------------------------------------
+      # Build Resume Files
+      # -----------------------------------------------------------------------
+      - name: Generate Markdown
+        run: |
+          echo "=== Generating Markdown ==="
+          cd resume_builder
+          python3 md_generator.py --profile "${{ steps.load-profile.outputs.profile }}"
+          echo "Generated markdown files:"
+          ls -la *.md
+
+      - name: Generate HTML
+        run: |
+          echo "=== Generating HTML ==="
+          cd resume_builder
+          python3 html_generator.py --profile "${{ steps.load-profile.outputs.profile }}"
+          echo "Generated HTML files in project root:"
+          ls -la ../*.html || echo "No HTML files in root (using index.html)"
+          ls -la ../index.html || true
+
+      - name: Generate JSON
+        run: |
+          echo "=== Generating JSON ==="
+          cd resume_builder
+          python3 json_generator.py --profile "${{ steps.load-profile.outputs.profile }}"
+          echo "Generated JSON files:"
+          ls -la ../output/*.json
+
+      - name: Generate PDF
+        run: |
+          echo "=== Generating PDF ==="
+          PROFILE="${{ steps.load-profile.outputs.profile }}"
+
+          cd resume_builder
+
+          # Determine file names based on profile
+          if [[ "$PROFILE" == "default" ]]; then
+            MD_FILE="resume.md"
+            HTML_TEMP="resume-temp.html"
+            PDF_FILE="../resume.pdf"
+          else
+            MD_FILE="resume-${PROFILE}.md"
+            HTML_TEMP="resume-${PROFILE}-temp.html"
+            PDF_FILE="../resume-${PROFILE}.pdf"
+          fi
+
+          if [[ -f "$MD_FILE" ]]; then
+            echo "Converting $MD_FILE to PDF..."
+
+            # Convert MD to HTML
+            pandoc "$MD_FILE" -f markdown -t html -c resume-stylesheet.css -s -o "$HTML_TEMP"
+
+            # Convert HTML to PDF
+            wkhtmltopdf --enable-local-file-access "$HTML_TEMP" "$PDF_FILE"
+
+            # Cleanup temp file
+            rm -f "$HTML_TEMP"
+
+            echo "Generated PDF:"
+            ls -la "$PDF_FILE"
+          else
+            echo "WARNING: $MD_FILE not found, skipping PDF generation"
+          fi
+
+      - name: Generate Cover Letter (Main Branch Only)
+        if: steps.detect-branch.outputs.branch_type == 'main'
+        run: |
+          echo "=== Generating Cover Letter ==="
+          cd resume_builder
+
+          if [[ -f "cover-letter_generator.py" ]]; then
+            python3 cover-letter_generator.py || echo "Cover letter generation skipped"
+
+            if [[ -f "coverletter.md" ]]; then
+              pandoc coverletter.md -f markdown -t html -c resume-stylesheet.css -s -o coverletter-temp.html
+              wkhtmltopdf --enable-local-file-access coverletter-temp.html ../coverletter.pdf
+              rm -f coverletter-temp.html
+              echo "Generated cover letter PDF"
+            fi
+          else
+            echo "Cover letter generator not found, skipping"
+          fi
+
+      # -----------------------------------------------------------------------
+      # Build Summary
+      # -----------------------------------------------------------------------
+      - name: Build Summary
+        run: |
+          echo "=== Build Summary ==="
+          echo "Branch Type: ${{ steps.detect-branch.outputs.branch_type }}"
+          echo "Profile: ${{ steps.load-profile.outputs.profile }}"
+          echo "Deploy Path: ${{ steps.set-deploy-path.outputs.deploy_path }}"
+          echo ""
+          echo "Generated files:"
+          echo "--- HTML ---"
+          ls -la index.html resume-*.html 2>/dev/null || echo "No HTML files found"
+          echo ""
+          echo "--- PDF ---"
+          ls -la *.pdf 2>/dev/null || echo "No PDF files found"
+          echo ""
+          echo "--- JSON ---"
+          ls -la output/*.json 2>/dev/null || echo "No JSON files found"
+          echo ""
+          echo "--- Markdown ---"
+          ls -la resume_builder/*.md 2>/dev/null || echo "No MD files found"
+
+      # -----------------------------------------------------------------------
+      # Upload Build Artifacts
+      # -----------------------------------------------------------------------
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-build-${{ github.sha }}
+          path: |
+            index.html
+            resume-*.html
+            *.pdf
+            output/*.json
+            resume_builder/*.md
+            css/
+            js/
+            fonts/
+            img/
+          retention-days: 30
+
+  # ===========================================================================
+  # Deploy Job: Upload to S3
+  # ===========================================================================
+  deploy:
+    runs-on: ubuntu-22.04
+    needs: build
+    # Only deploy on push to main or resume/* branches (not PRs)
+    if: |
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true')
+
+    environment:
+      name: ${{ needs.build.outputs.branch_type == 'main' && 'production' || 'job-resume' }}
+      url: ${{ needs.build.outputs.branch_type == 'main' && 'https://colinmca.com/' || format('https://colinmca.com/r/{0}/', needs.build.outputs.token) }}
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-build-${{ github.sha }}
+          path: ./build
+
+      - name: Display deployment info
+        run: |
+          echo "=== Deployment Information ==="
+          echo "Branch Type: ${{ needs.build.outputs.branch_type }}"
+          echo "Profile: ${{ needs.build.outputs.profile }}"
+          echo "Deploy Path: ${{ needs.build.outputs.deploy_path }}"
+          echo ""
+          echo "Files to deploy:"
+          find ./build -type f | head -50
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Deploy to S3
+        run: |
+          echo "=== Deploying to S3 ==="
+
+          BUCKET="${{ secrets.S3_BUCKET }}"
+          DEPLOY_PATH="${{ needs.build.outputs.deploy_path }}"
+
+          if [[ -z "$BUCKET" ]]; then
+            echo "ERROR: S3_BUCKET secret not configured"
+            exit 1
+          fi
+
+          # Determine S3 destination
+          if [[ -z "$DEPLOY_PATH" ]]; then
+            S3_DEST="s3://$BUCKET/"
+            echo "Deploying to bucket root"
+          else
+            S3_DEST="s3://$BUCKET/$DEPLOY_PATH/"
+            echo "Deploying to $S3_DEST"
+          fi
+
+          # Sync files to S3
+          aws s3 sync ./build "$S3_DEST" \
+            --delete \
+            --exclude ".git/*" \
+            --exclude "*.md" \
+            --cache-control "max-age=3600" \
+            --content-type-map content-types.json 2>/dev/null || \
+          aws s3 sync ./build "$S3_DEST" \
+            --delete \
+            --exclude ".git/*" \
+            --exclude "*.md" \
+            --cache-control "max-age=3600"
+
+          echo ""
+          echo "=== Deployment Complete ==="
+          if [[ -z "$DEPLOY_PATH" ]]; then
+            echo "Resume deployed to: https://colinmca.com/"
+          else
+            echo "Resume deployed to: https://colinmca.com/$DEPLOY_PATH/"
+          fi
+
+      - name: Invalidate CloudFront cache
+        if: secrets.CLOUDFRONT_DISTRIBUTION_ID != ''
+        run: |
+          echo "=== Invalidating CloudFront Cache ==="
+          DEPLOY_PATH="${{ needs.build.outputs.deploy_path }}"
+
+          if [[ -z "$DEPLOY_PATH" ]]; then
+            # Invalidate root path
+            aws cloudfront create-invalidation \
+              --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+              --paths "/*"
+          else
+            # Invalidate specific path
+            aws cloudfront create-invalidation \
+              --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+              --paths "/$DEPLOY_PATH/*"
+          fi
+
+          echo "CloudFront cache invalidation initiated"
+        continue-on-error: true
+
+  # ===========================================================================
+  # Notify Job: Post deployment status (optional)
+  # ===========================================================================
+  notify:
+    runs-on: ubuntu-22.04
+    needs: [build, deploy]
+    if: always() && (github.event_name == 'push')
+
+    steps:
+      - name: Deployment status summary
+        run: |
+          echo "=== Deployment Status Summary ==="
+          echo "Build Status: ${{ needs.build.result }}"
+          echo "Deploy Status: ${{ needs.deploy.result }}"
+          echo ""
+          echo "Branch Type: ${{ needs.build.outputs.branch_type }}"
+          echo "Profile: ${{ needs.build.outputs.profile }}"
+          echo "Deploy Path: ${{ needs.build.outputs.deploy_path }}"
+
+          if [[ "${{ needs.deploy.result }}" == "success" ]]; then
+            if [[ -z "${{ needs.build.outputs.deploy_path }}" ]]; then
+              echo ""
+              echo "Resume is live at: https://colinmca.com/"
+            else
+              echo ""
+              echo "Resume is live at: https://colinmca.com/${{ needs.build.outputs.deploy_path }}/"
+            fi
+          fi
+
+      # Uncomment to enable Slack notifications
+      # - name: Send Slack notification
+      #   if: needs.deploy.result == 'success'
+      #   uses: 8398a7/action-slack@v3
+      #   with:
+      #     status: ${{ job.status }}
+      #     channel: '#deployments'
+      #     text: |
+      #       Resume deployed!
+      #       Branch: ${{ github.ref_name }}
+      #       Profile: ${{ needs.build.outputs.profile }}
+      #       URL: https://colinmca.com/${{ needs.build.outputs.deploy_path }}
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
