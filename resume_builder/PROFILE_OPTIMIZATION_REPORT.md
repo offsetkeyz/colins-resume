@@ -23,7 +23,8 @@ filters:
 ```
 - **Purpose:** Comprehensive resume with all experience
 - **Target Length:** ~2 pages
-- **Actual Length:** ~2.1 pages (1074 words)
+- **Actual Length:** ~2.1 pages (1074 words)  
+  _(Note: Slightly exceeds the ~2 page target, but considered acceptable for comprehensive content. Further optimization can be performed if strict adherence is required.)_
 
 ### Leadership Profile (`profiles/leadership.yaml`)
 ```yaml
