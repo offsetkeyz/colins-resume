@@ -187,16 +187,13 @@ def generate_education_and_certs(education=None, certifications=None, awards=Non
 		<div class="container">
 			<h1>CERTIFICATIONS &amp;<br>Education<br></h1>
 				<ul class="award-list list-flat"><li>Certifications</li>'''
-		cert_items = []
 		for certification in certifications:
-			display_name = certification.get('acronym') or certification.get('title')
+			display_name = certification.get('title')  # show full name on website
 			if certification.get('url', None):
 				title = f'''<a href="{certification.get('url')}" target="_blank">{display_name}</a>'''
 			else:
 				title = f"{display_name}"
-			cert_items.append(title)
-		if cert_items:
-			markup += f"<li>{', '.join(cert_items)}</li>"
+			markup += f"<li>{title}</li>"
 		markup += '''</ul>'''
 	elif education:
 		markup = '''<!-- Education --><div class="education section second" id="education">
