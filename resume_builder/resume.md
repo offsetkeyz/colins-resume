@@ -7,8 +7,6 @@ title: Colin McAllister
 description-meta: 'Resume of Colin McAllister - Team Lead'
 keywords:
 
-author:
-- Colin McAllister
 subject: 'Resume'
 ---
 Cybersecurity leader with expertise in Python automation, detection engineering, and security operations. Combines technical depth with team leadership to drive operational excellence and build high-performing security teams.
@@ -16,27 +14,24 @@ Cybersecurity leader with expertise in Python automation, detection engineering,
 <div class="no-break"> 
 ## Certifications
 
-- **[SANS Security Awareness Professional (SSAP)](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)** | Aug 2024, - **[GIAC Defensible Security Architecture (GDSA)](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)** | Jul 2024, - **[GIAC Strategic Planning, Policy, and Leadership (GSTRT)](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)** | Mar 2024, - **[GIAC Certified Incident Handler (GCIH)](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)** | Dec 2023, - **[AWS Certified Cloud Practitioner (CCP)](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)** | Nov 2023, - **[GIAC Network Forensic Analyst (GNFA)](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)** | Mar 2022, - **[GIAC Security Essentials (GSEC)](https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url)** | Oct 2023
+**[SSAP](https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url)**, **[GDSA](https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url)**, **[GSTRT](https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url)**, **[GCIH](https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url)**, **[CCP](https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url)**, **[GNFA](https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url)**, **[GSEC](https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url)**
   </div>  
 
 ## Education  
 
   <div class="no-break">  
 ### Master's in Cyber Security @ SANS Technical Institute
-2023 - Present  
-- GPA: *4.0*  
+2023 - Present | GPA: *4.0*  
 
   </div>  
   <div class="no-break">  
 ### Master's in Computer Science @ Auburn University
-2019 - 2022  
-- GPA: *3.9*  
+2019 - 2022 | GPA: *3.9*  
 
   </div>  
   <div class="no-break">  
 ### Bachelor's in Music Education @ University of Nevada Reno
-2007 - 2012  
-- GPA: *3.3*  
+2007 - 2012 | GPA: *3.3*  
 
   </div>  
 

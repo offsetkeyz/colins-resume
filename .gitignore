@@ -5,6 +5,8 @@ config.codekit3
 __pycache__/
 *.pyc
 *.pyo
+.venv/
+.venv
 .coverage
 htmlcov/
 
@@ -31,6 +33,8 @@ resume_builder/resume-*.md
 resume_builder/coverletter.md
 resume_builder/colins_resume.md
 resume_builder/*.json
+resume_builder/*.html
+resume_builder/__pycache__/
 !resume_builder/coverletter.json
 !resume_builder/coverletter_schema.json
 resume_builder/migration_report.md
@@ -44,3 +48,4 @@ resume_builder/validation_report.md
 # These are downloaded by GitHub Actions workflow, not needed in repo
 *.deb
 *.deb.*
+resume_builder/__pycache__/shared_functions.cpython-312.pyc

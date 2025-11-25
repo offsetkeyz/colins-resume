@@ -140,6 +140,7 @@ class TestHTMLGeneration(unittest.TestCase):
 
         self.assertIsNotNone(section)
         self.assertIn('Education', section)
+        self.assertIn('SSAP', section)
 
     def test_generate_skills(self):
         """Test skills section generation."""
