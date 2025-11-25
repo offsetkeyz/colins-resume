@@ -142,6 +142,7 @@ class TestHTMLGeneration(unittest.TestCase):
         self.assertIn('Education', section)
         # Full certification titles should appear in the website output
         self.assertIn('SANS Security Awareness Professional', section)
+        self.assertIn('&#8226;', section)
 
     def test_generate_skills(self):
         """Test skills section generation."""

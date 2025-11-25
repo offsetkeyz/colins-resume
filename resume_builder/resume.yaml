@@ -378,6 +378,18 @@ awards:
 # CERTIFICATIONS
 # ============================================================================
 certifications:
+- title: GIAC Certified Intrusion Analyst (GCIA)
+  acronym: GCIA
+  date: '2024-10-30'
+  url: https://www.credly.com/badges/70c6b6c4-dff1-4f01-bd5e-018afccef98b
+  issuer: SANS
+  include_in: [all]
+- title: GIAC Security Leadership (GSLC)
+  acronym: GSLC
+  date: '2025-05-24'
+  url: https://www.credly.com/badges/96e9c666-9ab8-400a-a59e-c2f810b234e1
+  issuer: SANS
+  include_in: [all]
 - title: SANS Security Awareness Professional (SSAP)
   acronym: SSAP
   date: '2024-08-29'

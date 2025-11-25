@@ -193,7 +193,7 @@ def generate_education_and_certs(education=None, certifications=None, awards=Non
 				title = f'''<a href="{certification.get('url')}" target="_blank">{display_name}</a>'''
 			else:
 				title = f"{display_name}"
-			markup += f"<li>{title}</li>"
+			markup += f"<li>&#8226; {title}</li>"
 		markup += '''</ul>'''
 	elif education:
 		markup = '''<!-- Education --><div class="education section second" id="education">
