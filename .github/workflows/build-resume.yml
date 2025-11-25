@@ -432,7 +432,7 @@ jobs:
           fi
 
       - name: Invalidate CloudFront cache
-        if: secrets.CLOUDFRONT_DISTRIBUTION_ID
+        if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
         run: |
           echo "=== Invalidating CloudFront Cache ==="
           DEPLOY_PATH="${{ needs.build.outputs.deploy_path }}"
