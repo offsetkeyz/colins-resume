@@ -39,3 +39,8 @@ resume_builder/validation_report.md
 
 # Keep index.html - it's the source template, not generated
 !index.html
+
+# Build dependencies (.deb packages)
+# These are downloaded by GitHub Actions workflow, not needed in repo
+*.deb
+*.deb.*
