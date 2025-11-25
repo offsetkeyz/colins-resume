@@ -10,3 +10,32 @@ htmlcov/
 
 # Token files (keep private)
 resume_token.txt
+
+# Generated resume files (built by GitHub Actions)
+# Root directory
+resume.pdf
+coverletter.pdf
+resume-*.html
+resume-*.pdf
+
+# Output directory
+output/*.pdf
+output/*.html
+output/*.json
+output/*.md
+output/resume-stylesheet.css
+
+# Resume builder generated files
+resume_builder/resume.md
+resume_builder/resume-*.md
+resume_builder/coverletter.md
+resume_builder/colins_resume.md
+resume_builder/*.json
+!resume_builder/coverletter.json
+!resume_builder/coverletter_schema.json
+resume_builder/migration_report.md
+resume_builder/side_by_side_comparison.md
+resume_builder/validation_report.md
+
+# Keep index.html - it's the source template, not generated
+!index.html
