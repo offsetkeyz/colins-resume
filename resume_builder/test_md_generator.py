@@ -123,6 +123,8 @@ class TestMarkdownGeneration(unittest.TestCase):
         if self.resume_data.get('certifications'):
             self.assertIsNotNone(certs)
             self.assertIn('## Certifications', certs)
+            # Ensure acronyms are used when present
+            self.assertIn('SSAP', certs)
 
     def test_generate_education(self):
         """Test education section generation."""
@@ -172,7 +174,7 @@ class TestMarkdownGeneration(unittest.TestCase):
         # Check YAML frontmatter
         self.assertIn('---', markdown)
         self.assertIn('title:', markdown)
-        self.assertIn('author:', markdown)
+        self.assertNotIn('author:', markdown)
         # Check content sections
         self.assertIn('## Experience', markdown)
 
@@ -341,7 +343,7 @@ class TestMarkdownPipelineReadiness(unittest.TestCase):
         # Verify required frontmatter fields
         frontmatter = '\n'.join(lines[1:frontmatter_end])
         self.assertIn('title:', frontmatter)
-        self.assertIn('author:', frontmatter)
+        self.assertNotIn('author:', frontmatter)
 
     def test_markdown_has_proper_heading_structure(self):
         """Test that Markdown has proper heading hierarchy."""

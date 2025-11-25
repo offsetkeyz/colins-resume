@@ -1,115 +1,103 @@
-/*
- * Ultra-Minimal PDF Resume Stylesheet
- * Clean, professional, text-focused design
- */
+/* Terminal-inspired PDF stylesheet: keep everything looking like a plain text file */
 
-/* Page Setup */
 @page {
   size: letter;
-  margin: 0.75in;
+  margin: 0.1in;
 }
 
-/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Courier New", "Lucida Console", monospace;
   font-size: 11pt;
-  line-height: 1.5;
-  color: #000;
+  line-height: 1.4;
+  color: #111;
   background: #fff;
+  max-width: 110ch;
+  margin: 0.1in auto;
+  letter-spacing: 0.01em;
 }
 
-/* Headings */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  page-break-after: avoid;
+  text-transform: uppercase;
+}
+
 h1 {
-  font-size: 20pt;
-  font-weight: bold;
-  margin-bottom: 8pt;
-  page-break-after: avoid;
-}
-
-h2 {
   font-size: 14pt;
-  font-weight: bold;
-  margin-top: 16pt;
   margin-bottom: 6pt;
-  page-break-after: avoid;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #111;
   padding-bottom: 2pt;
 }
 
-h3 {
-  font-size: 12pt;
-  font-weight: bold;
-  margin-top: 10pt;
+h2 {
+  font-size: 11.5pt;
+  margin-top: 14pt;
   margin-bottom: 4pt;
-  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 10.5pt;
+  margin-top: 9pt;
+  margin-bottom: 3pt;
 }
 
 h4 {
-  font-size: 11pt;
-  font-weight: bold;
+  font-size: 10pt;
   margin-top: 6pt;
-  margin-bottom: 3pt;
+  margin-bottom: 2pt;
 }
 
-/* Paragraphs */
 p {
-  margin-bottom: 8pt;
+  margin-bottom: 6pt;
   text-align: left;
 }
 
-/* Links */
 a {
-  color: #000;
-  text-decoration: none;
+  color: inherit;
+  text-decoration: underline;
 }
 
-/* Lists */
-ul {
-  margin-left: 20pt;
-  margin-bottom: 8pt;
-}
-
-ol {
-  margin-left: 20pt;
-  margin-bottom: 8pt;
+ul, ol {
+  margin-left: 1.2em;
+  margin-bottom: 6pt;
 }
 
 li {
-  margin-bottom: 3pt;
+  margin-bottom: 2pt;
   page-break-inside: avoid;
+  list-style: none;
 }
 
-/* Strong/Bold */
+li::before {
+  content: "- ";
+  margin-left: -1.2em;
+}
+
 strong, b {
-  font-weight: bold;
+  font-weight: 700;
 }
 
-/* Emphasis/Italic */
 em, i {
   font-style: italic;
 }
 
-/* Code (if any) */
 code {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Courier New", "Lucida Console", monospace;
   font-size: 10pt;
 }
 
-/* Horizontal Rules */
 hr {
   border: none;
-  border-top: 1px solid #000;
+  border-top: 1px solid #222;
   margin: 12pt 0;
 }
 
-/* Tables (if used) */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -118,15 +106,14 @@ table {
 
 th, td {
   text-align: left;
-  padding: 4pt;
-  border-bottom: 1px solid #ddd;
+  padding: 3pt 2pt;
+  border-bottom: 1px dotted #666;
 }
 
 th {
-  font-weight: bold;
+  font-weight: 700;
 }
 
-/* Page Breaks */
 .page-break {
   page-break-before: always;
 }
@@ -135,26 +122,13 @@ th {
   page-break-inside: avoid;
 }
 
-/* Contact Information */
 .contact-info {
-  margin-bottom: 12pt;
+  margin-bottom: 10pt;
 }
 
-/* Print Optimizations */
 @media print {
   body {
     font-size: 10pt;
-  }
-
-  h1 {
-    font-size: 18pt;
-  }
-
-  h2 {
-    font-size: 13pt;
-  }
-
-  a {
-    text-decoration: none;
+    margin: 0.6in auto;
   }
 }

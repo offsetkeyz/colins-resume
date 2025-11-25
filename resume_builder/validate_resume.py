@@ -335,6 +335,10 @@ class ResumeValidator:
                 if field not in cert:
                     self.result.add_error(path, f"Missing required field: {field}")
 
+            if "acronym" in cert and cert["acronym"] is not None:
+                if not isinstance(cert["acronym"], str):
+                    self.result.add_error(f"{path}.acronym", "Acronym must be a string")
+
             if "date" in cert:
                 self._validate_date(cert["date"], f"{path}.date")
 

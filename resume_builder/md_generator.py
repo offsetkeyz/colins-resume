@@ -203,22 +203,21 @@ def generate_certifications(certifications):
 
     markdown = '''<div class="no-break"> \n'''
     markdown += "## Certifications\n\n"
-    for i, certification in enumerate(certifications):
-        url = certification.get('url', None)
-        acronym = certification.get('acronym', None)
-        title = certification.get('title', None)
-        name = certification.get('name', title)  # Fall back to title if name not present
-        date = certification.get('date', '')
-
+    cert_strings = []
+    for certification in certifications:
+        url = certification.get('url')
+        acronym = certification.get('acronym')
+        title = certification.get('title')
+        name = certification.get('name', title)
         display_name = acronym if acronym else name
 
         if display_name and url:
-            markdown += f"- **[{display_name}]({url})** | {s.get_month_and_year(date)}"
+            cert_strings.append(f"**[{display_name}]({url})**")
         elif display_name:
-            markdown += f"- **{display_name}** | {s.get_month_and_year(date)}"
+            cert_strings.append(f"**{display_name}**")
 
-        if i < len(certifications) - 1:
-            markdown += ", "
+    if cert_strings:
+        markdown += ", ".join(cert_strings)
     markdown += "\n  </div>  \n"
     return markdown
 
@@ -248,11 +247,12 @@ def generate_education(education):
         institution = edu.get('institution', '')
 
         markdown += f"### {study_type} in {area} @ {institution}\n"
-        markdown += f"{start_year} - {end_year}  \n"
+        timeline = f"{start_year} - {end_year}" if end_year else f"{start_year}"
+        if gpa:
+            timeline += f" | GPA: *{gpa}*"
+        markdown += f"{timeline}  \n"
         if honors:
             markdown += f"- Honors: *{honors}*  \n"
-        if gpa:
-            markdown += f"- GPA: *{gpa}*  \n"
         markdown += "\n  </div>  \n"
     return markdown
 
@@ -390,8 +390,6 @@ title: {name}
 description-meta: 'Resume of {name} - {label}'
 keywords:
 {generate_keywords(skill_keywords)}
-author:
-- {name}
 subject: 'Resume'
 ---
 '''
