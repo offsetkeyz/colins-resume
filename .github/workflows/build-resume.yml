@@ -25,7 +25,7 @@ on:
   push:
     branches:
       - main
-      - 'resume/**'
+      - 'resume/*'
   pull_request:
     branches:
       - main
@@ -77,7 +77,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
 
       - name: Install Python dependencies
         run: |
@@ -212,7 +211,7 @@ jobs:
           key: build-tools-pandoc-3.8.2.1-wkhtmltopdf-0.12.6.1
 
       - name: Download build tools
-        if: steps.cache-build-tools.outputs.cache-hit != 'true'
+        if: ${{ steps.cache-build-tools.outputs.cache-hit != 'true' }}
         run: |
           echo "=== Downloading Build Tools ==="
           mkdir -p ~/.build-tools
@@ -297,7 +296,7 @@ jobs:
           fi
 
       - name: Generate Cover Letter (Main Branch Only)
-        if: steps.detect-branch.outputs.branch_type == 'main'
+        if: ${{ steps.detect-branch.outputs.branch_type == 'main' }}
         run: |
           echo "=== Generating Cover Letter ==="
           cd resume_builder
@@ -417,7 +416,7 @@ jobs:
           fi
 
           # Build sync command with optional content-type-map
-          SYNC_ARGS="--delete --exclude .git/* --exclude *.md --cache-control max-age=3600"
+          SYNC_ARGS="--delete --exclude '.git/*' --exclude '*.md' --cache-control max-age=3600"
           # Note: AWS CLI does not support --content-type-map. If you need to set content types, use aws s3 cp for individual files after sync.
 
           # Sync files to S3
