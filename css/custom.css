@@ -1,165 +1,134 @@
 /*
- *  Draco HTML Template by @flamekaizar
- *  License: Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+ * Ultra-Minimal Resume Style
+ * Clean, simple, readable - like a well-formatted text document
  */
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display SC", serif;
-  color: #333333; }
 
-a, p, li {
-  font-family: "Lato", Arial, sans-serif;
-  color: #4e4e4e;
-  font-size: 1em;
-  line-height: 1.75em; }
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000;
+  background: #fff;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Typography */
+h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+/* Links */
+a {
+  color: #000;
+  text-decoration: underline;
+}
 
 a:hover {
-  text-decoration: none !important;
-  color: #333333 !important;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out; }
+  text-decoration: none;
+}
 
-.container {
-  margin: auto;
-  max-width: 662px;
-  padding: 0 20px; }
+/* Lists */
+ul {
+  margin-left: 20px;
+  margin-bottom: 1em;
+}
 
-@media only screen and (max-width: 767px) {
-  .intro img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto; }
+li {
+  margin-bottom: 0.3em;
+}
 
-  footer {
-    text-align: center; } }
-.typed-cursor {
-  opacity: 1;
-  font-weight: 100;
-  -webkit-animation: blink 0.7s infinite;
-  -moz-animation: blink 0.7s infinite;
-  -ms-animation: blink 0.7s infinite;
-  -o-animation: blink 0.7s infinite;
-  animation: blink 0.7s infinite; }
-
-@-webkit-keyframes blink {
-  0% {
-    opacity: 1; }
-  50% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-@-moz-keyframes blink {
-  0% {
-    opacity: 1; }
-  50% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-@-ms-keyframes blink {
-  0% {
-    opacity: 1; }
-  50% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-@-o-keyframes blink {
-  0% {
-    opacity: 1; }
-  50% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
+/* Navigation */
 .main-nav {
-  background: #f4f4f4;
-  padding-top: 23px; }
-  .main-nav nav ul li a {
-    color: #a7a7a7; }
-  .main-nav nav ul li.active a {
-    color: #4d4d4d; }
+  border-bottom: 1px solid #000;
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+}
 
-.section.second {
-  margin-bottom: 90px; }
-.section .container {
-  position: relative; }
-  .section .container:after {
-    position: absolute;
-    content: url(../img/separator.png);
-    left: 20px; }
-  .section .container h1 {
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    position: relative; }
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-.intro {
-  padding: 95px 0px 70px 0px;
-  overflow-x: hidden; }
-  .intro img {
-    width: 81px;
-    height: 81px;
-    border-radius: 99px; }
-  .intro .wrap {
-    margin: 30px 0px; }
-  .intro h1:before {
-    position: absolute;
-    left: -220px;
-    top: -150px;
-    font-size: 270px;
-    z-index: -1;
-    color: #f4f4f4; }
-  .intro h1 span {
-    font-size: 47px; }
+.main-nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
 
-.work .work-list {
-  margin-left: 0px; }
-  .work .work-list li {
-    list-style: none;
-    font-size: 0.9375em;
-    color: #8c8c8c; }
-    .work .work-list li a {
-      padding-bottom: 5px;
-      font-size: 1.1875em;
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 1px solid #b3b3b3; }
-      .work .work-list li a:hover {
-        border-bottom: 1px solid #333333; }
+/* Sections */
+.section {
+  margin-bottom: 2em;
+}
 
-.award .award-list {
-  margin-left: 0px; }
-  .award .award-list li:first-child {
-    font-size: 0.9375em;
-    color: #8c8c8c; }
+/* Hide images and fancy elements */
+img {
+  display: none;
+}
 
-.projects .project-list {
-  margin-left: 0px; }
-  .projects .project-list li:first-child {
-    font-size: 0.9375em;
-    color: #8c8c8c; }
+/* Container */
+.container {
+  max-width: 100%;
+}
 
-.skills .skill-list {
-  margin-left: 0px; }
-  .skills .skill-list li:first-child {
-    font-size: 0.9375em;
-    color: #8c8c8c; }
+/* Simple, clean spacing */
+.work-list,
+.skill-list,
+.award-list {
+  list-style: none;
+  margin-left: 0;
+}
 
-.quote {
-  background: url(../img/bg.jpg);
-  padding: 20px 0px;
-  margin-top: 120px; }
-  .quote h1 {
-    margin: 100px 0px;
-    padding: 40px 20px;
-    border: 5px solid #fff;
-    color: #fff; }
+.work-list li,
+.skill-list li,
+.award-list li {
+  margin-bottom: 0.5em;
+}
 
+/* Footer */
 footer {
-  padding: 50px 0px 0px 0px; }
-  footer .social li {
-    display: inline;
-    margin-left: 20px; }
-    footer .social li a {
-      font-size: 1.25em;
-      color: #999999; }
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid #000;
+  text-align: center;
+}
 
+/* Print styles */
+@media print {
+  body {
+    padding: 0;
+  }
+
+  .main-nav,
+  footer {
+    display: none;
+  }
+}
