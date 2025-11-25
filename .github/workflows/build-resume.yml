@@ -211,7 +211,7 @@ jobs:
           key: build-tools-pandoc-3.8.2.1-wkhtmltopdf-0.12.6.1
 
       - name: Download build tools
-        if: ${{ steps.cache-build-tools.outputs.cache-hit != 'true' }}
+        if: steps.cache-build-tools.outputs.cache-hit != 'true'
         run: |
           echo "=== Downloading Build Tools ==="
           mkdir -p ~/.build-tools
@@ -296,7 +296,7 @@ jobs:
           fi
 
       - name: Generate Cover Letter (Main Branch Only)
-        if: ${{ steps.detect-branch.outputs.branch_type == 'main' }}
+        if: steps.detect-branch.outputs.branch_type == 'main'
         run: |
           echo "=== Generating Cover Letter ==="
           cd resume_builder
@@ -371,6 +371,12 @@ jobs:
       name: ${{ needs.build.outputs.branch_type == 'main' && 'production' || 'job-resume' }}
       url: ${{ needs.build.outputs.branch_type == 'main' && 'https://colinmca.com/' || format('https://colinmca.com/r/{0}/', needs.build.outputs.token) }}
 
+    env:
+      AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+      AWS_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
+      S3_BUCKET: ${{ secrets.S3_BUCKET }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+
     steps:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -391,18 +397,18 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to S3
         run: |
           echo "=== Deploying to S3 ==="
 
-          BUCKET="${{ secrets.S3_BUCKET }}"
+          BUCKET="$S3_BUCKET"
           DEPLOY_PATH="${{ needs.build.outputs.deploy_path }}"
 
           if [[ -z "$BUCKET" ]]; then
-            echo "ERROR: S3_BUCKET secret not configured"
+            echo "ERROR: S3_BUCKET environment variable not configured"
             exit 1
           fi
 
@@ -431,7 +437,7 @@ jobs:
           fi
 
       - name: Invalidate CloudFront cache
-        if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        if: env.CLOUDFRONT_DISTRIBUTION_ID != ''
         run: |
           echo "=== Invalidating CloudFront Cache ==="
           DEPLOY_PATH="${{ needs.build.outputs.deploy_path }}"
@@ -439,12 +445,12 @@ jobs:
           if [[ -z "$DEPLOY_PATH" ]]; then
             # Invalidate root path
             aws cloudfront create-invalidation \
-              --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+              --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
               --paths "/*"
           else
             # Invalidate specific path
             aws cloudfront create-invalidation \
-              --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+              --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
               --paths "/$DEPLOY_PATH/*"
           fi
 
@@ -458,6 +464,10 @@ jobs:
     runs-on: ubuntu-22.04
     needs: [build, deploy]
     if: always() && (github.event_name == 'push')
+
+    # Uncomment to enable Slack webhook secret
+    # env:
+    #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
     steps:
       - name: Deployment status summary
@@ -480,10 +490,12 @@ jobs:
             fi
           fi
 
-      # Uncomment to enable Slack notifications
+      # Uncomment to enable Slack notifications (requires SLACK_WEBHOOK_URL in job env above)
       # - name: Send Slack notification
       #   if: needs.deploy.result == 'success'
       #   uses: 8398a7/action-slack@v3
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ env.SLACK_WEBHOOK_URL }}
       #   with:
       #     status: ${{ job.status }}
       #     channel: '#deployments'
@@ -492,5 +504,3 @@ jobs:
       #       Branch: ${{ github.ref_name }}
       #       Profile: ${{ needs.build.outputs.profile }}
       #       URL: https://colinmca.com/${{ needs.build.outputs.deploy_path }}
-      #   env:
-      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
