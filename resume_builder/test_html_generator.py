@@ -124,11 +124,12 @@ class TestHTMLGeneration(unittest.TestCase):
 
     def test_generate_work_experience(self):
         """Test work experience section generation."""
-        work = hg.generate_work_experience(self.resume_data['work_experience'])
+        work = hg.generate_work_experience(self.resume_data['work_experience'], self.profile_info)
 
         self.assertIn('Work', work)
         self.assertIn('Experiences', work)
         self.assertIn('Arctic Wolf', work)
+        self.assertIn('arctic-wolf-networks.html', work)
 
     def test_generate_education_and_certs(self):
         """Test education and certifications section generation."""
@@ -167,6 +168,16 @@ class TestHTMLGeneration(unittest.TestCase):
 
         self.assertIn('footer', footer)
         self.assertIn('Colin McAllister', footer)
+
+    def test_generate_company_pages(self):
+        """Test that company pages are generated for work experience."""
+        pages = hg.generate_company_pages(self.resume_data, self.profile_info, home_href='index.html')
+
+        self.assertIsInstance(pages, dict)
+        self.assertGreater(len(pages), 0)
+        sample_html = next(iter(pages.values()))
+        self.assertIn('Company Spotlight', sample_html)
+        self.assertIn('Roles &amp; Impact', sample_html)
 
     def test_generate_javascript(self):
         """Test JavaScript section generation."""

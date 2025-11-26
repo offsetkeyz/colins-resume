@@ -5,6 +5,8 @@ from datetime import datetime
 from pathlib import Path
 
 import yaml
+import json
+import re
 
 import shared_functions as s
 import profile_manager as pm
@@ -27,6 +29,37 @@ def read_yaml_file(file_path):
         return None
     except yaml.YAMLError as e:
         print(f"Error decoding YAML. Please ensure the file is a valid YAML format: {e}")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+
+# =============================================================================
+# Deprecated JSON Loading Function (kept for backward compatibility)
+# =============================================================================
+def read_json_file(file_path):
+    """Read and parse a JSON file.
+
+    Deprecated in favor of YAML, but retained for compatibility with tests and
+    tooling that may still call it.
+
+    Args:
+        file_path: Path to the JSON file.
+
+    Returns:
+        Dictionary containing the JSON data, or None if an error occurs.
+    """
+    try:
+        import json
+
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"The file at {file_path} was not found.")
+        return None
+    except json.JSONDecodeError:
+        print("Error decoding JSON. Please ensure the file is a valid JSON format.")
         return None
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -97,13 +130,14 @@ def load_resume_data(data_path=None, profile_name='default'):
     except pm.InvalidProfileError as e:
         print(f"Invalid profile: {e}")
         return None, None
-def generate_header(basics):
+def generate_header(basics, title_suffix='', extra_styles=''):
     f_name = basics['name'].split(' ')[0]
+    suffix = title_suffix if title_suffix else ''
     return f'''<head>
-    <title>{f_name}\'s Resume</title>
+    <title>{f_name}\'s Resume{suffix}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{basics.get('name')}\'s Digital Resume">
+    <meta name="description" content="{basics.get('name')}\'s Digital Resume{suffix}">
     <meta name="author" content="{basics.get('name')}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/kube.min.css" />
@@ -117,6 +151,7 @@ def generate_header(basics):
 			content: "{f_name}";
 		}}
 	</style>
+    {extra_styles}
 </head>'''
 
 def generate_navigation(json_data):
@@ -166,18 +201,194 @@ def generate_introduction(basics):
 	</div>'''
 	return markup
 
-def generate_work_experience(work_experience):
-	markup = '''<!-- Work Experience / Volunteer --><div class="work section second" id="experiences">
+def slugify_company(name):
+    """Create a filesystem-friendly slug for a company name."""
+    if not name:
+        return 'company'
+    slug = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+    return slug or 'company'
+
+
+def get_company_filename(company_slug, profile_info=None):
+    """Build the filename for a company detail page."""
+    if profile_info:
+        profile_slug = profile_info.get('slug')
+        if profile_slug and profile_slug != 'default':
+            return f"{company_slug}-{profile_slug}.html"
+    return f"{company_slug}.html"
+
+
+def render_profile_links(profiles):
+    """Render social/profile icon links."""
+    if not profiles:
+        return ''
+    links = []
+    for profile in profiles:
+        icon = profile.get('icon')
+        if not icon:
+            network = profile.get('network', '').lower()
+            icon = f'fa fa-{network}-square' if network else 'fa fa-link'
+        links.append(f'''<li><a href="{profile.get('url')}" target="_blank"><i class="{icon}"></i></a></li>''')
+    return ''.join(links)
+
+
+def generate_work_experience(work_experience, profile_info=None):
+    if not work_experience:
+        return ''
+    markup = '''<!-- Work Experience / Volunteer --><div class="work section second" id="experiences">
  	<div class="container">
 		<h1>Work<br>Experiences</h1>'''
-	for company, experiences in work_experience.items():
-		markup += f'''<ul class="work-list">
-			<li><a href="#">{company}</a></li>'''
-		for experience in experiences:
-			markup += f"<li>{experience.get('job_title')}</li>"
-		markup += "</ul>"
-	markup += "</div></div>"  
-	return markup
+    for company, experiences in work_experience.items():
+        company_slug = slugify_company(company)
+        company_href = get_company_filename(company_slug, profile_info)
+        markup += f'''<ul class="work-list">
+			<li><a href="{company_href}">{company}</a></li>'''
+        for experience in experiences:
+            markup += f'<li><a href="{company_href}">{experience.get("job_title")}</a></li>'
+        markup += "</ul>"
+    markup += "</div></div>"  
+    return markup
+
+
+def format_role_meta(position):
+    """Format the date range and location string for a position."""
+    start = position.get('start_date') or position.get('startDate')
+    end = position.get('end_date') or position.get('endDate')
+    start_fmt = s.get_month_and_year(start) if start else ''
+    end_fmt = s.get_month_and_year(end) if end else ''
+
+    date_part = f"{start_fmt} - {end_fmt}" if start_fmt or end_fmt else ''
+    location = position.get('location', '')
+
+    if date_part and location:
+        return f"{date_part} | {location}"
+    return date_part or location
+
+
+def generate_company_detail_page(company, positions, resume_data, profile_info=None, home_href='index.html'):
+    """Generate a standalone company detail page."""
+    basics = resume_data.get('basics', {})
+    detail_title = f" - {company}"
+    home_link = home_href
+    detail_styles = '''
+    <style>
+        .experience-card {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            background: #fff;
+        }
+        .experience-card h2 {
+            margin-bottom: 6px;
+        }
+        .experience-meta {
+            color: #8c8c8c;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-weight: 700;
+        }
+    </style>
+    '''
+
+    experience_cards = ''
+    for position in positions:
+        meta = format_role_meta(position)
+        responsibilities = position.get('responsibilities', []) or []
+        responsibility_items = ''.join(f"<li>{resp}</li>" for resp in responsibilities)
+        experience_cards += f'''
+            <div class="experience-card">
+                <h2>{position.get('job_title')}</h2>
+                <div class="experience-meta">{meta}</div>
+                <ul>
+                    {responsibility_items}
+                </ul>
+            </div>'''
+
+    return f'''<!DOCTYPE html>
+<html>
+{generate_header(basics, title_suffix=detail_title, extra_styles=detail_styles)}
+<body>
+	<div class="main-nav">
+		<div class="container">
+			<header class="group top-nav">
+				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+				    <span class="logo">{basics.get('name','').split(' ')[0].upper()}</span>
+				</div>
+			    <nav id="navbar-1" class="navbar item-nav">
+				    <ul>
+				        <li><a href="{home_link}#about">Home</a></li>
+                        <li class="active"><a href="#">{company}</a></li>
+                        <li><a href="{home_link}#experiences">All Experiences</a></li>
+				        <li><a href="/resume.pdf" target="_blank">Download Resume</a></li>
+				    </ul>
+				</nav>
+			</header>
+		</div>
+	</div>
+
+	<div class="intro section" id="about">
+		<div class="container">
+			<p>Company Spotlight</p>
+			<div class="units-row units-split wrap">
+			  <div class="unit-100">
+					<h1>{company}</h1>
+				</div>
+			  <p>{basics.get('summary','')}</p>
+              <a class="back-link" href="{home_link}#experiences">&larr; Back to main resume</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="work section second" id="experiences">
+ 	    <div class="container">
+		    <h1>Roles &amp; Impact</h1>
+            {experience_cards}
+        </div>
+    </div>
+
+	<footer>
+		<div class="container">
+			<div class="units-row">
+			    <div class="unit-50">
+			    	<p>{basics.get('name')}</p>
+			    </div>
+			    <div class="unit-50">
+					<ul class="social list-flat right">''' + render_profile_links(basics.get('profiles', [])) + '''</ul>
+			    </div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="js/jquery.min.js"></script>
+    <script src="js/kube.min.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>'''
+
+
+def generate_company_pages(resume_data, profile_info=None, home_href='index.html'):
+    """Create HTML pages for each company in work_experience."""
+    work_experience = resume_data.get('work_experience') if resume_data else None
+    if not work_experience:
+        return {}
+
+    company_pages = {}
+    for company, positions in work_experience.items():
+        slug = slugify_company(company)
+        filename = get_company_filename(slug, profile_info)
+        company_pages[filename] = generate_company_detail_page(
+            company,
+            positions,
+            resume_data,
+            profile_info=profile_info,
+            home_href=home_href
+        )
+    return company_pages
 
 def generate_education_and_certs(education=None, certifications=None, awards=None):
 	if not certifications and not education and not awards:
@@ -273,19 +484,6 @@ def generate_quote(basics):
 	</div>'''
 
 def generate_footer(json_data):
-    def generate_profiles(profiles):
-        s = f'''<div class="unit-50">
-					<ul class="social list-flat right">'''
-        for profile in profiles:
-            # Use icon if provided, otherwise derive from network name
-            icon = profile.get('icon')
-            if not icon:
-                network = profile.get('network', '').lower()
-                icon = f'fa fa-{network}-square' if network else 'fa fa-link'
-            s += f'''<li><a href="{profile.get('url')}" target="_blank"><i class="{icon}"></i></a></li>'''
-        s += '''</ul>
-			    </div>'''
-        return s
     name = json_data.get('basics').get('name')
     return f'''<footer>
 		<div class="container">
@@ -293,7 +491,9 @@ def generate_footer(json_data):
 			    <div class="unit-50">
 			    	<p>{name}</p>
 			    </div>
-			    {generate_profiles(json_data.get('basics').get('profiles', None))}
+			    <div class="unit-50">
+					<ul class="social list-flat right">{render_profile_links(json_data.get('basics').get('profiles', None))}</ul>
+			    </div>
 			</div>
 		</div>
 	</footer>'''
@@ -330,11 +530,11 @@ def generate_html(resume_data, profile_info=None):
 
     markup = f'''<!DOCTYPE html>
 <html>
-{generate_header(resume_data.get('basics'))}
+{generate_header(resume_data.get('basics'), title_suffix=profile_info.get('title_suffix', '') if profile_info else '')}
 <body>
 	{generate_navigation(resume_data)}
 	{generate_introduction(resume_data.get('basics'))}
-	{generate_work_experience(resume_data.get('work_experience'))}
+	{generate_work_experience(resume_data.get('work_experience'), profile_info)}
 	{generate_education_and_certs(resume_data.get('education', None), resume_data.get('certifications', None), resume_data.get('awards', None))}
 	{generate_skills(resume_data.get('skills', None), resume_data.get('specialty_skills', None))}
  	{generate_projects(resume_data.get('projects', None))}
@@ -441,10 +641,27 @@ def generate_for_profile(profile_name, input_path=None, output_path=None, verbos
             f.write(html_content)
         if verbose:
             print(f"Successfully wrote HTML to: {final_output}")
-        return True
     except Exception as e:
         print(f"Error writing HTML file: {e}")
         return False
+
+    # Write per-company detail pages
+    home_href = final_output.name
+    company_pages = generate_company_pages(resume_data, profile_info, home_href=home_href)
+    output_root = final_output.parent
+
+    try:
+        for filename, page_html in company_pages.items():
+            page_path = output_root / filename
+            with open(page_path, 'w', encoding='utf-8') as f:
+                f.write(page_html)
+            if verbose:
+                print(f"  - Wrote company page: {page_path.name}")
+    except Exception as e:
+        print(f"Error writing company page: {e}")
+        return False
+
+    return True
 
 
 if __name__ == "__main__":
