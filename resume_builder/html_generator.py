@@ -265,8 +265,17 @@ def format_role_meta(position):
     return date_part or location
 
 
-def generate_company_detail_page(company, positions, resume_data, profile_info=None, home_href='index.html'):
-    """Generate a standalone company detail page."""
+def generate_company_detail_page(company, positions, resume_data, profile_info=None, home_href='index.html', company_summary=None):
+    """Generate a standalone company detail page.
+
+    Args:
+        company: Company name
+        positions: List of positions at this company
+        resume_data: Full resume data
+        profile_info: Optional profile information
+        home_href: Link back to main resume page
+        company_summary: Optional company-specific summary (overrides basics.summary)
+    """
     basics = resume_data.get('basics', {})
     detail_title = f" - {company}"
     home_link = home_href
@@ -294,6 +303,9 @@ def generate_company_detail_page(company, positions, resume_data, profile_info=N
         }
     </style>
     '''
+
+    # Use company-specific summary if provided, otherwise fall back to basics.summary
+    summary_text = company_summary if company_summary else basics.get('summary', '')
 
     experience_cards = ''
     for position in positions:
@@ -338,7 +350,7 @@ def generate_company_detail_page(company, positions, resume_data, profile_info=N
 			  <div class="unit-100">
 					<h1>{company}</h1>
 				</div>
-			  <p>{basics.get('summary','')}</p>
+			  <p>{summary_text}</p>
               <a class="back-link" href="{home_link}#experiences">&larr; Back to main resume</a>
 			</div>
 		</div>
@@ -372,13 +384,21 @@ def generate_company_detail_page(company, positions, resume_data, profile_info=N
 
 
 def generate_company_pages(resume_data, profile_info=None, home_href='index.html'):
-    """Create HTML pages for each company in work_experience."""
+    """Create HTML pages for each company in work_experience.
+
+    Extracts company_summary from the first position if available.
+    """
     work_experience = resume_data.get('work_experience') if resume_data else None
     if not work_experience:
         return {}
 
     company_pages = {}
     for company, positions in work_experience.items():
+        # Extract company summary from first position if it exists
+        company_summary = None
+        if positions and len(positions) > 0:
+            company_summary = positions[0].get('company_summary', None)
+
         slug = slugify_company(company)
         filename = get_company_filename(slug, profile_info)
         company_pages[filename] = generate_company_detail_page(
@@ -386,7 +406,8 @@ def generate_company_pages(resume_data, profile_info=None, home_href='index.html
             positions,
             resume_data,
             profile_info=profile_info,
-            home_href=home_href
+            home_href=home_href,
+            company_summary=company_summary
         )
     return company_pages
 
