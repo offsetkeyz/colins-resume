@@ -453,6 +453,7 @@ certifications:
 
     optional_fields:
       - acronym
+      - badge_url
       - issuer
       - include_in
 
@@ -466,6 +467,12 @@ certifications:
         type: string
         description: "Certification abbreviation"
         example: "GCIH"
+
+      badge_url:
+        type: string
+        format: uri
+        description: "Link to badge image (PNG/SVG)"
+        example: "https://example.com/badges/gcih.png"
 
       date:
         type: string

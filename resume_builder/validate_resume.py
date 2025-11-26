@@ -346,6 +346,10 @@ class ResumeValidator:
                 if not URL_REGEX.match(cert["url"]):
                     self.result.add_error(f"{path}.url", f"Invalid URL: {cert['url']}")
 
+            if "badge_url" in cert and cert["badge_url"]:
+                if not URL_REGEX.match(cert["badge_url"]):
+                    self.result.add_error(f"{path}.badge_url", f"Invalid badge URL: {cert['badge_url']}")
+
             if "include_in" in cert:
                 self._validate_include_in_tags(cert["include_in"], path)
 

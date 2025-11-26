@@ -325,7 +325,7 @@ education:
   include_in: [all]
 - institution: Auburn University
   area: Computer Science
-  studyType: Master's
+  studyType: Bachelor's
   startDate: '2019-12-01'
   endDate: '2022-01-01'
   score: '3.9'
@@ -348,6 +348,12 @@ education:
 # AWARDS
 # ============================================================================
 awards:
+- title: Security Champion of the Year
+  date: '2025-04-01'
+  awarder: Arctic Wolf Networks
+  summary: |-
+    Honored with the 'Security Champion of the Year' award at Arctic Wolf Networks in April 2025, recognizing outstanding contributions to enhancing the organization's security posture. This accolade reflects my dedication to promoting security best practices, leading impactful initiatives, and fostering a culture of cybersecurity awareness across teams. Being selected for this prestigious award highlights my commitment to excellence and leadership in the field of cybersecurity.
+  include_in: [all]
 - title: Hackathon Winner
   date: '2023-11-01'
   awarder: Arctic Wolf Networks
@@ -392,42 +398,49 @@ certifications:
   include_in: [all]
 - title: SANS Security Awareness Professional (SSAP)
   acronym: SSAP
+  badge_url:
   date: '2024-08-29'
   url: https://www.credly.com/badges/2b8e8fa7-8ef7-4309-907b-2ee9b4e82c23/public_url
   issuer: SANS
   include_in: [all]
 - title: GIAC Defensible Security Architecture (GDSA)
   acronym: GDSA
+  badge_url:
   date: '2024-07-07'
   url: https://www.credly.com/badges/56e8388e-2972-4248-a05d-19585cc8ce1f/public_url
   issuer: SANS
   include_in: [all]
 - title: GIAC Strategic Planning, Policy, and Leadership (GSTRT)
   acronym: GSTRT
+  badge_url:
   date: '2024-03-05'
   url: https://www.credly.com/badges/7703d7f6-1201-4594-a250-91d2486896f8/public_url
   issuer: SANS
   include_in: [leadership, management]
 - title: GIAC Certified Incident Handler (GCIH)
   acronym: GCIH
+  badge_url:
   date: '2023-12-22'
   url: https://www.credly.com/badges/ebd0d833-d3ed-40c3-9fb5-ecf360825825/public_url
   issuer: SANS
   include_in: [all]
 - title: AWS Certified Cloud Practitioner (CCP)
   acronym: CCP
+  badge_url:
   date: '2023-11-01'
   url: https://www.credly.com/badges/febe16fe-eece-4852-be1d-c57db1e1087b/public_url
   issuer: AWS
   include_in: [all]
 - title: GIAC Network Forensic Analyst (GNFA)
   acronym: GNFA
+  badge_url:
   date: '2022-03-01'
   url: https://www.credly.com/badges/d5ca28ac-7c6e-4baa-beb8-56d4ed5bd3c4/public_url
   issuer: SANS
   include_in: [technical, development]
 - title: GIAC Security Essentials (GSEC)
   acronym: GSEC
+  badge_url:
   date: '2023-10-01'
   url: https://www.credly.com/badges/d283e815-124b-4cb1-ba60-149a1a73bf05/public_url
   issuer: SANS
@@ -438,6 +451,23 @@ certifications:
 # ============================================================================
 specialty_skills:
 # Technical/Development focused skills
+- name: Leadership
+  keywords:
+  - Team Building
+  - Mentorship
+  - Performance Management
+  - Career Development
+  - Conflict Resolution
+  include_in: [leadership, management]
+- name: Soft Skills
+  keywords:
+  - Effective Communication
+  - Leadership
+  - Empathy
+  - Customer Success
+  - Stakeholder Management
+  - Cross-functional Collaboration
+  include_in: [all]
 - name: Development
   keywords:
   - Python
@@ -475,24 +505,6 @@ specialty_skills:
   - EC2
   - Proxmox
   include_in: [technical, development]
-# Leadership/Management focused skills
-- name: Leadership
-  keywords:
-  - Team Building
-  - Mentorship
-  - Performance Management
-  - Career Development
-  - Conflict Resolution
-  include_in: [leadership, management]
-- name: Soft Skills
-  keywords:
-  - Effective Communication
-  - Leadership
-  - Empathy
-  - Customer Success
-  - Stakeholder Management
-  - Cross-functional Collaboration
-  include_in: [all]
 - name: Process Improvement
   keywords:
   - Workflow Optimization
@@ -545,7 +557,7 @@ projects:
 - name: The Daily Decrypt
   description: |-
     A cybersecurity news podcast that simplifies complex cybersecurity concepts into short, digestible episodes with humor and education, hosted on AWS Lightsail and WordPress.
-  url: https://thedailydecrypt.com
+  url: https://www.youtube.com/@DailyDecrypt
   highlights:
   # Universal highlights
   - description: |-
