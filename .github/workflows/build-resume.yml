@@ -347,6 +347,7 @@ jobs:
           path: |
             index.html
             resume-*.html
+            company-*.html
             *.pdf
             output/*.json
             resume_builder/*.md

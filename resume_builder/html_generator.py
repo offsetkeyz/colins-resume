@@ -214,8 +214,8 @@ def get_company_filename(company_slug, profile_info=None):
     if profile_info:
         profile_slug = profile_info.get('slug')
         if profile_slug and profile_slug != 'default':
-            return f"{company_slug}-{profile_slug}.html"
-    return f"{company_slug}.html"
+            return f"company-{company_slug}-{profile_slug}.html"
+    return f"company-{company_slug}.html"
 
 
 def render_profile_links(profiles):
