@@ -1,4 +1,5 @@
 import { useResumeStore } from '../../store/resume-store';
+import BasicsEditor from './BasicsEditor';
 import WorkExperienceEditor from './WorkExperienceEditor';
 import EducationEditor from './EducationEditor';
 import SkillsEditor from './SkillsEditor';
@@ -22,16 +23,10 @@ export default function ContentEditor() {
   return (
     <main className="flex-1 overflow-auto">
       <div className="max-w-4xl mx-auto py-6 px-4 space-y-6">
-        {/* Basics (always shown, no checkboxes for individual fields yet) */}
+        {/* Basics */}
         {selections.sections.basics && (
-          <section id="section-basics" className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Basics</h2>
-            <div className="space-y-2 text-sm text-gray-600">
-              <p><strong>Name:</strong> {resumeData.basics.name}</p>
-              <p><strong>Title:</strong> {resumeData.basics.label}</p>
-              <p><strong>Email:</strong> {resumeData.basics.email}</p>
-              <p><strong>Summary:</strong> {resumeData.basics.summary.substring(0, 200)}...</p>
-            </div>
+          <section id="section-basics" className="bg-white rounded-lg shadow-sm border border-gray-200">
+            <BasicsEditor isReadOnly={isReadOnly} />
           </section>
         )}
 
@@ -62,6 +57,7 @@ export default function ContentEditor() {
               selections={selections.awards}
               onToggle={(index) => useResumeStore.getState().toggleAward(index)}
               isReadOnly={isReadOnly}
+              sectionType="awards"
             />
           </section>
         )}
@@ -78,6 +74,7 @@ export default function ContentEditor() {
               selections={selections.certifications}
               onToggle={(index) => useResumeStore.getState().toggleCertification(index)}
               isReadOnly={isReadOnly}
+              sectionType="certifications"
             />
           </section>
         )}
