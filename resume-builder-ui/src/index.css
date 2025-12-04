@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* Custom styles */
+body {
+  @apply bg-gray-50 text-gray-900;
+}
+
+/* Checkbox styling */
+.checkbox-indeterminate {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* Smooth transitions for collapsible sections */
+.section-content {
+  transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+}
+
+/* Preview iframe */
+.preview-frame {
+  @apply border-0 w-full h-full bg-white;
+}
