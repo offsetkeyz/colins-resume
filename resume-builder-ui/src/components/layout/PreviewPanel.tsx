@@ -3,8 +3,10 @@ import { X, ExternalLink } from 'lucide-react';
 import { useResumeStore } from '../../store/resume-store';
 
 export default function PreviewPanel() {
-  const { resumeData, getCurrentSelections, setPreviewOpen } = useResumeStore();
+  const { resumeData, getCurrentSelections, getCurrentTextOverrides, setPreviewOpen } =
+    useResumeStore();
   const selections = getCurrentSelections();
+  const textOverrides = getCurrentTextOverrides();
 
   const previewHtml = useMemo(() => {
     if (!resumeData || !selections) return '';
@@ -47,21 +49,32 @@ export default function PreviewPanel() {
             const posSelection = companySelection.positions[posIndex];
             if (!posSelection?.selected) return;
 
-            const selectedBullets = position.responsibilities.filter(
-              (_, bulletIdx) => posSelection.bullets[bulletIdx]
-            );
+            // Get text overrides for this position
+            const posOverrides = textOverrides?.workExperience?.[company]?.[posIndex];
+            const jobTitle = posOverrides?.job_title?.value ?? position.job_title;
+            const location = posOverrides?.location?.value ?? position.location;
+            const startDate = posOverrides?.start_date?.value ?? position.start_date;
+            const endDate = posOverrides?.end_date?.value ?? position.end_date;
+
+            const selectedBullets = position.responsibilities
+              .map((resp, bulletIdx) => ({
+                text:
+                  posOverrides?.bullets?.[bulletIdx]?.value ?? resp.description,
+                selected: posSelection.bullets[bulletIdx],
+              }))
+              .filter((b) => b.selected);
 
             if (selectedBullets.length === 0) return;
 
             html += `
               <div style="margin-bottom: 15px;">
                 <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                  <h3 style="font-size: 1.1em; margin: 0; color: #111827;">${position.job_title}</h3>
-                  <span style="font-size: 0.85em; color: #6b7280;">${position.start_date} - ${position.end_date}</span>
+                  <h3 style="font-size: 1.1em; margin: 0; color: #111827;">${jobTitle}</h3>
+                  <span style="font-size: 0.85em; color: #6b7280;">${startDate} - ${endDate}</span>
                 </div>
-                <p style="font-size: 0.95em; color: #4b5563; margin: 2px 0 8px;">${company} | ${position.location}</p>
+                <p style="font-size: 0.95em; color: #4b5563; margin: 2px 0 8px;">${company} | ${location}</p>
                 <ul style="margin: 0; padding-left: 20px; font-size: 0.9em; line-height: 1.6;">
-                  ${selectedBullets.map((r) => `<li>${r.description}</li>`).join('')}
+                  ${selectedBullets.map((b) => `<li>${b.text}</li>`).join('')}
                 </ul>
               </div>
             `;
@@ -74,23 +87,30 @@ export default function PreviewPanel() {
 
     // Education section
     if (selections.sections.education) {
-      const selectedEducation = resumeData.education.filter(
-        (_, idx) => selections.education[idx]
-      );
+      const selectedEducation = resumeData.education
+        .map((edu, idx) => ({ edu, idx }))
+        .filter(({ idx }) => selections.education[idx]);
 
       if (selectedEducation.length > 0) {
         html += `<section style="margin-bottom: 25px;">
           <h2 style="font-family: 'Playfair Display', serif; font-size: 1.4em; color: #1e40af; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 15px;">Education</h2>
         `;
 
-        selectedEducation.forEach((edu) => {
+        selectedEducation.forEach(({ edu, idx }) => {
+          const eduOverrides = textOverrides?.education?.[idx];
+          const institution = eduOverrides?.institution?.value ?? edu.institution;
+          const area = eduOverrides?.area?.value ?? edu.area;
+          const studyType = eduOverrides?.studyType?.value ?? edu.studyType;
+          const startDate = eduOverrides?.startDate?.value ?? edu.startDate;
+          const endDate = eduOverrides?.endDate?.value ?? edu.endDate;
+
           html += `
             <div style="margin-bottom: 12px;">
               <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                <h3 style="font-size: 1.05em; margin: 0;">${edu.studyType} in ${edu.area}</h3>
-                <span style="font-size: 0.85em; color: #6b7280;">${edu.startDate} - ${edu.endDate}</span>
+                <h3 style="font-size: 1.05em; margin: 0;">${studyType} in ${area}</h3>
+                <span style="font-size: 0.85em; color: #6b7280;">${startDate} - ${endDate}</span>
               </div>
-              <p style="font-size: 0.9em; color: #4b5563; margin: 2px 0;">${edu.institution}</p>
+              <p style="font-size: 0.9em; color: #4b5563; margin: 2px 0;">${institution}</p>
             </div>
           `;
         });
@@ -121,20 +141,26 @@ export default function PreviewPanel() {
 
     // Skills section
     if (selections.sections.skills) {
-      const selectedSkills = resumeData.specialty_skills.filter(
-        (_, idx) => selections.skills[idx]
-      );
+      const selectedSkills = resumeData.specialty_skills
+        .map((skill, idx) => ({ skill, idx }))
+        .filter(({ idx }) => selections.skills[idx]);
 
       if (selectedSkills.length > 0) {
         html += `<section style="margin-bottom: 25px;">
           <h2 style="font-family: 'Playfair Display', serif; font-size: 1.4em; color: #1e40af; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 15px;">Skills</h2>
         `;
 
-        selectedSkills.forEach((skill) => {
+        selectedSkills.forEach(({ skill, idx }) => {
+          const skillOverrides = textOverrides?.skills?.[idx];
+          const skillName = skillOverrides?.name?.value ?? skill.name;
+          const keywords = skill.keywords.map((kw, kidx) =>
+            skillOverrides?.keywords?.[kidx]?.value ?? kw
+          );
+
           html += `
             <div style="margin-bottom: 10px;">
-              <strong style="font-size: 0.95em;">${skill.name}:</strong>
-              <span style="font-size: 0.9em; color: #4b5563;"> ${skill.keywords.join(' • ')}</span>
+              <strong style="font-size: 0.95em;">${skillName}:</strong>
+              <span style="font-size: 0.9em; color: #4b5563;"> ${keywords.join(' • ')}</span>
             </div>
           `;
         });
@@ -158,18 +184,26 @@ export default function PreviewPanel() {
           const projSelection = selections.projects[idx];
           if (!projSelection?.selected) return;
 
-          const selectedHighlights = project.highlights.filter(
-            (_, hIdx) => projSelection.highlights[hIdx]
-          );
+          // Get text overrides for this project
+          const projOverrides = textOverrides?.projects?.[idx];
+          const projectName = projOverrides?.name?.value ?? project.name;
+          const projectDesc = projOverrides?.description?.value ?? project.description;
+
+          const selectedHighlights = project.highlights
+            .map((h, hIdx) => ({
+              text: projOverrides?.highlights?.[hIdx]?.value ?? h.description,
+              selected: projSelection.highlights[hIdx],
+            }))
+            .filter((h) => h.selected);
 
           html += `
             <div style="margin-bottom: 15px;">
-              <h3 style="font-size: 1.05em; margin: 0;">${project.name}</h3>
-              <p style="font-size: 0.9em; color: #4b5563; margin: 4px 0;">${project.description}</p>
+              <h3 style="font-size: 1.05em; margin: 0;">${projectName}</h3>
+              <p style="font-size: 0.9em; color: #4b5563; margin: 4px 0;">${projectDesc}</p>
               ${
                 selectedHighlights.length > 0
                   ? `<ul style="margin: 8px 0 0; padding-left: 20px; font-size: 0.9em; line-height: 1.6;">
-                      ${selectedHighlights.map((h) => `<li>${h.description}</li>`).join('')}
+                      ${selectedHighlights.map((h) => `<li>${h.text}</li>`).join('')}
                     </ul>`
                   : ''
               }
@@ -183,7 +217,7 @@ export default function PreviewPanel() {
 
     html += `</div>`;
     return html;
-  }, [resumeData, selections]);
+  }, [resumeData, selections, textOverrides]);
 
   return (
     <aside className="w-96 bg-white border-l border-gray-200 flex-shrink-0 flex flex-col">

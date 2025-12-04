@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { ResumeData, ResumeVersion, SelectionState } from '../types/resume';
+import type { ResumeData, ResumeVersion, SelectionState, TextOverride, TextOverrides } from '../types/resume';
 import { createDefaultSelections, cloneSelections, generateId } from '../utils/yaml-loader';
 
 interface ResumeStore {
@@ -33,6 +33,12 @@ interface ResumeStore {
   getCurrentSelections: () => SelectionState | null;
   updateSelections: (updater: (selections: SelectionState) => void) => void;
 
+  // Text override actions
+  getCurrentTextOverrides: () => TextOverrides | null;
+  setTextOverride: (path: string, value: string, indices: Record<string, string | number>) => void;
+  removeTextOverride: (path: string, indices: Record<string, string | number>) => void;
+  pushOverrideToMaster: (path: string, value: string, indices: Record<string, string | number>) => void;
+
   // Section toggle
   toggleSection: (sectionId: keyof SelectionState['sections']) => void;
 
@@ -55,6 +61,15 @@ interface ResumeStore {
 
   // Initialization
   initializeWithData: (data: ResumeData) => void;
+
+  // Add new items to master data
+  addEducation: (newEducation: Omit<ResumeData['education'][0], 'include_in'>) => void;
+  addCompany: (companyName: string) => void;
+  addPosition: (company: string, newPosition: Omit<ResumeData['work_experience'][string][0], 'include_in'>) => void;
+  addProject: (newProject: Omit<ResumeData['projects'][0], 'include_in'>) => void;
+  addSkill: (newSkill: Omit<ResumeData['specialty_skills'][0], 'include_in'>) => void;
+  addAward: (newAward: Omit<ResumeData['awards'][0], 'include_in'>) => void;
+  addCertification: (newCert: Omit<ResumeData['certifications'][0], 'include_in'>) => void;
 }
 
 // Master version is a virtual version that represents all items selected
@@ -307,9 +322,540 @@ export const useResumeStore = create<ResumeStore>()(
         });
       },
 
+      // Text override methods
+      getCurrentTextOverrides: () => {
+        const { versions, activeVersionId } = get();
+        if (activeVersionId === null) return null; // Master has no overrides
+
+        const version = versions.find((v) => v.id === activeVersionId);
+        return version?.textOverrides ?? null;
+      },
+
+      setTextOverride: (path, value, indices) => {
+        const { versions, activeVersionId, resumeData } = get();
+
+        // Can't modify Master
+        if (activeVersionId === null || !resumeData) return;
+
+        set({
+          versions: versions.map((v) => {
+            if (v.id === activeVersionId) {
+              const newOverrides = { ...v.textOverrides };
+
+              // Build the nested path
+              const override: TextOverride = {
+                value,
+                lastModified: new Date().toISOString(),
+              };
+
+              // Parse path and set override (e.g., 'workExperience.bullets')
+              const parts = path.split('.');
+              const section = parts[0] as keyof TextOverrides;
+
+              if (!newOverrides[section]) {
+                newOverrides[section] = {} as any;
+              }
+
+              // Handle different section structures
+              if (section === 'workExperience') {
+                const company = indices.company as string;
+                const field = parts[1];
+
+                if (!newOverrides.workExperience![company]) {
+                  newOverrides.workExperience![company] = {};
+                }
+
+                if (field === 'company_name') {
+                  // Special handling for company name override
+                  (newOverrides.workExperience![company] as any).company_name = override;
+                } else {
+                  // Position-level overrides
+                  const positionIndex = indices.positionIndex as number;
+                  if (!newOverrides.workExperience![company][positionIndex]) {
+                    newOverrides.workExperience![company][positionIndex] = {};
+                  }
+
+                  if (field === 'bullets') {
+                    const bulletIndex = indices.bulletIndex as number;
+                    if (!newOverrides.workExperience![company][positionIndex].bullets) {
+                      newOverrides.workExperience![company][positionIndex].bullets = {};
+                    }
+                    newOverrides.workExperience![company][positionIndex].bullets![bulletIndex] = override;
+                  } else {
+                    (newOverrides.workExperience![company][positionIndex] as any)[field] = override;
+                  }
+                }
+              } else if (section === 'education' || section === 'projects' || section === 'skills' ||
+                         section === 'awards' || section === 'certifications') {
+                const index = indices.index as number;
+                const field = parts[1];
+
+                if (!(newOverrides[section] as any)[index]) {
+                  (newOverrides[section] as any)[index] = {};
+                }
+
+                if (field === 'highlights' || field === 'bullets' || field === 'keywords') {
+                  const subIndex = indices.subIndex as number;
+                  if (!(newOverrides[section] as any)[index][field]) {
+                    (newOverrides[section] as any)[index][field] = {};
+                  }
+                  (newOverrides[section] as any)[index][field][subIndex] = override;
+                } else {
+                  (newOverrides[section] as any)[index][field] = override;
+                }
+              } else if (section === 'basics') {
+                const field = parts[1];
+                if (!newOverrides.basics) {
+                  newOverrides.basics = {};
+                }
+                (newOverrides.basics as any)[field] = override;
+              }
+
+              return {
+                ...v,
+                textOverrides: newOverrides,
+                updatedAt: new Date().toISOString(),
+              };
+            }
+            return v;
+          }),
+        });
+      },
+
+      removeTextOverride: (path, indices) => {
+        const { versions, activeVersionId } = get();
+
+        if (activeVersionId === null) return;
+
+        set({
+          versions: versions.map((v) => {
+            if (v.id === activeVersionId && v.textOverrides) {
+              const newOverrides = { ...v.textOverrides };
+              const parts = path.split('.');
+              const section = parts[0] as keyof TextOverrides;
+
+              // Remove the override by deleting the property
+              if (section === 'workExperience') {
+                const company = indices.company as string;
+                const field = parts[1];
+
+                if (field === 'company_name') {
+                  // Remove company name override
+                  delete (newOverrides.workExperience?.[company] as any)?.company_name;
+                } else {
+                  // Remove position-level overrides
+                  const positionIndex = indices.positionIndex as number;
+                  if (newOverrides.workExperience?.[company]?.[positionIndex]) {
+                    if (field === 'bullets') {
+                      const bulletIndex = indices.bulletIndex as number;
+                      delete newOverrides.workExperience[company][positionIndex].bullets?.[bulletIndex];
+                    } else {
+                      delete (newOverrides.workExperience[company][positionIndex] as any)[field];
+                    }
+                  }
+                }
+              } else if (section === 'education' || section === 'projects' || section === 'skills' ||
+                         section === 'awards' || section === 'certifications') {
+                const index = indices.index as number;
+                const field = parts[1];
+
+                if ((newOverrides[section] as any)?.[index]) {
+                  if (field === 'highlights' || field === 'bullets' || field === 'keywords') {
+                    const subIndex = indices.subIndex as number;
+                    delete (newOverrides[section] as any)[index][field]?.[subIndex];
+                  } else {
+                    delete (newOverrides[section] as any)[index][field];
+                  }
+                }
+              } else if (section === 'basics' && newOverrides.basics) {
+                const field = parts[1];
+                delete (newOverrides.basics as any)[field];
+              }
+
+              return {
+                ...v,
+                textOverrides: newOverrides,
+                updatedAt: new Date().toISOString(),
+              };
+            }
+            return v;
+          }),
+        });
+      },
+
+      pushOverrideToMaster: (path, value, indices) => {
+        const { resumeData } = get();
+
+        if (!resumeData) return;
+
+        // Update the master data
+        const parts = path.split('.');
+        const section = parts[0];
+
+        if (section === 'workExperience') {
+          const company = indices.company as string;
+          const field = parts[1];
+
+          if (field === 'company_name') {
+            // Company names are object keys, so we can't rename them in-place
+            // This would require complex logic to rename keys in the work_experience object
+            // For now, we'll just log a warning
+            console.warn('Cannot push company name to master - company names are object keys');
+          } else {
+            const positionIndex = indices.positionIndex as number;
+            if (field === 'bullets') {
+              const bulletIndex = indices.bulletIndex as number;
+              if (resumeData.work_experience[company]?.[positionIndex]?.responsibilities[bulletIndex]) {
+                resumeData.work_experience[company][positionIndex].responsibilities[bulletIndex].description = value;
+              }
+            } else {
+              if (resumeData.work_experience[company]?.[positionIndex]) {
+                (resumeData.work_experience[company][positionIndex] as any)[field] = value;
+              }
+            }
+          }
+        } else if (section === 'education') {
+          const index = indices.index as number;
+          const field = parts[1];
+          if (resumeData.education[index]) {
+            if (field === 'courses') {
+              // Convert comma-separated string to array
+              resumeData.education[index].courses = value
+                .split(',')
+                .map((c) => c.trim())
+                .filter((c) => c.length > 0);
+            } else {
+              (resumeData.education[index] as any)[field] = value;
+            }
+          }
+        } else if (section === 'projects') {
+          const index = indices.index as number;
+          const field = parts[1];
+
+          if (field === 'highlights') {
+            const highlightIndex = indices.subIndex as number;
+            if (resumeData.projects[index]?.highlights[highlightIndex]) {
+              resumeData.projects[index].highlights[highlightIndex].description = value;
+            }
+          } else {
+            if (resumeData.projects[index]) {
+              (resumeData.projects[index] as any)[field] = value;
+            }
+          }
+        } else if (section === 'skills') {
+          const index = indices.index as number;
+          const field = parts[1];
+
+          if (field === 'keywords') {
+            const keywordIndex = indices.subIndex as number;
+            if (resumeData.specialty_skills[index]?.keywords[keywordIndex] !== undefined) {
+              resumeData.specialty_skills[index].keywords[keywordIndex] = value;
+            }
+          } else {
+            if (resumeData.specialty_skills[index]) {
+              (resumeData.specialty_skills[index] as any)[field] = value;
+            }
+          }
+        } else if (section === 'awards') {
+          const index = indices.index as number;
+          const field = parts[1];
+          if (resumeData.awards[index]) {
+            (resumeData.awards[index] as any)[field] = value;
+          }
+        } else if (section === 'certifications') {
+          const index = indices.index as number;
+          const field = parts[1];
+          if (resumeData.certifications[index]) {
+            (resumeData.certifications[index] as any)[field] = value;
+          }
+        } else if (section === 'basics') {
+          const field = parts[1];
+          (resumeData.basics as any)[field] = value;
+        }
+
+        set({ resumeData: { ...resumeData } });
+      },
+
       // UI state
       setPreviewOpen: (open) => set({ previewOpen: open }),
       setSelectedSection: (section) => set({ selectedSection: section }),
+
+      // Add new items to master data
+      addEducation: (newEducation) => {
+        const { resumeData, versions } = get();
+        if (!resumeData) return;
+
+        // Add include_in with all tags
+        const educationWithTags = {
+          ...newEducation,
+          include_in: ['all'] as any,
+        };
+
+        // Add to resume data
+        const updatedResumeData = {
+          ...resumeData,
+          education: [...resumeData.education, educationWithTags],
+        };
+
+        const newIndex = resumeData.education.length;
+
+        // Update all versions to include the new item
+        const updatedVersions = versions.map((v) => ({
+          ...v,
+          selections: {
+            ...v.selections,
+            education: {
+              ...v.selections.education,
+              [newIndex]: true,
+            },
+          },
+        }));
+
+        set({
+          resumeData: updatedResumeData,
+          versions: updatedVersions,
+        });
+      },
+
+      addCompany: (companyName) => {
+        const { resumeData, versions } = get();
+        if (!resumeData) return;
+
+        // Check if company already exists
+        if (resumeData.work_experience[companyName]) {
+          console.warn(`Company ${companyName} already exists`);
+          return;
+        }
+
+        // Add empty company
+        const updatedResumeData = {
+          ...resumeData,
+          work_experience: {
+            ...resumeData.work_experience,
+            [companyName]: [],
+          },
+        };
+
+        // Update all versions to include the new company
+        const updatedVersions = versions.map((v) => ({
+          ...v,
+          selections: {
+            ...v.selections,
+            workExperience: {
+              ...v.selections.workExperience,
+              [companyName]: {
+                selected: true,
+                positions: {},
+              },
+            },
+          },
+        }));
+
+        set({
+          resumeData: updatedResumeData,
+          versions: updatedVersions,
+        });
+      },
+
+      addPosition: (company, newPosition) => {
+        const { resumeData, versions } = get();
+        if (!resumeData || !resumeData.work_experience[company]) return;
+
+        // Add include_in tags to position and responsibilities
+        const positionWithTags = {
+          ...newPosition,
+          include_in: ['all'] as any,
+          responsibilities: newPosition.responsibilities.map((resp) => ({
+            description: typeof resp === 'string' ? resp : resp.description,
+            include_in: ['all'] as any,
+          })),
+        };
+
+        const updatedPositions = [
+          ...resumeData.work_experience[company],
+          positionWithTags,
+        ];
+
+        const updatedResumeData = {
+          ...resumeData,
+          work_experience: {
+            ...resumeData.work_experience,
+            [company]: updatedPositions,
+          },
+        };
+
+        const newPositionIndex = resumeData.work_experience[company].length;
+
+        // Update all versions to include the new position
+        const updatedVersions = versions.map((v) => ({
+          ...v,
+          selections: {
+            ...v.selections,
+            workExperience: {
+              ...v.selections.workExperience,
+              [company]: {
+                selected: true,
+                positions: {
+                  ...v.selections.workExperience[company]?.positions,
+                  [newPositionIndex]: {
+                    selected: true,
+                    bullets: positionWithTags.responsibilities.map(() => true),
+                  },
+                },
+              },
+            },
+          },
+        }));
+
+        set({
+          resumeData: updatedResumeData,
+          versions: updatedVersions,
+        });
+      },
+
+      addProject: (newProject) => {
+        const { resumeData, versions } = get();
+        if (!resumeData) return;
+
+        // Add include_in tags
+        const projectWithTags = {
+          ...newProject,
+          include_in: ['all'] as any,
+          highlights: newProject.highlights.map((h) => ({
+            description: typeof h === 'string' ? h : h.description,
+            include_in: ['all'] as any,
+          })),
+        };
+
+        const updatedResumeData = {
+          ...resumeData,
+          projects: [...resumeData.projects, projectWithTags],
+        };
+
+        const newIndex = resumeData.projects.length;
+
+        // Update all versions to include the new project
+        const updatedVersions = versions.map((v) => ({
+          ...v,
+          selections: {
+            ...v.selections,
+            projects: {
+              ...v.selections.projects,
+              [newIndex]: {
+                selected: true,
+                highlights: projectWithTags.highlights.map(() => true),
+              },
+            },
+          },
+        }));
+
+        set({
+          resumeData: updatedResumeData,
+          versions: updatedVersions,
+        });
+      },
+
+      addSkill: (newSkill) => {
+        const { resumeData, versions } = get();
+        if (!resumeData) return;
+
+        const skillWithTags = {
+          ...newSkill,
+          include_in: ['all'] as any,
+        };
+
+        const updatedResumeData = {
+          ...resumeData,
+          specialty_skills: [...resumeData.specialty_skills, skillWithTags],
+        };
+
+        const newIndex = resumeData.specialty_skills.length;
+
+        // Update all versions to include the new skill
+        const updatedVersions = versions.map((v) => ({
+          ...v,
+          selections: {
+            ...v.selections,
+            skills: {
+              ...v.selections.skills,
+              [newIndex]: true,
+            },
+          },
+        }));
+
+        set({
+          resumeData: updatedResumeData,
+          versions: updatedVersions,
+        });
+      },
+
+      addAward: (newAward) => {
+        const { resumeData, versions } = get();
+        if (!resumeData) return;
+
+        const awardWithTags = {
+          ...newAward,
+          include_in: ['all'] as any,
+        };
+
+        const updatedResumeData = {
+          ...resumeData,
+          awards: [...resumeData.awards, awardWithTags],
+        };
+
+        const newIndex = resumeData.awards.length;
+
+        // Update all versions to include the new award
+        const updatedVersions = versions.map((v) => ({
+          ...v,
+          selections: {
+            ...v.selections,
+            awards: {
+              ...v.selections.awards,
+              [newIndex]: true,
+            },
+          },
+        }));
+
+        set({
+          resumeData: updatedResumeData,
+          versions: updatedVersions,
+        });
+      },
+
+      addCertification: (newCert) => {
+        const { resumeData, versions } = get();
+        if (!resumeData) return;
+
+        const certWithTags = {
+          ...newCert,
+          include_in: ['all'] as any,
+        };
+
+        const updatedResumeData = {
+          ...resumeData,
+          certifications: [...resumeData.certifications, certWithTags],
+        };
+
+        const newIndex = resumeData.certifications.length;
+
+        // Update all versions to include the new certification
+        const updatedVersions = versions.map((v) => ({
+          ...v,
+          selections: {
+            ...v.selections,
+            certifications: {
+              ...v.selections.certifications,
+              [newIndex]: true,
+            },
+          },
+        }));
+
+        set({
+          resumeData: updatedResumeData,
+          versions: updatedVersions,
+        });
+      },
     }),
     {
       name: 'resume-builder-storage',

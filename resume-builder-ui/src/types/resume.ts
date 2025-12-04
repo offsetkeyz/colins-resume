@@ -161,6 +161,96 @@ export interface SelectionState {
   };
 }
 
+// Text override types for inline editing
+export interface TextOverride {
+  value: string;
+  lastModified: string;
+}
+
+export interface TextOverrides {
+  // Work experience: company -> positionIndex -> field -> override
+  workExperience?: {
+    [company: string]: {
+      company_name?: TextOverride; // Override for company display name
+      [positionIndex: number]: {
+        job_title?: TextOverride;
+        location?: TextOverride;
+        start_date?: TextOverride;
+        end_date?: TextOverride;
+        bullets?: {
+          [bulletIndex: number]: TextOverride;
+        };
+      };
+    };
+  };
+
+  // Education: index -> field -> override
+  education?: {
+    [index: number]: {
+      institution?: TextOverride;
+      area?: TextOverride;
+      studyType?: TextOverride;
+      startDate?: TextOverride;
+      endDate?: TextOverride;
+      score?: TextOverride;
+      courses?: TextOverride;
+    };
+  };
+
+  // Projects: index -> field -> override
+  projects?: {
+    [index: number]: {
+      name?: TextOverride;
+      description?: TextOverride;
+      url?: TextOverride;
+      startDate?: TextOverride;
+      highlights?: {
+        [highlightIndex: number]: TextOverride;
+      };
+    };
+  };
+
+  // Skills: index -> field -> override
+  skills?: {
+    [index: number]: {
+      name?: TextOverride;
+      keywords?: {
+        [keywordIndex: number]: TextOverride;
+      };
+    };
+  };
+
+  // Awards: index -> field -> override
+  awards?: {
+    [index: number]: {
+      title?: TextOverride;
+      date?: TextOverride;
+      awarder?: TextOverride;
+      summary?: TextOverride;
+    };
+  };
+
+  // Certifications: index -> field -> override
+  certifications?: {
+    [index: number]: {
+      title?: TextOverride;
+      acronym?: TextOverride;
+      date?: TextOverride;
+      issuer?: TextOverride;
+    };
+  };
+
+  // Basics: field -> override
+  basics?: {
+    name?: TextOverride;
+    label?: TextOverride;
+    email?: TextOverride;
+    phone?: TextOverride;
+    url?: TextOverride;
+    summary?: TextOverride;
+  };
+}
+
 export interface ResumeVersion {
   id: string;
   name: string;
@@ -169,9 +259,7 @@ export interface ResumeVersion {
   updatedAt: string;
   basedOn: string; // 'master' or another version id
   selections: SelectionState;
-  overrides?: {
-    [path: string]: string; // e.g., 'basics.summary': 'Custom summary'
-  };
+  textOverrides?: TextOverrides; // Version-specific text edits
 }
 
 export interface VersionsData {

@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 
 interface CollapsibleSectionProps {
-  title: string;
+  title: string | ReactNode;
   children: ReactNode;
   defaultOpen?: boolean;
   checkbox?: {
@@ -12,7 +12,7 @@ interface CollapsibleSectionProps {
     disabled?: boolean;
   };
   level?: number;
-  metadata?: string;
+  metadata?: string | ReactNode;
   id?: string;
 }
 
