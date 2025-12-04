@@ -85,7 +85,13 @@ export default function WorkExperienceEditor({ isReadOnly }: WorkExperienceEdito
                           <input
                             type="checkbox"
                             checked={posSelection.bullets[bulletIdx] ?? false}
-                            onChange={() => toggleBullet(company, posIndex, bulletIdx)}
+                            onChange={(e) => {
+                              e.stopPropagation();
+                              toggleBullet(company, posIndex, bulletIdx);
+                            }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                            }}
                             disabled={isReadOnly}
                             className={`mt-1 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 flex-shrink-0 ${
                               isReadOnly ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'

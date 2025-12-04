@@ -28,7 +28,13 @@ export default function EducationEditor({ isReadOnly }: EducationEditorProps) {
               <input
                 type="checkbox"
                 checked={isSelected}
-                onChange={() => toggleEducation(index)}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  toggleEducation(index);
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
                 disabled={isReadOnly}
                 className={`mt-1 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 ${
                   isReadOnly ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'

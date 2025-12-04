@@ -57,7 +57,13 @@ export default function CollapsibleSection({
                 el.indeterminate = checkbox.indeterminate ?? false;
               }
             }}
-            onChange={checkbox.onChange}
+            onChange={(e) => {
+              e.stopPropagation();
+              checkbox.onChange();
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
             disabled={checkbox.disabled}
             className={`w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 ${
               checkbox.disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'
