@@ -8,7 +8,6 @@ import {
   MoreVertical,
   Trash2,
   Copy,
-  Edit3,
 } from 'lucide-react';
 import { useResumeStore } from '../../store/resume-store';
 import CreateVersionModal from '../modals/CreateVersionModal';

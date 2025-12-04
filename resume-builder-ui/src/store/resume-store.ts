@@ -79,12 +79,6 @@ export const useResumeStore = create<ResumeStore>()(
 
       // Initialize store with resume data
       initializeWithData: (data) => {
-        const { versions } = get();
-
-        // If no versions exist, we're good - Master will show all
-        // If versions exist, we need to make sure their selections are valid
-        // for the current data structure
-
         set({
           resumeData: data,
           isLoading: false,
@@ -94,7 +88,7 @@ export const useResumeStore = create<ResumeStore>()(
 
       // Version management
       createVersion: (name, description, basedOn = MASTER_ID) => {
-        const { resumeData, versions, getCurrentSelections } = get();
+        const { resumeData, versions } = get();
         if (!resumeData) return;
 
         let baseSelections: SelectionState;
