@@ -69,7 +69,13 @@ export default function Sidebar() {
                 <input
                   type="checkbox"
                   checked={isSelected}
-                  onChange={() => handleCheckboxChange(id)}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    handleCheckboxChange(id);
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                   disabled={isReadOnly}
                   className={`w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 ${
                     isReadOnly ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'

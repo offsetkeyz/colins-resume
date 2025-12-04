@@ -80,7 +80,13 @@ export default function ProjectsEditor({ isReadOnly }: ProjectsEditorProps) {
                       <input
                         type="checkbox"
                         checked={projSelection.highlights[hIdx] ?? false}
-                        onChange={() => toggleProjectHighlight(index, hIdx)}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          toggleProjectHighlight(index, hIdx);
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                         disabled={isReadOnly}
                         className={`mt-1 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 flex-shrink-0 ${
                           isReadOnly ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'
